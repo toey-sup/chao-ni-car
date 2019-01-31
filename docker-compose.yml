@@ -5,8 +5,6 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-    volumes:
-      - C:/data/chao-ni-car:/data/db
 
   backend:
     depends_on:
