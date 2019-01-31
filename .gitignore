@@ -1,6 +1,4 @@
 # dependencies
-#/frontend/node_modules/
-#/frontend/build
-#/backend/node_modules
-/frontend
-/backend
+/frontend/node_modules
+/frontend/build
+/backend/node_modules
