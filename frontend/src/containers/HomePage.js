@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import classes from './HomePage.module.css';
 import QueryFilter from '../components/QueryFilter/QueryFilter';
 import CarCards from '../components/CarCard/CarCards';
-
+import CarJumbotron from '../components/Jumbotron/Jumbotron';
 class HomePage extends Component {
   state = {
     location: '',
@@ -28,6 +28,7 @@ class HomePage extends Component {
             Generate Card รถ ออกมาตรงนี้
             <CarCards />
           </Container>
+          <CarJumbotron/>
         </div>
       </>
     );
