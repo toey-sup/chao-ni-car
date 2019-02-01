@@ -12,5 +12,5 @@ RUN npm install
 # --> Expose our server port.
 EXPOSE 5000
 # --> Run our app.
-CMD ["npm", "run", "dev"]
-# CMD ["npm", "start"]
+# CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
