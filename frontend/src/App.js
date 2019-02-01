@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import Button from 'react-bootstrap/Button'
 import Profile from './containers/Profile'
 
 class App extends Component {
@@ -14,6 +14,7 @@ class App extends Component {
 					<li><a href="#Attendance">Check Attendance</a></li>
 					<li><a href="#View">View Created Activity</a></li>
 					<li><a href="#History">History</a></li>
+          <Button><p>"BUTTON"</p></Button>
 				</ul>
         <Profile />
       </div>
