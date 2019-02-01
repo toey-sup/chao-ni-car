@@ -10,8 +10,7 @@ class HomePage extends Component {
         <Navbar />
         <Container>
             <Row>
-                <Col ><Button>Hello</Button></Col>
-                <Col><p className={classes.red}>loremdslkfgmsdjl;kfgjslkfsjddddddddkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</p></Col>
+                
             </Row>
           
           
