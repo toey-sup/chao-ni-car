@@ -1,3 +1,19 @@
 .red {
     color: red
 }
+
+.Div{
+    width: 95%;
+    margin: 10px auto; /*Center Items*/
+    padding: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+}
+
+.Filter{
+    width: 60%;
+    margin: 10px auto; /*Center Items*/
+    padding: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc
+}
