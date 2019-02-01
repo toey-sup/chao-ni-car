@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Container, Row, Col } from "react-bootstrap";
 import classes from './HomePage.module.css';
 import QueryFilter from '../components/QueryFilter/QueryFilter';
+import CarCards from '../components/CarCard/CarCards';
 
 class HomePage extends Component {
   state = {
@@ -25,6 +26,7 @@ class HomePage extends Component {
         <div className={classes.Div}>
           <Container>
             Generate Card รถ ออกมาตรงนี้
+            <CarCards />
           </Container>
         </div>
       </>
