@@ -13,8 +13,8 @@ require('./services/passport');
 const Member = mongoose.model('members');
 
 //Set up default mongoose connection
- var mongoDB = 'mongodb://localhost:27017/data';
-// var mongoDB = 'mongodb://db:27017/data';
+// var mongoDB = 'mongodb://localhost:27017/data';
+ var mongoDB = 'mongodb://db:27017/data';
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 
 
