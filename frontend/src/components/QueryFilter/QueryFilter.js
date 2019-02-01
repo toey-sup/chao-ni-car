@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Button, FormLabel } from 'react-bootstrap';
 
 class QueryFilter extends Component {
     state = {
@@ -21,6 +21,7 @@ class QueryFilter extends Component {
                         value={this.state.location}
                         onChange={(event) => this.onChangeHandler(event, "location")}
                     />
+                    <FormLabel><strong>Choose Date</strong></FormLabel>
                 </FormGroup>
                 <Button onClick={() => this.props.change(this.state)}>Search</Button>
             </Form >
