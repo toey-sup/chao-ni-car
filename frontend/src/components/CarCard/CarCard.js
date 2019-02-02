@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card,Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import classes from './CarCard.module.css';
 import logo from './Untitled.png';
+import { withRouter } from 'react-router-dom';
 
 const carCard = (props) => {
     return (
@@ -12,10 +13,10 @@ const carCard = (props) => {
                 <Card.Text>
                     {props.description}
                 </Card.Text>
-                <Button variant="danger">Rent!</Button>
+                <Button variant="danger" onClick={() => props.history.push('/car/' + props.id)}>View</Button>
             </Card.Body>
         </Card>
     );
 }
 
-export default carCard;
+export default withRouter(carCard);

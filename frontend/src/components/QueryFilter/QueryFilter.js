@@ -23,7 +23,7 @@ class QueryFilter extends Component {
                     />
                     <FormLabel><strong>Choose Date</strong></FormLabel>
                 </FormGroup>
-                <Button onClick={() => this.props.change(this.state)}>Search</Button>
+                <Button onClick={() => this.props.change(this.state)} variant="danger" style={{width:'100%'}}>Search</Button>
             </Form >
         );
     }
