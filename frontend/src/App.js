@@ -8,13 +8,13 @@ import AboutPage from './containers/AboutPage'
 import LoginPage from './containers/LoginPage'
 import ResultPage from './containers/ResultPage'
 import CarDetail from './components/CarDetail/CarDetail';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Profile />
+        {/* <Profile /> */}
         <Navbar />
         <Switch>
           <Route exact path="/" component={HomePage} />
