@@ -11,9 +11,9 @@ class HomePage extends Component {
         <Container>
             <Row>
                 <Col ><Button>Hello</Button></Col>
-                <Col><p className={classes.red}>loremdslkfgmsdjl;kfgjslkfsjddddddddkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</p></Col>
+                <Col><p className={classes.red}>loremdslkfgmkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</p></Col>
+
             </Row>
-          
           
         </Container>
       </div>
