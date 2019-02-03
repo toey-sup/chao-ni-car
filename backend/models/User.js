@@ -3,10 +3,14 @@ const {Schema} = mongoose;
 
 const userSchema = new Schema({
     name: String,
-    //facebookId: String,
     googleId: String,
     photo: String,
-    email: String
+    email: String,
+    tel: String,
+    idCardNum: String,
+    birthdate: Date,
+    address: String,
+    DLicenseNumber: String
 })
 
 mongoose.model("users", userSchema)

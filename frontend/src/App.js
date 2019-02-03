@@ -7,6 +7,7 @@ import HomePage from './containers/HomePage'
 import AboutPage from './containers/AboutPage'
 import LoginPage from './containers/LoginPage'
 import ResultPage from './containers/ResultPage'
+import testPage from './containers/testPage'
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route path="/about" component={AboutPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/result" component={ResultPage} />
+        <Route path="/test" component={testPage} />
       </div>
     )
   }

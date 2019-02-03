@@ -7,6 +7,7 @@ const keys = require('./config/keys')
 
 require('./models/Car');
 require('./models/User');
+require('./models/Request');
 require('./services/passport');
 
 
@@ -37,11 +38,18 @@ app.use(
 )
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+  });
 
 ///////////////////////////////////////
 
 require('./routes/authRoutes')(app);
 require('./routes/carRoutes')(app);
+require('./routes/testRoutes')(app);
 
 app.get('/', (req, res) => {
   res.send({ hi: [] });
