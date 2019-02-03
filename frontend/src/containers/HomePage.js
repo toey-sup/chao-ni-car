@@ -7,7 +7,7 @@ import CarCards from '../components/CarCard/CarCards';
 class HomePage extends Component {
   state = {
     location: '',
-    cars: []
+    cars: [], //fetch from server
   }
 
   onChangeHandler = (payload) => {
@@ -28,7 +28,6 @@ class HomePage extends Component {
         <div className={classes.Filter} style={{ textAlign: "center" }}><QueryFilter change={this.onChangeHandler} /></div>
         <div className={classes.Div}>
           <Container>
-            Generate Card รถ ออกมาตรงนี้
             <CarCards cars={this.state.cars}/>
           </Container>
         </div>
