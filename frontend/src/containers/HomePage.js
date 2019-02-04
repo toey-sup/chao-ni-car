@@ -3,10 +3,16 @@ import { Container } from "react-bootstrap";
 import classes from './HomePage.module.css';
 import QueryFilter from '../components/QueryFilter/QueryFilter';
 import CarCards from '../components/CarCard/CarCards';
-import CarJumbotron from '../components/Jumbotron/Jumbotron';
+//import CarJumbotron from '../components/Jumbotron/Jumbotron';
+import axios from 'axios';
+import withErrorHandler from "../hoc/withError";
+
 class HomePage extends Component {
   state = {
     location: '',
+    fromDate: null,
+    toDate: null,
+    loading: false,
     cars: [], //fetch from server
   }
 
@@ -20,6 +26,15 @@ class HomePage extends Component {
 
   searchHandler() {
     //ยิง GET request 
+    this.setState({ loading: true })
+    axios.get('/api/cars')
+      .then(res => {
+        this.setState({ loading: false })
+        const cars = [...res.data];
+      })
+      .catch(err => {
+        this.setState({ loading: false })
+      });
   }
 
   render() {
@@ -28,13 +43,12 @@ class HomePage extends Component {
         <div className={classes.Filter} style={{ textAlign: "center" }}><QueryFilter change={this.onChangeHandler} /></div>
         <div className={classes.Div}>
           <Container>
-            <CarCards cars={this.state.cars}/>
+            <CarCards cars={this.state.cars} />
           </Container>
-          <CarJumbotron/>
         </div>
       </>
     );
   }
 }
 
-export default HomePage;
+export default withErrorHandler(HomePage,axios);
