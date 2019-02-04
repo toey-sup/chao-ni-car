@@ -1,17 +1,11 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
+import { withRouter } from 'react-router-dom'
 class testPage extends Component {
     state = {
         loading: false,
         cars: null
-    }
-    async componentDidMount() {
-        const res = await axios.get('/api/cars')
-        console.log(res.data)
-        this.setState({
-            cars: res.data
-        })
     }
     submitCar1 = async () => {
         const car = {
@@ -27,8 +21,10 @@ class testPage extends Component {
             availFrom: new Date("2017-03-25"),
             availTo: new Date("2018-03-25"),
             description: "DSFGGHFGHGFHGF",
+            deposit: 3000,
+            pricePerDay: 300
         }
-        const res = await axios.post('/test/create_car', car);
+        const res = await axios.post('/api/cars', car);
         console.log(res.data)
     }
     submitCar2 = async () => {
@@ -46,7 +42,21 @@ class testPage extends Component {
             availTo: new Date(),
             description: "dsfdsfsdfasfasf",
         }
-        const res = await axios.post('/test/create_car', car);
+        const res = await axios.post('/api/cars', car);
+        if (res.data.redirect === '/authentication') {
+            this.props.history.push('/authentication')
+        }
+        console.log(res.data)
+    }
+    createRequest = async (id) => {
+        const request = {
+            placeFrom: "Asok",
+            placeTo: "Siam",
+            dateFrom: new Date("01-02-07"),
+            dateTo: new Date("02-03-07"),
+            carId: id
+        }
+        const res = await axios.post('/api/request', request);
         console.log(res.data)
     }
     deleteCar = async (id) => {
@@ -60,10 +70,14 @@ class testPage extends Component {
         console.log()
     }
     searchHandler = async () => {
-        const numSeat = 5;
-        const brand = 'toyota';
-        const res = await axios.get('/api/cars?brand=' + brand)
+        const res = await axios.get('/api/cars')
+        if (res.data.redirect === '/authentication') {
+            window.location = '/authentication'
+        }
         console.log(res.data)
+        this.setState({
+            cars: res.data
+        })
     }
 
     render() {
@@ -82,6 +96,7 @@ class testPage extends Component {
                     );
                 }
                 keysAndValues.push(<Button onClick={() => this.deleteCar(carObj["_id"])}>Delete this Car</Button>)
+                keysAndValues.push(<Button onClick={() => this.createRequest(carObj["_id"])}>Want this Car</Button>)
                 keysAndValues.push(<p>--------------------------------------------------------------------</p>)
                 return keysAndValues
             })
@@ -112,4 +127,4 @@ class testPage extends Component {
     }
 }
 
-export default testPage
+export default withRouter(testPage)

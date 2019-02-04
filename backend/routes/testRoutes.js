@@ -3,22 +3,6 @@ const Car = mongoose.model('cars')
 const requireLogin = require('../middlewares/requireLogin')
 
 module.exports = (app) => {
-    app.post('/test/create_car', async (req, res) => {
-        //const tempArrURL = picture.split('/');
-        //tempArrURL.splice(6,0,'q_1');
-        //const picturePH = tempArrURL.join('/');
-        const {brand, type, regYear, LNumber, gear, seat, equipment, status, 
-            photo, availFrom, availTo, description} = req.body
-        const car = await new Car({
-            brand, type, regYear, LNumber, gear, seat, equipment, status, 
-            photo, availFrom, availTo, description,
-            _owner: req.user
-        }).save()
-        console.log(car)
-        res.send(car);
-
-    })
-    
     app.delete('/test/cars/:id', async (req, res) => {
         console.log('HIII')
         console.log(req.params)

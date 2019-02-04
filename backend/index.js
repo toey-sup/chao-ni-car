@@ -49,7 +49,7 @@ app.use(function (req, res, next) {
 
 require('./routes/authRoutes')(app);
 require('./routes/carRoutes')(app);
-require('./routes/testRoutes')(app);
+require('./routes/requestRoutes')(app);
 
 app.get('/', (req, res) => {
   res.send({ hi: [] });

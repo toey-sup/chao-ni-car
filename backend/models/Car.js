@@ -7,13 +7,18 @@ const carSchema = new Schema({
   regYear: { type: String, required: true },
   LNumber: { type: String, required: true },
   gear: "manual" | "auto",
-  seat: { type: Number },
-  equipment: { type: String},
-  status: "avail" | "rented",
+  seat: { type: Number, required: true },
+  equipment: { type: String },
+  
   photo: String,
-  availFrom: Date,
-  availTo: Date,
-  description: String,
+  availFrom:  { type: Date, required: true },
+  availTo: { type: Date, required: true },
+  description: { type: String },
+  
+  pricePerDay: {type: Number, required: true},
+  deposit: {type: Number, required: true},
+
+  isRented: { type: Boolean, default: false},
   _owner: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 

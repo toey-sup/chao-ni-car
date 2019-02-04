@@ -10,7 +10,8 @@ const userSchema = new Schema({
     idCardNum: String,
     birthdate: Date,
     address: String,
-    DLicenseNumber: String
+    DLicenseNumber: String,
+    isAuthenticated: Boolean
 })
 
 mongoose.model("users", userSchema)
