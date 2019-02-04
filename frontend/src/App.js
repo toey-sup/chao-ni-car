@@ -11,6 +11,7 @@ import CarDetail from './components/CarDetail/CarDetail';
 import Navbar from './components/Navbar/Navbar';
 import LoginComponent from './components/Login/LoginComponent';
 
+import testPage from './containers/testPage'
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path="/about" component={AboutPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/result" component={ResultPage} />
+          <Route path="/test" component={testPage} />
         </Switch>
       </div>
     )

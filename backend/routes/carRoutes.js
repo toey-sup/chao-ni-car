@@ -1,18 +1,36 @@
 const mongoose = require('mongoose');
 const Car = mongoose.model('cars')
-const requireLogin = require('../middlewares/requireLogin')
 const requireAuthentication = require('../middlewares/requireAuthentication')
+
+const multer = require('multer')
+let storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'upload/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '_' + file.originalname)
+  }
+})
+let uploader = multer({ storage: storage })
+
+
 module.exports = (app) => {
+    app.post(
+        '/api/upload',
+        uploader.single('fileInput'),
+        (req, res) => {
+            res.send('Test')
+        })
     app.get('/api/cars', async (req, res) => { // ใช้สำหรับหน้าดูรถทั้งหมด
         console.log(req.query)
         const cars = await Car.find(req.query)
         res.send(cars)
     })
     app.post('/api/cars', requireAuthentication, async (req, res) => { // ใช้สำหรับสร้างรถคันใหม่ โดยเจ้าของรถต้องยืนยันตัวตนแล้ว
-        const {brand, type, regYear, LNumber, gear, seat, equipment, status, 
-            photo, availFrom, availTo, description, pricePerDay, deposit} = req.body
+        const { brand, type, regYear, LNumber, gear, seat, equipment, status,
+            photo, availFrom, availTo, description, pricePerDay, deposit } = req.body
         const car = await new Car({
-            brand, type, regYear, LNumber, gear, seat, equipment, status, 
+            brand, type, regYear, LNumber, gear, seat, equipment, status,
             photo, availFrom, availTo, description, pricePerDay, deposit,
             _owner: req.user
         }).save()

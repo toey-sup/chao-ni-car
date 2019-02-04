@@ -7,6 +7,16 @@ class testPage extends Component {
         loading: false,
         cars: null
     }
+    handleFileUpload(e) {
+        let formData = new FormData()
+        const file = e.target.files[0]
+        console.log(file)
+        formData.append('fileInput', file)
+        let xhr = new XMLHttpRequest()
+        // your url upload
+        xhr.open('post', '/api/upload', true)
+        xhr.send(formData)
+    }
     submitCar1 = async () => {
         const car = {
             brand: "lambogini",
@@ -104,20 +114,10 @@ class testPage extends Component {
 
         return (
             <div>
-                {/*<Form onSubmit={this.submitHandler}>
-                    <Form.Group >
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="brand" placeholder="Enter brand" />
-                    </Form.Group>
 
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="type" placeholder="type" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>*/}
+
+                <input type='file' accept='.jpg, .png, .jpeg' name='fileInput' onChange={this.handleFileUpload} />
+
                 <Button onClick={this.submitCar1}>Mock1</Button>
                 <Button onClick={this.submitCar2}>Mock2</Button>
                 <Button onClick={this.searchHandler}>Search</Button>
