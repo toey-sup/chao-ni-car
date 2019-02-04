@@ -19,9 +19,12 @@ class HomePage extends Component {
   onChangeHandler = (payload) => {
     const newState = {
       ...this.state,
-      location: payload.location
+      location: payload.location,
+      fromDate: payload.fromDate,
+      toDate: payload.toDate
     }
     this.setState(newState)
+    console.log("[new state]: ", this.state)
   }
 
   searchHandler() {
@@ -51,4 +54,4 @@ class HomePage extends Component {
   }
 }
 
-export default withErrorHandler(HomePage,axios);
+export default withErrorHandler(HomePage, axios);

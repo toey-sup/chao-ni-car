@@ -2,26 +2,56 @@ import React, { Component } from 'react';
 import classes from './CarDetail.module.css';
 import { Row, Col } from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR } from './CarDetailComponents/CarDetailComponents';
+import axios from 'axios';
 
 import testPic1 from './test/img.jpg';
 import testPic2 from './test/img2.jpg';
+import Spinner from '../UI/Spinner';
+import withErrorHandler from '../../hoc/withError';
 
 class CarDetail extends Component {
     state = {
-        picsPath: [testPic1,testPic2], //fetch from server
-        title: 'รถคันที่: '+this.props.match.params.id
+        loading: true,
+        //all of belows will be fetched from server
+        picsPath: [testPic1, testPic2],
+        brand: 'Automobile ',
+        type: this.props.match.params.id
+    }
+    componentDidMount() {
+        axios.get('/api/cars/' + this.props.match.params.id)
+            .then(res => {
+                this.setState({ loading: false })
+                const cars = { ...res.data };
+                this.setState({
+                    ...this.state,
+                    ...cars,
+                });
+            })
+            .catch(err => {
+                this.setState({ loading: false })
+            });
     }
     render() {
-
+        let item = (
+            <Spinner />
+        );
+        if (!this.state.loading) {
+            console.log("not load")
+            item = (
+                <div className={classes.Div}>
+                    <Row>
+                        <Col xs={6}><CarPic imagesPath={this.state.picsPath} /></Col>
+                        <Col xs={6}><CarDetailR brand={this.state.brand} type={this.state.type} /></Col>
+                    </Row>
+                </div>
+            );
+        }
         return (
-            <div className={classes.Div}>
-                <Row>
-                    <Col xs={6}><CarPic imagesPath={this.state.picsPath} /></Col>
-                    <Col xs={6}><CarDetailR title={this.state.title}/></Col>
-                </Row>
-            </div>
+            <>
+                {item}
+            </>
         );
     }
 }
 
-export default CarDetail;
+export default withErrorHandler(CarDetail, axios);

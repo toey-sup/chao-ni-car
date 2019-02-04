@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 
-import { Button,Modal} from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 const withErrorHandler = (WrappedComponent, axios) => {
     return class extends Component {
         state = {
-            error: null
+            error: false,
+            detail: ''
         }
         componentWillMount() {
             this.reqInterceptor = axios.interceptors.request.use(req => {
-                this.setState({ error: null });
+                this.setState({ error: false });
                 return req;
             })
             this.resIntercepter = axios.interceptors.response.use(res => res, error => {
-                this.setState({ error: error });
+                this.setState({ error: true, detail: error });
             })
         }
 
@@ -25,7 +26,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         }
 
         errorConfirmedHandler = () => {
-            this.setState({ error: null });
+            this.setState({ error: false });
         }
 
         render() {
@@ -35,7 +36,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
                         <Modal.Header closeButton>
                             <Modal.Title>Error</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>{this.state.error ? this.state.error.message : null}</Modal.Body>
+                        <Modal.Body>{this.state.error ? this.state.detail.message : null}</Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={this.errorConfirmedHandler}>
                                 Close
