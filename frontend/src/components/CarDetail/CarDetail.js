@@ -17,26 +17,26 @@ class CarDetail extends Component {
         brand: 'Automobile ',
         type: this.props.match.params.id
     }
+
+    componentWillUnmount() {
+        console.log('unmount')
+    }
     componentDidMount() {
+        // Bug
+        console.log(this.props.match.params.id);
         axios.get('/api/cars/' + this.props.match.params.id)
             .then(res => {
-                this.setState({ loading: false })
-                const cars = { ...res.data };
-                this.setState({
-                    ...this.state,
-                    ...cars,
-                });
+                // const cars = { ...res.data };
+                // const newState = { ...this.state, ...cars, loading: false }
+                // this.setState(newState);
             })
             .catch(err => {
-                this.setState({ loading: false })
+                //this.setState({ loading: false })
             });
     }
     render() {
-        let item = (
-            <Spinner />
-        );
+        let item = <Spinner />;
         if (!this.state.loading) {
-            console.log("not load")
             item = (
                 <div className={classes.Div}>
                     <Row>
@@ -46,6 +46,7 @@ class CarDetail extends Component {
                 </div>
             );
         }
+
         return (
             <>
                 {item}

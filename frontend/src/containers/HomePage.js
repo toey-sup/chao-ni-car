@@ -25,6 +25,7 @@ class HomePage extends Component {
     }
     this.setState(newState)
     console.log("[new state]: ", this.state)
+    this.searchHandler();
   }
 
   searchHandler() {
@@ -32,10 +33,12 @@ class HomePage extends Component {
     this.setState({ loading: true })
     axios.get('/api/cars')
       .then(res => {
+        console.log("OK")
         this.setState({ loading: false })
         const cars = [...res.data];
       })
       .catch(err => {
+        console.log('error')
         this.setState({ loading: false })
       });
   }
