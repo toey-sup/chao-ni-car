@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import classes from './HomePage.module.css';
 import QueryFilter from '../components/QueryFilter/QueryFilter';
 import CarCards from '../components/CarCard/CarCards';
@@ -8,6 +7,7 @@ import CarJumbotron from '../components/Jumbotron/Jumbotron';
 class HomePage extends Component {
   state = {
     location: '',
+    cars: [], //fetch from server
   }
 
   onChangeHandler = (payload) => {
@@ -18,15 +18,17 @@ class HomePage extends Component {
     this.setState(newState)
   }
 
+  searchHandler() {
+    //ยิง GET request 
+  }
+
   render() {
     return (
       <>
-        <Navbar />
-        <div className={classes.Filter} style={{ textAlign: "center" }}><QueryFilter change={this.onChangeHandler}/></div>
+        <div className={classes.Filter} style={{ textAlign: "center" }}><QueryFilter change={this.onChangeHandler} /></div>
         <div className={classes.Div}>
           <Container>
-            Generate Card รถ ออกมาตรงนี้
-            <CarCards />
+            <CarCards cars={this.state.cars}/>
           </Container>
           <CarJumbotron/>
         </div>
