@@ -5,25 +5,37 @@ import CarCard from './CarCard';
 const carCards = (props) => {
     //props.cars แล้ว map ไปเป็น card แต่ละใบ
     const dummyData = [{
-        title: "car1",
+        id: '1',
+        brand: "car1",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwpoutvnpoewr"
     }, {
-        title: "car2",
+        id: '2',
+        brand: "car2",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwpoutvnpoewr"
     }, {
-        title: "car3",
+        id: '3',
+        brand: "car3",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwacfjvopnervropoutvnpoewr"
     }, {
-        title: "car4",
+        id: '4',
+        brand: "car4",
+        type: 'RX1',
         description: "Not thing"
     }, {
-        title: "car5",
+        id: '5',
+        brand: "car5",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwacfjvopnervropoutvnpoewr"
     }, {
-        title: "car6",
+        id: '6',
+        brand: "car6",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwacfjvopnervropoutvnpoewr"
     }].map((item) => {
-        return <Col xs={12} sm={4} md={3}><CarCard key={item.tile} title={item.title} description={item.description} /></Col>
+        return <Col key={item.id} xs={12} sm={4} md={3}><CarCard id={item.id} brand={item.brand} type={item.type} description={item.description} /></Col>
     })
     return (
         <Row>
