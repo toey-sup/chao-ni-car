@@ -11,8 +11,6 @@ import CarDetail from './components/CarDetail/CarDetail';
 import Navbar from './components/Navbar/Navbar';
 import LoginComponent from './components/Login/LoginComponent';
 
-//import testPage from './containers/testPage'
-//import authenticationPage from './containers/AuthenticationPage'
 
 class App extends Component {
   render() {
