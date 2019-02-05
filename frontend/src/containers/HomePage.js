@@ -45,18 +45,7 @@ class HomePage extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div>
-        <Navbar />
-        <Container>
-            <Row>
-                
-            </Row>
-          
-          
-        </Container>
-      </div>
-=======
+
       <>
         <div className={classes.Filter} style={{ textAlign: "center" }}><QueryFilter change={this.onChangeHandler} /></div>
         <div className={classes.Div}>
@@ -65,7 +54,7 @@ class HomePage extends Component {
           </Container>
         </div>
       </>
->>>>>>> b2be96d6b4a7f1ea308de834b3e7b0d070116597
+
     );
   }
 }

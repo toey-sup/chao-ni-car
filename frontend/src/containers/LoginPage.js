@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Button from 'react-bootstrap/Button';
-import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 import CardComponent from '../components/Card';
 class LoginPage extends Component {
@@ -8,7 +7,6 @@ class LoginPage extends Component {
         return (
             
             <div>
-                <Navbar />
                 <CardComponent />
                 <CardComponent />
                 <CardComponent />

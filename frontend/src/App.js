@@ -18,12 +18,7 @@ class App extends Component {
     return (
       
       <div>
-<<<<<<< HEAD
-        <Route exact path="/" component={HomePage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/result" component={ResultPage} />
-=======
+
         {/* <Profile /> */}
         {/* <LoginComponent/> */}
         <Navbar />
@@ -35,7 +30,7 @@ class App extends Component {
           <Route path="/result" component={ResultPage} />
           <Route path="/test" component={testPage} />
         </Switch>
->>>>>>> b2be96d6b4a7f1ea308de834b3e7b0d070116597
+
       </div>
     )
   }
