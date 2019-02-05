@@ -7,7 +7,7 @@ import HomePage from './containers/HomePage'
 import AboutPage from './containers/AboutPage'
 import LoginPage from './containers/LoginPage'
 import ResultPage from './containers/ResultPage'
-import CarDetail from './components/CarDetail/CarDetail';
+import CarDetail from './containers/CarDetail/CarDetail';
 import Navbar from './components/Navbar/Navbar';
 import LoginComponent from './components/Login/LoginComponent';
 
