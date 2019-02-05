@@ -6,8 +6,7 @@ import axios from 'axios';
 
 import testPic1 from './test/img.jpg';
 import testPic2 from './test/img2.jpg';
-import Spinner from '../UI/Spinner';
-import withErrorHandler from '../../hoc/withError';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class CarDetail extends Component {
     state = {

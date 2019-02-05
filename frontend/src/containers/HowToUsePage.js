@@ -11,6 +11,8 @@ class HowToUsePage extends Component {
 
                 <p>1. Login</p>
 
+                <p> </p>
+
                 
             </div>
            
