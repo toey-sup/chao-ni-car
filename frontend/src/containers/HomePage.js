@@ -6,6 +6,7 @@ import CarCards from '../components/CarCard/CarCards';
 import axios from 'axios';
 import Spinner from "../components/UI/Spinner/Spinner";
 import SubQueryFilter from "../components/QueryFilter/SubQueryFilter/SubQueryFilter";
+import caricon from "../images/caricon.png"
 
 class HomePage extends Component {
   state = {
@@ -65,10 +66,17 @@ class HomePage extends Component {
       cards = <div style={{ textAlign: 'center' }}><strong>{this.state.error.message}</strong></div>
     }
 
+
     return (
       <>
-        <div className={classes.Filter} style={{ textAlign: "center" }}><QueryFilter change={this.onChangeHandler} /></div>
-
+        <div className={classes.Backgroundimg}>
+          <div style={{ textAlign: 'center', paddingBottom: 15 }}>
+            <img style={{ width: 80, height: 80 }} src={caricon} />
+            <h4>FIND RENTAL CAR </h4>
+            <p>Best website</p>
+          </div>
+          <div className={classes.Filter} style={{ textAlign: "center" }}><QueryFilter change={this.onChangeHandler} /></div>
+        </div>
 
         <div className={classes.Div}>
           <SubQueryFilter handler={this.subQueryHandler} />
