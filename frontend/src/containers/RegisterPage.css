@@ -4,7 +4,7 @@
 }
 .buttonwrapper {
   margin: 10px auto;
-  width: 169px;
+  width: 300px;
 }
 .forminput {
   outline: none;
@@ -16,4 +16,9 @@
 }
 .submitbutton {
   margin: 0px 10px;
+}
+
+.cancelsubmitbutton{
+  margin: 0px auto;
+  padding-left: 70px;
 }

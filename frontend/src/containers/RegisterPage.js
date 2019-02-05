@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import "./RegisterPage.css";
 
 class RegisterPage extends Component {
@@ -161,19 +161,21 @@ class RegisterPage extends Component {
                   required
                 />
               </Form.Group>
-              <Button
-                variant="outline-secondary"
-                type="cancel"
-                className="cancelbutton"
-              >
-                Cancel
-              </Button>
-              <Button variant="primary" type="submit" className="submitbutton">
-                Submit
-              </Button>
+              <div className="cancelsubmitbutton">
+                <Button
+                  variant="outline-secondary"
+                  type="cancel"
+                  className="cancelbutton"
+                >
+                  Cancel
+                </Button>
+                <Button variant="primary" type="submit" className="submitbutton">
+                  Submit
+                </Button>
+              </div>
             </div>
           </Form>
-          ;
+          
         </div>
       </div>
     );
