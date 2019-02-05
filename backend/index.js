@@ -5,16 +5,16 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const keys = require('./config/keys')
 
-require('./models/member');
 require('./models/Car');
 require('./models/User');
+require('./models/Request');
 require('./services/passport');
 
-const Member = mongoose.model('members');
 
 //Set up default mongoose connection
-// var mongoDB = 'mongodb://localhost:27017/data';
- var mongoDB = 'mongodb://db:27017/data';
+var mongoDB = keys.mongoURI;
+console.log(mongoDB)
+// var mongoDB = 'mongodb://db:27017/data';
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 
 
@@ -23,22 +23,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('connected!!')
 });
-
-const mem = new Member({
-    name: 'punch',
-    surname: 'vit',
-    data: new Date()
-})
-
-mem.save().then(() => console.log('OK')).catch((error) => console.log(error))
-
-
-memlist = []
-Member.find(function (err, mem) {
-  if (err) return console.error(err);
-  memlist = mem
-})
-
 
 //////////////////////////////////////
 
@@ -54,14 +38,21 @@ app.use(
 )
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+  });
 
 ///////////////////////////////////////
 
 require('./routes/authRoutes')(app);
 require('./routes/carRoutes')(app);
+require('./routes/requestRoutes')(app);
 
 app.get('/', (req, res) => {
-  res.send({ hi: memlist });
+  res.send({ hi: [] });
 });
 
 const PORT = process.env.PORT || 5000;
