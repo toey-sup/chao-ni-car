@@ -6,7 +6,7 @@ import logo from "./logo.png";
 
 const NavbarComponent = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+    <Navbar bg="dark" variant="dark" expand="lg"fixed = "top">
       <NavLink className={classes.Header} to="/">
         <img src={logo} style={{ width: 100, marginTop: -7 }} alt="logo" />
         CAO-NI-CAR

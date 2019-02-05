@@ -23,6 +23,7 @@ class App extends Component {
         {/* <Profile /> */}
         {/* <LoginComponent/> */}
         <Navbar />
+        <div style={{paddingTop: 70}}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/car/:id" component={CarDetail} />
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/howtouse" component={HowToUsePage} />
           <Route path="/regis" component={RegisterPage} />
         </Switch>
+        </div>
       </div>
     );
   }
