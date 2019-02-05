@@ -1,10 +1,25 @@
 .Header{
     padding: 10px;
-    color: red;
     margin: 10px auto;
 }
 
 .MemberRow{
     padding: 5px;
     align-items: center;
+}
+
+.MemberName{
+    padding: 5px;
+    margin: 10px auto;
+}
+
+.Background{
+    background-image: url("https://www.thinc.in.th/engadmission/img/carousel3.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.MemberBlock{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
 }
