@@ -8,10 +8,8 @@ const userSchema = new Schema({
     email: String,
     tel: String,
     idCardNum: String,
-    birthdate: Date,
-    address: String,
     DLicenseNumber: String,
-    isAuthenticated: Boolean
+    isAuthenticated: { type: Boolean, default: false }
 })
 
 mongoose.model("users", userSchema)

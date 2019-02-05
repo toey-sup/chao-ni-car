@@ -30,14 +30,16 @@ module.exports = (app) => {
     app.post('/api/authentication', requireLogin, async (req, res) => {
         const { tel,
             idCardNum,
-            address,
             DLicenseNumber,
             isAuthenticated } = req.body
+        console.log(tel,
+            idCardNum,
+            DLicenseNumber,
+            isAuthenticated)
         const user = await User.findByIdAndUpdate(req.user["_id"], {
             $set: {
                 tel,
                 idCardNum,
-                address,
                 DLicenseNumber,
                 isAuthenticated
             }

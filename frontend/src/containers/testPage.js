@@ -2,20 +2,12 @@ import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
+import FieldFileInput from '../components/FieldFileInput/FieldFileInput'
+
 class testPage extends Component {
     state = {
         loading: false,
         cars: null
-    }
-    handleFileUpload(e) {
-        let formData = new FormData()
-        const file = e.target.files[0]
-        console.log(file)
-        formData.append('fileInput', file)
-        let xhr = new XMLHttpRequest()
-        // your url upload
-        xhr.open('post', '/api/upload', true)
-        xhr.send(formData)
     }
     submitCar1 = async () => {
         const car = {
@@ -116,12 +108,12 @@ class testPage extends Component {
             <div>
 
 
-                <input type='file' accept='.jpg, .png, .jpeg' name='fileInput' onChange={this.handleFileUpload} />
+                <FieldFileInput />
 
-                <Button onClick={this.submitCar1}>Mock1</Button>
+                {/* <Button onClick={this.submitCar1}>Mock1</Button>
                 <Button onClick={this.submitCar2}>Mock2</Button>
                 <Button onClick={this.searchHandler}>Search</Button>
-                {carQuery}
+                {carQuery} */}
             </div>
         )
     }

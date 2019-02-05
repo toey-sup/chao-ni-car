@@ -8,7 +8,7 @@ module.exports = (app) => {
         res.send(requests)
     })
     app.post('/api/request', requireAuthentication, async (req, res) => {
-        const { carId, placeFrom, placeTo, dateFrom, dateTo } = req.body
+        const { carId, fromLoc, toLoc, dateFrom, dateTo } = req.body
         const car = await Car.findByIdAndUpdate(
             carId, {
                 $set: {
@@ -20,14 +20,14 @@ module.exports = (app) => {
                 }
             })
         console.log("car", car)
-        console.log(carId, placeFrom, placeTo, dateFrom, dateTo )
+        console.log(carId, fromLoc, toLoc, dateFrom, dateTo )
         try {
             const request = await new Request({
                 _renter: req.user,
                 _owner: car._owner,
                 _car: carId,
-                placeFrom,
-                placeTo,
+                fromLoc,
+                toLoc,
                 dateFrom,
                 dateTo
             }).save()
