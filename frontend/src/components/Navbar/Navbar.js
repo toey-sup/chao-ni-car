@@ -3,8 +3,6 @@ import {
   Navbar,
   Nav,
   Form,
-  FormControl,
-  Button
 } from "react-bootstrap";
 import { NavLink } from 'react-router-dom';
 import classes from "./Navbar.module.css";
@@ -13,7 +11,7 @@ import logo from './logo.png';
 const NavbarComponent = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
-      <NavLink className={classes.Header} to="/"><img src={logo} style={{ width: 100, marginTop: -7 }} />CAO-NI-CAR</NavLink>
+      <NavLink className={classes.Header} to="/"><img src={logo} style={{ width: 100, marginTop: -7 }} alt="logo" />CAO-NI-CAR</NavLink>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
