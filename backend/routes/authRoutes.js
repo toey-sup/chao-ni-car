@@ -4,13 +4,13 @@ const User = mongoose.model('users')
 const requireLogin = require('../middlewares/requireLogin')
 
 module.exports = (app) => {
-    app.get('/auth/google',
+    app.get('/auth/google', // login with google
         passport.authenticate('google', {
             scope: ['profile', 'email']
         })
     )
 
-    app.get(
+    app.get( // callback after succesfully login
         '/auth/google/callback',
         passport.authenticate('google'),
         (req, res) => {
@@ -18,12 +18,12 @@ module.exports = (app) => {
         }
     )
 
-    app.get('/api/logout', (req, res) => {
+    app.get('/api/logout', (req, res) => { // logout 
         req.logout();
         res.redirect('/');
     })
 
-    app.get('/api/current_user', (req, res) => {
+    app.get('/api/current_user', (req, res) => { // get current user
         res.send(req.user);
     })
 
