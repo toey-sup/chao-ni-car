@@ -37,6 +37,8 @@ class HomePage extends Component {
         console.log("OK")
         this.setState({ loading: false })
         const cars = [...res.data];
+        console.log(cars);
+        this.setState({ cars: [...cars] })
       })
       .catch(err => {
         console.log('error')
