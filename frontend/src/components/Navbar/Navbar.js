@@ -26,7 +26,7 @@ const NavbarComponent = () => {
         </Nav>
         <Form inline>
           <NavLink className={classes.NavLink} to="/login">
-            <img src={logo} style={{ width: 100, marginTop: -7 }} alt="logo" />
+            Login
           </NavLink>
           <NavLink className={classes.NavLink} to="/regis">
             Register
