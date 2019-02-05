@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
 import "./RegisterPage.css";
-import axios from "axios";
-import { withRouter } from "react-router-dom";
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -21,24 +19,6 @@ class RegisterPage extends Component {
       validated: false
     };
   }
-  sendProfile = () => {
-    const data = {
-      tel: this.state.tel,
-      idCardNum: this.state.idCardNum,
-      DLicenseNumber: this.state.drivingnumber,
-      isAuthenticated: true
-    };
-    axios
-      .post("/api/authentication", data)
-      .then(res => {
-        console.log(res);
-        this.props.history.push("/");
-      })
-      .catch(err => {
-        console.log(err);
-        //window.location = '/authentication'
-      });
-  };
 
   handleChange = event => {
     this.setState({
@@ -48,28 +28,11 @@ class RegisterPage extends Component {
 
   handleSubmit(event) {
     const form = event.currentTarget;
-    event.preventDefault();
     if (form.checkValidity() === false) {
-      
+      event.preventDefault();
       event.stopPropagation();
     }
     this.setState({ validated: true });
-    const data = {
-      tel: this.state.tel,
-      idCardNum: this.state.id,
-      DLicenseNumber: this.state.drivingnumber,
-      isAuthenticated: true
-    };
-    axios
-      .post("/api/authentication", data)
-      .then(res => {
-        console.log(res);
-        this.props.history.push("/");
-      })
-      .catch(err => {
-        console.log(err);
-        //window.location = '/authentication'
-      });
   }
 
   render() {
@@ -79,6 +42,7 @@ class RegisterPage extends Component {
       <div>
         <div className="wrapper">
           <Form
+            method="post"
             noValidate
             validated={validated}
             onSubmit={e => this.handleSubmit(e)}
@@ -175,13 +139,14 @@ class RegisterPage extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-
             <div className="buttonwrapper">
               <Form.Group id="termcheck">
                 <Form.Check
                   type="checkbox"
                   label="I agree to the Terms and Agreements"
                   required
+                  className="checkbox"
+                  style={{ textAlign: "center" }}
                 />
               </Form.Group>
               <Button
@@ -196,11 +161,10 @@ class RegisterPage extends Component {
               </Button>
             </div>
           </Form>
-          ;
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(RegisterPage);
+export default RegisterPage;
