@@ -22,7 +22,7 @@ module.exports = (app) => {
             res.send('Test')
         })
     app.get('/api/cars', async (req, res) => { // ใช้สำหรับหน้าดูรถทั้งหมด
-        console.log(req.query)
+        console.log("query", req.query)
         const cars = await Car.find(req.query)
         res.send(cars)
     })
