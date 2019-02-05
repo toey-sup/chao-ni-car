@@ -57,4 +57,4 @@ class HomePage extends Component {
   }
 }
 
-export default withErrorHandler(HomePage, axios);
+export default HomePage;
