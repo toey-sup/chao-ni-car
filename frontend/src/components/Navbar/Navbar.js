@@ -17,7 +17,7 @@ const NavbarComponent = () => {
         <Nav className="mr-auto">
           <NavLink className={classes.NavLink} to="/">Rent A Car</NavLink>
           <NavLink className={classes.NavLink} to="/about">About</NavLink>
-          <NavLink className={classes.NavLink} to="/HowToUsePage">How to use</NavLink>
+          <NavLink className={classes.NavLink} to="/howtouse">How to use</NavLink>
         </Nav>
         <Form inline>
           <NavLink className={classes.NavLink} to="/login">Login</NavLink>
