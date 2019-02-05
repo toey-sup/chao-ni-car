@@ -37,9 +37,17 @@ const carCards = (props) => {
     }].map((item) => {
         return <Col key={item.id} xs={12} sm={4} md={3}><CarCard id={item.id} brand={item.brand} type={item.type} description={item.description} /></Col>
     })
+
+    let cars = <strong>Please Enter something</strong>
+    if (props.cars.length > 0) {
+        cars = props.cars.map((item, index) => { //Delete index after 
+            return <Col key={item.id + String(index)} xs={12} sm={4} md={3}><CarCard id={item._id} brand={item.brand} type={item.type} description={item.description} /></Col>
+        })
+    }
+
     return (
         <Row>
-            {dummyData}
+            {cars}
         </Row>
     );
 }

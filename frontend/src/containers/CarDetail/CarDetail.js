@@ -24,7 +24,7 @@ class CarDetail extends Component {
     componentDidMount() {
         // Bug
         console.log(this.props.match.params.id);
-        axios.get('/api/cars/' + this.props.match.params.id)
+        axios.get('/api/car/' + this.props.match.params.id)
             .then(res => {
                 const cars = { ...res.data };
                 const newState = { ...this.state, ...cars, loading: false }
