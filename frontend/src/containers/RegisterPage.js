@@ -161,6 +161,7 @@ class RegisterPage extends Component {
                   required
                 />
               </Form.Group>
+              <div className="cancelsubmitbutton">
                 <Button
                   variant="outline-secondary"
                   type="cancel"
@@ -171,6 +172,7 @@ class RegisterPage extends Component {
                 <Button variant="primary" type="submit" className="submitbutton">
                   Submit
                 </Button>
+              </div>
             </div>
           </Form>
           
