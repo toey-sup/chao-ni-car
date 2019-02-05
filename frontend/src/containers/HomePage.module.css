@@ -16,6 +16,11 @@
     margin: 10px auto; /*Center Items*/
     padding: 10px;
     border: 1px solid #eee;
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 2px 3px #ccc;
     border-radius: 12px;
+}
+.Backgroundimg{
+    background-image: url("../images/HomePage.jpg");
+    padding: 100px 100px;
 }
