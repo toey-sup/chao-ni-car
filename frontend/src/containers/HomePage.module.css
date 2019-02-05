@@ -2,9 +2,10 @@
     color: red
 }
 
-.Div{
+.Div {
     width: 95%;
-    margin: 10px auto; /*Center Items*/
+    margin: 10px auto;
+    /*Center Items*/
     margin-bottom: 50px;
     padding: 10px;
     border: 1px solid #eee;
@@ -12,19 +13,33 @@
     border-radius: 12px;
 }
 
-.Filter{
+.Filter {
     width: 60%;
-    margin: 20px auto; /*Center Items*/
+    margin: 20px auto;
+    /*Center Items*/
     padding: 15px;
     border: 1px solid #eee;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 2px 3px #ccc;
     border-radius: 12px;
 }
-.Backgroundimg{
+
+.Backgroundimg {
     background-image: url("../images/HomePage.png");
     padding: 120px 120px;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center; 
+    background-position: center;
+}
+
+@media (min-width: 200px) and (min-height: 400px) {
+    .Backgroundimg {
+        padding: 10px 10%;
+    }
+}
+
+@media (min-width: 600px) and (min-height: 400px) {
+    .Backgroundimg {
+        padding: 120px 120px;
+    }
 }

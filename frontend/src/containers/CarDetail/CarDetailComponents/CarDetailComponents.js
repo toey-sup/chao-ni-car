@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Row, Col } from 'react-bootstrap';
 import classes from './CarDetailComponents.module.css';
 
 const carPic = (props) => {
@@ -10,7 +10,7 @@ const carPic = (props) => {
                 src={path}
             />
             <Carousel.Caption>
-                <p>Picture {index+1}</p>
+                <p>Picture {index + 1}</p>
             </Carousel.Caption>
         </Carousel.Item>
     ))
@@ -30,4 +30,36 @@ const carDetailR = (props) => {
     );
 }
 
-export { carPic, carDetailR };
+const carDetailMiddle = (props) => {
+
+    return (
+        <div className={classes.Detail}>
+            <Row>
+                <Col>รถปี:</Col><Col>XXXX</Col>
+            </Row>
+            <Row>
+                <Col>เลขทะเบียน:</Col><Col>XXXX</Col>
+            </Row>
+            <Row>
+                <Col>ประเภทเกียร์:</Col><Col>XXXX</Col>
+            </Row>
+            <Row>
+                <Col>จำนวนที่นั่ง:</Col><Col>XXXX</Col>
+            </Row>
+            <Row>
+                <Col>อุปกรณ์เสริม:</Col><Col>XXXX</Col>
+            </Row>
+            <Row>
+                <Col>วันที่สามารถใช้ได้ :</Col><Col>ตั้งแต่ XXXX จนถึง XXXX</Col>
+            </Row>
+            <Row>
+                <Col>รายละเอียด:</Col><Col>XXXX</Col>
+            </Row>
+            <Row>
+                <Col>ราคาต่อวัน:</Col><Col>XXXX</Col>
+            </Row>
+        </div >
+    );
+}
+
+export { carPic, carDetailR, carDetailMiddle };
