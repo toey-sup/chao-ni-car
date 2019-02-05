@@ -139,15 +139,16 @@ class RegisterPage extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Form.Group id="termcheck">
-              <Form.Check
-                type="checkbox"
-                label="I agree to the Terms and Agreements"
-                required
-                className="checkbox"
-              />
-            </Form.Group>
             <div className="buttonwrapper">
+              <Form.Group id="termcheck">
+                <Form.Check
+                  type="checkbox"
+                  label="I agree to the Terms and Agreements"
+                  required
+                  className="checkbox"
+                  style={{ textAlign: "center" }}
+                />
+              </Form.Group>
               <Button
                 variant="outline-secondary"
                 type="cancel"
@@ -160,7 +161,6 @@ class RegisterPage extends Component {
               </Button>
             </div>
           </Form>
-          ;
         </div>
       </div>
     );

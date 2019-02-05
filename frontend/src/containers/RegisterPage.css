@@ -3,11 +3,20 @@
   width: 70%;
 }
 .buttonwrapper {
-  margin: 10px;
+  margin: 10px auto;
+  text-align: center;
 }
 .cancelbutton {
   margin: 0px auto;
 }
 .submitbutton {
   margin: 0px 10px;
+}
+input {
+  width: 20px;
+  margin: 10px auto;
+}
+.form-check-label {
+  margin-bottom: 0;
+  padding: 0;
 }
