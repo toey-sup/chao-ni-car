@@ -1,0 +1,10 @@
+.Header{
+    padding: 10px;
+    color: red;
+    margin: 10px auto;
+}
+
+.MemberRow{
+    padding: 5px;
+    align-items: center;
+}
