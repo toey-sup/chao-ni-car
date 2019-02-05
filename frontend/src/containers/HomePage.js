@@ -19,7 +19,25 @@ class HomePage extends Component {
     //====SubQuery======
     fromLoc: '',
     toLoc: '',
-    gear: ''
+    gear: '',
+    seat: 0
+  }
+
+  componentDidMount() {
+    this.setState({ loading: true })
+    console.log(this.state);
+    const url = '/api/cars?fromDate=' + this.state.fromDate + "&toDate=" + this.state.toDate
+    axios.get('/api/cars')
+      .then(res => {
+        console.log("OK")
+        const cars = [...res.data];
+        console.log(cars);
+        this.setState({ cars: [...cars], CARS: [...cars], error: false, loading: false })
+      })
+      .catch(err => {
+        console.log('error')
+        this.setState({ loading: false, error: err })
+      });
   }
 
   subQueryHandler = (payload) => {
@@ -37,6 +55,9 @@ class HomePage extends Component {
       if (!this.state.gear == '') {
         return element.gear.includes(this.state.gear);
       }
+      if (!this.state.seat == 0) {
+        return element.seat >= this.state.seat;
+      }
       if (!this.state.fromLoc == '') {
         //return element.isRented
         return element.fromLoc.includes(this.state.fromLoc);
@@ -44,7 +65,7 @@ class HomePage extends Component {
       if (!this.state.toLoc == '') {
         return element.toLoc.includes(this.state.toLoc);
       }
-      
+
       return true;
 
     });

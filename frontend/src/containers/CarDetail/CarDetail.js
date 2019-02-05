@@ -13,8 +13,13 @@ class CarDetail extends Component {
         loading: false,
         //all of belows will be fetched from server
         picsPath: [testPic1, testPic2],
-        brand: 'Automobile ',
-        type: 'RE4',
+        brand: 'None',
+        type: '',
+        LNumber: '',
+        regYear: '',
+        gear: '',
+        seat: 0,
+        equipment: '',
         error: null
     }
 
@@ -23,16 +28,26 @@ class CarDetail extends Component {
     }
     componentDidMount() {
         // Bug
-        // console.log(this.props.match.params.id);
-        // axios.get('/api/car/' + this.props.match.params.id)
-        //     .then(res => {
-        //         const cars = { ...res.data };
-        //         const newState = { ...this.state, ...cars, loading: false }
-        //         this.setState(newState);
-        //     })
-        //     .catch(err => {
-        //         this.setState({ loading: false, error: err })
-        //     });
+        //console.log(this.props.match.params.id);
+        axios.get('/api/cars/' + this.props.match.params.id)
+            .then(res => {
+                console.log(res.data);
+                const newState = {
+                    ...this.state,
+                    loading: false,
+                    brand: res.data.brand,
+                    type: res.data.type,
+                    LNumber: res.data.LNumber,
+                    regYear: res.data.regYear,
+                    gear: res.data.gear,
+                    seat: res.data.seat,
+                    equipment: res.data.equipment,
+                }
+                this.setState(newState);
+            })
+            .catch(err => {
+                this.setState({ loading: false, error: err })
+            });
     }
     render() {
         let item = <Spinner />;
@@ -44,7 +59,7 @@ class CarDetail extends Component {
                             <Col xs={6}><CarPic imagesPath={this.state.picsPath} /></Col>
                             <Col xs={6}>
                                 <Row><Col><CarDetailR brand={this.state.brand} type={this.state.type} /></Col></Row>
-                                <CarDetailMiddle />
+                                <CarDetailMiddle payload={this.state} />
                             </Col>
                         </Row>
 

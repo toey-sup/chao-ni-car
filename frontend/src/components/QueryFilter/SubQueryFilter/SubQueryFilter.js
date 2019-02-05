@@ -7,7 +7,8 @@ class SubQueryFilter extends Component {
         open: false,
         fromLoc: '',
         toLoc: '',
-        gear: ''
+        gear: '',
+        seat: 0
     }
 
     onChangeHandler(e, state) {
@@ -16,12 +17,20 @@ class SubQueryFilter extends Component {
         this.setState(oldState);
     }
 
+    onChangeHandlerNumber(e, state) {
+        const oldState = { ...this.state }
+        oldState[state] = +e.target.value;
+        this.setState(oldState);
+        //console.log(+e.target.value);
+    }
+
     onQuery = () => {
 
         const payload = {
             fromLoc: this.state.fromLoc,
             toLoc: this.state.toLoc,
-            gear: this.state.gear
+            gear: this.state.gear,
+            seat: this.state.seat,
         }
         this.props.handler(payload);
     }
@@ -69,6 +78,17 @@ class SubQueryFilter extends Component {
                                                 <option value=''>All</option>
                                                 <option value='auto'>Auto</option>
                                                 <option value='manual'>Manual</option>
+                                            </Form.Control>
+                                        </Col>
+                                        <Col>
+                                            <Form.Label>จำนวนที่นั่ง</Form.Label>
+                                            <Form.Control as="select" value={this.state.seat} onChange={(e) => this.onChangeHandlerNumber(e, 'seat')}>
+                                                <option value='0'>All</option>
+                                                <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
+                                                <option value='5'>5</option>
+                                                <option value='20'>5+</option>
                                             </Form.Control>
                                         </Col>
                                     </Row>
