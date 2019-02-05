@@ -1,0 +1,19 @@
+.wrapper {
+  margin: 20px auto;
+  width: 70%;
+}
+.buttonwrapper {
+  margin: 10px auto;
+  width: 169px;
+}
+.forminput {
+  outline: none;
+  border: 1px solid #eb4949;
+}
+
+.cancelbutton {
+  margin: 0px auto;
+}
+.submitbutton {
+  margin: 0px 10px;
+}
