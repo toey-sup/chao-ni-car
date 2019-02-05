@@ -31,6 +31,9 @@ const NavbarComponent = () => {
           <NavLink className={classes.NavLink} to="/regis">
             Register
           </NavLink>
+          <NavLink className={classes.NavLink} to="/addcar">
+            addcar
+          </NavLink>
           {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-danger">Search</Button> */}
         </Form>
