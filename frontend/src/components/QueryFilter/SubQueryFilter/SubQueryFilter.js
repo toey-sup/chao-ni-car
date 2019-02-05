@@ -6,7 +6,8 @@ class SubQueryFilter extends Component {
     state = {
         open: false,
         fromLoc: '',
-        toLoc: ''
+        toLoc: '',
+        gear: ''
     }
 
     onChangeHandler(e, state) {
@@ -19,7 +20,8 @@ class SubQueryFilter extends Component {
 
         const payload = {
             fromLoc: this.state.fromLoc,
-            toLoc: this.state.toLoc
+            toLoc: this.state.toLoc,
+            gear: this.state.gear
         }
         this.props.handler(payload);
     }
@@ -58,6 +60,16 @@ class SubQueryFilter extends Component {
                                                 placeholder="Enter location"
                                                 onChange={(e) => this.onChangeHandler(e, 'toLoc')}
                                             />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <Form.Label>ประเภทเกียร์</Form.Label>
+                                            <Form.Control as="select" value={this.state.gear} onChange={(e) => this.onChangeHandler(e, 'gear')}>
+                                                <option value=''>All</option>
+                                                <option value='auto'>Auto</option>
+                                                <option value='manual'>Manual</option>
+                                            </Form.Control>
                                         </Col>
                                     </Row>
                                 </FormGroup>
