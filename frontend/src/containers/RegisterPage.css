@@ -3,14 +3,8 @@
   width: 70%;
 }
 .buttonwrapper {
-  margin: 10px auto;
-  width: 169px;
+  margin: 10px;
 }
-.forminput {
-  outline: none;
-  border: 1px solid #eb4949;
-}
-
 .cancelbutton {
   margin: 0px auto;
 }
