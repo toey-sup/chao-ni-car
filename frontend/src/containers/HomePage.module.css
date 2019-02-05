@@ -23,4 +23,7 @@
 .Backgroundimg{
     background-image: url("../images/HomePage.png");
     padding: 120px 120px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
 }
