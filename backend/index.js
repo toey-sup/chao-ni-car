@@ -36,6 +36,13 @@ app.use(
         keys: [keys.cookieKey]
     })
 )
+
+app.use(require("express-session")({
+  secret: 'dlsfkjsdklfjdklsfjdksl',
+  resave: false,
+  saveUninitialized: false
+}))
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(function (req, res, next) {

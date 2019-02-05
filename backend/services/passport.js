@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
-//const FacebookStrategy = require('passport-facebook')
+const LocalStrategy = require('passport-local')
+const passportLocalMongoose = require('passport-local-mongoose')
 const keys = require('../config/keys')
 const mongoose = require('mongoose')
 
@@ -42,6 +43,8 @@ passport.use(
         }
     )
 )
+
+passport.use(new LocalStrategy(User.authenticate()))
 
 /*passport.use(new FacebookStrategy({
     clientID: keys.FACEBOOK_APP_ID,

@@ -9,6 +9,27 @@ module.exports = (app) => {
             scope: ['profile', 'email']
         })
     )
+    app.post('/auth/local', (req, res) => // signup with local
+        {   //console.log(req.body)
+            User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
+            if (err) {
+                console.log(err);
+                return res.redirect('/')
+            }
+            passport.authenticate('local')(req, res, function() {
+                res.redirect('/')
+            })
+        })}
+    )
+    app.post('/auth/login', 
+        passport.authenticate('local', {
+            successRedirect : "/",
+            failureRedirect : "/failure"
+        }), (req, res) => {
+
+        }
+    )
+        
 
     app.get( // callback after succesfully login
         '/auth/google/callback',
