@@ -5,3 +5,17 @@
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #CCC;
 }
+.center_text{
+    text-align: center;
+}
+.circle{ 
+    height: 200;  
+    width: 200;  
+    border: 5px solid #c7483f;
+    border-radius: 50%; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}

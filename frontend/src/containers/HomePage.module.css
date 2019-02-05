@@ -5,6 +5,7 @@
 .Div{
     width: 95%;
     margin: 10px auto; /*Center Items*/
+    margin-bottom: 50px;
     padding: 10px;
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
@@ -13,9 +14,17 @@
 
 .Filter{
     width: 60%;
-    margin: 10px auto; /*Center Items*/
-    padding: 10px;
+    margin: 20px auto; /*Center Items*/
+    padding: 15px;
     border: 1px solid #eee;
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 2px 3px #ccc;
     border-radius: 12px;
+}
+.Backgroundimg{
+    background-image: url("../images/HomePage.png");
+    padding: 120px 120px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
 }

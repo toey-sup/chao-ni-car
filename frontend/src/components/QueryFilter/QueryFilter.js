@@ -5,7 +5,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class QueryFilter extends Component {
     state = {
-        location: '',
         fromDate: null,
         toDate: null,
     }
@@ -19,17 +18,13 @@ class QueryFilter extends Component {
         const oldState = { ...this.state }
         oldState[target] = date;
         this.setState(oldState);
+        console.log(this.state)
     }
 
     render() {
         return (
             <Form>
                 <FormGroup controlId={this.props.controlId}>
-                    <FormControl
-                        placeholder="Select Location"
-                        value={this.state.location}
-                        onChange={(event) => this.onChangeHandler(event, "location")}
-                    />
                     <FormLabel><strong>Choose Date</strong></FormLabel>
                     <Row>
                         <Col sm={6}>From Date: <DatePicker selected={this.state.fromDate} onChange={(date) => this.dateChangeHandler(date, 'fromDate')} isClearable /></Col>
