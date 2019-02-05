@@ -1,30 +1,25 @@
 import React from "react";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button
-} from "react-bootstrap";
+import "./Navbar.css";
+import logo from "./logo.png";
+const Navbar = props => (
+  <header className="navbar">
+    <nav className="navbar_navigation">
+      <div className="logo">
+        <img src={logo} alt="caonicar" />
+      </div>
+      <div className="space" />
+      <div className="nav_item">
+        <ul>
+          <li>
+            <a href="/">Manage Booking</a>
+          </li>
+          <li>
+            <a href="/">Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+);
 
-const NavbarComponent = () => {
-  return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#link">About</Nav.Link>
-          <Nav.Link href="#link">How to use</Nav.Link>
-        </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
-      </Navbar.Collapse>
-    </Navbar>
-  );
-};
-
-export default NavbarComponent;
+export default Navbar;
