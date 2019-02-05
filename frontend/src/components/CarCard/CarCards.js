@@ -6,30 +6,36 @@ const carCards = (props) => {
     //props.cars แล้ว map ไปเป็น card แต่ละใบ
     const dummyData = [{
         id: '1',
-        title: "car1",
+        brand: "car1",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwpoutvnpoewr"
     }, {
         id: '2',
-        title: "car2",
+        brand: "car2",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwpoutvnpoewr"
     }, {
         id: '3',
-        title: "car3",
+        brand: "car3",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwacfjvopnervropoutvnpoewr"
     }, {
         id: '4',
-        title: "car4",
+        brand: "car4",
+        type: 'RX1',
         description: "Not thing"
     }, {
         id: '5',
-        title: "car5",
+        brand: "car5",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwacfjvopnervropoutvnpoewr"
     }, {
         id: '6',
-        title: "car6",
+        brand: "car6",
+        type: 'RX1',
         description: "xxxasfjapownceyrtvwnoperuvnwacfjvopnervropoutvnpoewr"
     }].map((item) => {
-        return <Col key={item.id} xs={12} sm={4} md={3}><CarCard id={item.id} title={item.title} description={item.description} /></Col>
+        return <Col key={item.id} xs={12} sm={4} md={3}><CarCard id={item.id} brand={item.brand} type={item.type} description={item.description} /></Col>
     })
     return (
         <Row>

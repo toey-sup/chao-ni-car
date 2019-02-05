@@ -11,6 +11,8 @@ import CarDetail from './components/CarDetail/CarDetail';
 import Navbar from './components/Navbar/Navbar';
 import LoginComponent from './components/Login/LoginComponent';
 
+import testPage from './containers/testPage'
+
 class App extends Component {
   render() {
     return (
@@ -21,10 +23,11 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path={'/car/:id'} component={CarDetail} />
+          <Route path='/car/:id' component={CarDetail} />
           <Route path="/about" component={AboutPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/result" component={ResultPage} />
+          <Route path="/test" component={testPage} />
         </Switch>
       </div>
     )

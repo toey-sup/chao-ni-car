@@ -10,7 +10,7 @@ const carPic = (props) => {
                 src={path}
             />
             <Carousel.Caption>
-                <p>{index}</p>
+                <p>Picture {index+1}</p>
             </Carousel.Caption>
         </Carousel.Item>
     ))
@@ -25,7 +25,7 @@ const carDetailR = (props) => {
 
     return (
         <div>
-            <div className={classes.DivHeader}><span className={classes.Header}>{props.title}</span></div>
+            <div className={classes.DivHeader}><span className={classes.Header}>{props.brand + " - " + props.type}</span></div>
         </div>
     );
 }

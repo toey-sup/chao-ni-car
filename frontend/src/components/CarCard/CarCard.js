@@ -9,7 +9,7 @@ const carCard = (props) => {
         <Card style={{ width: '13rem' }} className={classes.Card}>
             <Card.Img variant="top" src={logo} />
             <Card.Body>
-                <Card.Title>{props.title}</Card.Title>
+                <Card.Title>{props.brand + " " + props.type}</Card.Title>
                 <Card.Text>
                     {props.description}
                 </Card.Text>
