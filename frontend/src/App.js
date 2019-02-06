@@ -12,7 +12,6 @@ import CarDetail from "./containers/CarDetail/CarDetail";
 import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./containers/RegisterPage";
 import AddCarPage from "./containers/AddCarPage/AddCarPage"
-import LoginComponent from "./components/Login/LoginComponent";
 
 import testPage from "./containers/testPage";
 
@@ -32,6 +31,7 @@ class App extends Component {
           <Route path="/howtouse" component={HowToUsePage} />
           <Route path="/regis" component={RegisterPage} />
           <Route path="/addcar" component={AddCarPage} />
+          <Route path="/login" component={LoginPage} />
         </Switch>
       </div>
     );

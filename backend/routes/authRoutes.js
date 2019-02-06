@@ -43,14 +43,23 @@ module.exports = app => {
       }
     );
   });
+  app.get("/auth/successjson", function(req, res) {
+    res.status(200).json({ message: "Login Success" });
+  });
+
+  app.get("/auth/failurejson", function(req, res) {
+    res.status(401).json({ message: "Login Error" });
+  });
   app.post(
     "/auth/login",
     passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/failure"
     }),
-    (req, res) => {}
+    (req, res) => {
+      if (req.user) { res.send(req.user); }
+      else { res.send(401); }
+    }
   );
+  
 
   app.get(
     // callback after succesfully login
