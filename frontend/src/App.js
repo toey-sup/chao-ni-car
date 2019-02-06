@@ -11,7 +11,7 @@ import HowToUsePage from "./containers/HowToUsePage";
 import CarDetail from "./containers/CarDetail/CarDetail";
 import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./containers/RegisterPage";
-
+import ManageBooking from "./containers/ManageBooking";
 import LoginComponent from "./components/Login/LoginComponent";
 
 import testPage from "./containers/testPage";
@@ -32,6 +32,7 @@ class App extends Component {
           <Route path="/test" component={testPage} />
           <Route path="/howtouse" component={HowToUsePage} />
           <Route path="/regis" component={RegisterPage} />
+          <Route path="/booking" component={ManageBooking} />
         </Switch>
       </div>
     );
