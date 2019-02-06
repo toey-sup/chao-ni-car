@@ -11,17 +11,17 @@ class testPage extends Component {
     }
     submitCar1 = async () => {
         const car = {
-            brand: "lambogini",
-            type: "c8",
+            brand: "Honda",
+            type: "Civic",
             regYear: "1997",
             LNumber: "ก123",
             gear: "auto",
             seat: 2,
             equipment: "55",
             status: "avail",
-            photo: "SDFSDFASDFDASF",
-            availFrom: new Date("2017-03-25"),
-            availTo: new Date("2018-03-25"),
+            photo: "https://automobiles.honda.com/platform/api/v3/images/exterior/02?config=M:FC1F9KKNW$EC:NH-731P$HC:undefined$IC:BK&width=358&filetype=png&background=0",
+            availFrom: new Date("2019-02-10"),
+            availTo: new Date("2019-02-20"),
             description: "DSFGGHFGHGFHGF",
             deposit: 3000,
             pricePerDay: 300
@@ -29,27 +29,7 @@ class testPage extends Component {
         const res = await axios.post('/api/cars', car);
         console.log(res.data)
     }
-    submitCar2 = async () => {
-        const car = {
-            brand: "izuzu",
-            type: "toro",
-            regYear: "1997",
-            LNumber: "yualll",
-            gear: "auto",
-            seat: 2,
-            equipment: "GPS",
-            status: "avail",
-            photo: "SDFSDFASDFDASF",
-            availFrom: new Date(),
-            availTo: new Date(),
-            description: "dsfdsfsdfasfasf",
-        }
-        const res = await axios.post('/api/cars', car);
-        if (res.data.redirect === '/authentication') {
-            this.props.history.push('/authentication')
-        }
-        console.log(res.data)
-    }
+    
     createRequest = async (id) => {
         const request = {
             fromLoc: "Asok",
@@ -110,10 +90,9 @@ class testPage extends Component {
 
                 <FieldFileInput />
 
-                {/* <Button onClick={this.submitCar1}>Mock1</Button>
-                <Button onClick={this.submitCar2}>Mock2</Button>
+                <Button onClick={this.submitCar1}>Mock1</Button>
                 <Button onClick={this.searchHandler}>Search</Button>
-                {carQuery} */}
+                {carQuery}
             </div>
         )
     }

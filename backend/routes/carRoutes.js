@@ -20,7 +20,7 @@ module.exports = app => {
   app.get("/api/cars", async (req, res) => {
     // ใช้สำหรับหน้าดูรถทั้งหมด
     console.log("query", req.query);
-    if (req.query.fromDate !== 'null' || req.query.toDate !== 'null') {
+    if (req.query.fromDate !== 'null' && req.query.toDate !== 'null') {
         const car = await Car.find({
              
                 "availFrom": {
