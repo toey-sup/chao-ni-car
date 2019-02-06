@@ -19,4 +19,4 @@ const carCard = (props) => {
     );
 }
 
-export default withRouter(carCard);
+export default carCard;
