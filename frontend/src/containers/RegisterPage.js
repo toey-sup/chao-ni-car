@@ -162,15 +162,17 @@ class RegisterPage extends Component {
               />
             </Form.Group>
             <div className="buttonwrapper">
-              <Form.Group id="termcheck">
-                <Form.Check
-                  type="checkbox"
-                  label="I agree to the Terms and Agreements"
-                  required
-                  className="checkbox"
-                  style={{ textAlign: "center" }}
-                />
-              </Form.Group>
+              <div className="term">
+                <Form.Group id="termcheck">
+                  <Form.Check
+                    type="checkbox"
+                    label="I agree to the Terms and Agreements"
+                    required
+                    className="checkbox"
+                    style={{ textAlign: "center" }}
+                  />
+                </Form.Group>
+              </div>
               <Button
                 variant="outline-secondary"
                 type="cancel"
