@@ -4,7 +4,7 @@ class PaymentPage extends Component {
     render() {
         return (
             <div>
-
+                <h1 align="center" >Payment</h1>
             </div>
         )
     }

@@ -11,9 +11,9 @@ import HowToUsePage from "./containers/HowToUsePage";
 import CarDetail from "./containers/CarDetail/CarDetail";
 import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./containers/RegisterPage";
-import AddCarPage from "./containers/AddCarPage/AddCarPage"
-
+import AddCarPage from "./containers/AddCarPage/AddCarPage";
 import testPage from "./containers/testPage";
+import PaymentPage from "./containers/PaymentPage";
 
 class App extends Component {
   render() {
@@ -32,6 +32,7 @@ class App extends Component {
           <Route path="/regis" component={RegisterPage} />
           <Route path="/addcar" component={AddCarPage} />
           <Route path="/login" component={LoginPage} />
+          <Route path="/payment" component={PaymentPage} />
         </Switch>
       </div>
     );
