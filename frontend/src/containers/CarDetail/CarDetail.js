@@ -20,7 +20,10 @@ class CarDetail extends Component {
         gear: '',
         seat: 0,
         equipment: '',
-        error: null
+        availFrom: null,
+        availTo: null,
+        description: '',
+        error: null,
     }
 
     componentWillUnmount() {
@@ -42,6 +45,10 @@ class CarDetail extends Component {
                     gear: res.data.gear,
                     seat: res.data.seat,
                     equipment: res.data.equipment,
+                    picsPath: [res.data.photo],
+                    availFrom: res.data.availFrom,
+                    availTo: res.data.availTo,
+                    description: res.data.description,
                 }
                 this.setState(newState);
             })
@@ -56,8 +63,8 @@ class CarDetail extends Component {
                 <>
                     <div className={classes.Div}>
                         <Row>
-                            <Col xs={6}><CarPic imagesPath={this.state.picsPath} /></Col>
-                            <Col xs={6}>
+                            <Col sm={6} xs={12}><CarPic imagesPath={this.state.picsPath} /></Col>
+                            <Col sm={6} xs={12}>
                                 <Row><Col><CarDetailR brand={this.state.brand} type={this.state.type} /></Col></Row>
                                 <CarDetailMiddle payload={this.state} />
                             </Col>

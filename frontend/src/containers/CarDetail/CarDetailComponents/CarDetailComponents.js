@@ -51,10 +51,10 @@ const carDetailMiddle = (props) => {
                 <Col>อุปกรณ์เสริม:</Col><Col>{props.payload.equipment}</Col>
             </Row>
             <Row>
-                <Col>วันที่สามารถใช้ได้ :</Col><Col>ตั้งแต่ XXXX จนถึง XXXX</Col>
+                <Col>วันที่สามารถใช้ได้ :</Col><Col>ตั้งแต่ {props.payload.availFrom} จนถึง {props.payload.availTo} </Col>
             </Row>
             <Row>
-                <Col>รายละเอียด:</Col><Col>XXXX</Col>
+                <Col>รายละเอียด:</Col><Col>{props.payload.description}</Col>
             </Row>
             <Row>
                 <Col>ราคาต่อวัน:</Col><Col>XXXX</Col>
