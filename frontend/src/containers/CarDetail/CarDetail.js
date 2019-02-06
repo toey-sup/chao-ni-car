@@ -23,6 +23,8 @@ class CarDetail extends Component {
         availFrom: null,
         availTo: null,
         description: '',
+        pricePerDay: null,
+        deposit: null,
         error: null,
     }
 
@@ -32,6 +34,7 @@ class CarDetail extends Component {
     componentDidMount() {
         // Bug
         //console.log(this.props.match.params.id);
+        this.setState({ loading: true });
         axios.get('/api/cars/' + this.props.match.params.id)
             .then(res => {
                 console.log(res.data);
@@ -49,6 +52,8 @@ class CarDetail extends Component {
                     availFrom: res.data.availFrom,
                     availTo: res.data.availTo,
                     description: res.data.description,
+                    pricePerDay: res.data.pricePerDay,
+                    deposit: res.data.deposit
                 }
                 this.setState(newState);
             })

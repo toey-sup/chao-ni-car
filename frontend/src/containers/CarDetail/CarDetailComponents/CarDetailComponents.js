@@ -57,7 +57,10 @@ const carDetailMiddle = (props) => {
                 <Col>รายละเอียด:</Col><Col>{props.payload.description}</Col>
             </Row>
             <Row>
-                <Col>ราคาต่อวัน:</Col><Col>XXXX</Col>
+                <Col>ราคาต่อวัน:</Col><Col>{props.payload.pricePerDay}</Col>
+            </Row>
+            <Row>
+                <Col>ค่ามัดจำ:</Col><Col>{props.payload.deposit}</Col>
             </Row>
         </div >
     );
