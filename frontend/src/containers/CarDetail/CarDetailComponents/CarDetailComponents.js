@@ -8,6 +8,7 @@ const carPic = (props) => {
             <img
                 className="d-block w-100 h-100"
                 src={path}
+                alt='carPic'
             />
             <Carousel.Caption>
                 <p>Picture {index + 1}</p>

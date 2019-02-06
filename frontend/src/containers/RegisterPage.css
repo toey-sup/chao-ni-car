@@ -4,16 +4,19 @@
 }
 .buttonwrapper {
   margin: 10px auto;
-  width: 169px;
+  text-align: center;
 }
-.forminput {
-  outline: none;
-  border: 1px solid #eb4949;
-}
-
 .cancelbutton {
   margin: 0px auto;
 }
 .submitbutton {
   margin: 0px 10px;
+}
+input {
+  width: 20px;
+  margin: 10px auto;
+}
+.form-check-label {
+  margin-bottom: 0;
+  padding: 0;
 }

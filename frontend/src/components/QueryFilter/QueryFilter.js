@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, FormControl, Button, FormLabel, Row, Col } from 'react-bootstrap';
+import { Form, FormGroup, Button, FormLabel, Row, Col } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import './QueryFilter.css';
