@@ -7,7 +7,7 @@ function MemberInfo(props){
     return(
         <div className="MemberBlock">
             <div className="MemberImage" >
-                <Image src={props.imgSrc} roundedCircle/>
+                <Image src={props.imgSrc} roundedCircle fluid/>
             </div>
             <h4 className="MemberName">
                 {props.name}
