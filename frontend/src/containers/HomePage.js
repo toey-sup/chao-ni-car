@@ -6,7 +6,7 @@ import CarCards from "../components/CarCard/CarCards";
 import axios from "axios";
 import Spinner from "../components/UI/Spinner/Spinner";
 import SubQueryFilter from "../components/QueryFilter/SubQueryFilter/SubQueryFilter";
-import caricon from "../images/caricon.png";
+import Banner from "../images/Banner.png";
 import carCards from "../components/CarCard/CarCards";
 class HomePage extends Component {
   state = {
@@ -76,17 +76,12 @@ class HomePage extends Component {
 
     return (
       <>
-        <div className={classes.Backgroundimg}>
-          <div style={{ textAlign: "center", paddingBottom: 15 }}>
-            <img style={{ width: 80, height: 80 }} src={caricon} />
-            <h4>FIND RENTAL CAR </h4>
-            <p>Best website</p>
-          </div>
+      <div className={classes.Banner}>   <img src={Banner} />
+      </div>
+            
           <div className={classes.Filter} style={{ textAlign: "center" }}>
             <QueryFilter change={this.onChangeHandler} />
           </div>
-        </div>
-
         <div className={classes.Div}>
           <SubQueryFilter handler={this.subQueryHandler} />
           <Container>{cards}</Container>

@@ -1,7 +1,10 @@
 .red {
   color: red;
 }
-
+.Banner{
+  text-align: center;
+  margin-top: 20px auto;
+}
 .Div {
   width: 95%;
   margin: 10px auto;
@@ -25,8 +28,9 @@
 }
 
 .Backgroundimg {
-  background-image: url("../images/HomePage.png");
-  padding: 120px 120px;
+  background-image: url("../images/Banner.png");
+  width: 100%;
+  height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
