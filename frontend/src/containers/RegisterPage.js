@@ -20,18 +20,6 @@ class RegisterPage extends Component {
     };
   }
 
-  validateid() {
-    return this.state.id.length === 13;
-  }
-
-  validatetel() {
-    return this.state.tel.length === 10;
-  }
-
-  validatepassword() {
-    return this.state.password === this.state.confirmpassword;
-  }
-
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -49,14 +37,14 @@ class RegisterPage extends Component {
 
   render() {
     const { validated } = this.state;
-    const { validatepassword } = this.validatepassword;
+
     return (
       <div>
         <div className="wrapper">
           <Form
             method="post"
             noValidate
-            validated={validatepassword}
+            validated={validated}
             onSubmit={e => this.handleSubmit(e)}
           >
             <Form.Row>
@@ -117,7 +105,6 @@ class RegisterPage extends Component {
                   type="password"
                   placeholder="Enter your password again"
                   required
-                  validated={validatepassword}
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -152,13 +139,14 @@ class RegisterPage extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-
             <div className="buttonwrapper">
               <Form.Group id="termcheck">
                 <Form.Check
                   type="checkbox"
                   label="I agree to the Terms and Agreements"
                   required
+                  className="checkbox"
+                  style={{ textAlign: "center" }}
                 />
               </Form.Group>
               <Button
@@ -173,7 +161,6 @@ class RegisterPage extends Component {
               </Button>
             </div>
           </Form>
-          ;
         </div>
       </div>
     );
