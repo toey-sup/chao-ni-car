@@ -18,7 +18,8 @@ class RegisterPage extends Component {
       id: "",
       drivingnumber: "",
       tel: "",
-      validated: false
+      validated: false,
+      loading: false
     };
   }
 
@@ -47,7 +48,7 @@ class RegisterPage extends Component {
       
       event.stopPropagation();
     }
-    this.setState({ validated: true });
+    this.setState({ validated: true, loading: true});
     const data = {
       name: this.state.name,
       surname: this.state.surname,
@@ -68,9 +69,15 @@ class RegisterPage extends Component {
       .catch(err => {
         console.log(err);
       });
+    this.setState({loading: false})
   }
 
   render() {
+    let loadingComponent = <p></p>
+    if (this.state.loading) {
+      console.log('Loading')
+      loadingComponent = <p>Loading</p>
+    }
     const { validated } = this.state;
     const { validatepassword } = this.validatepassword;
     return (
@@ -193,6 +200,7 @@ class RegisterPage extends Component {
                 <Button variant="primary" type="submit" className="submitbutton">
                   Submit
                 </Button>
+                {loadingComponent}
             </div>
           </Form>
           

@@ -49,7 +49,7 @@ class HomePage extends Component {
       "&toDate=" +
       this.state.toDate;
     axios
-      .get("/api/cars")
+      .get(url)
       .then(res => {
         console.log("OK");
         const cars = [...res.data];
