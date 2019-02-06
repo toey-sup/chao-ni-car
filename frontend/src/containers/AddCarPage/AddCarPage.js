@@ -200,7 +200,7 @@ class AddCarPage extends Component {
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="deposit">
-                                <Form.Label>Description</Form.Label>
+                                <Form.Label>deposit</Form.Label>
                                 <Form.Control
                                     required
                                     type="Number"
