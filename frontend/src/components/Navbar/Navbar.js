@@ -26,17 +26,24 @@ class NavbarComponent extends Component {
       .get("/api/current_user")
       .then(response => {
         console.log(response);
-        this.setState(
-          {
-            response: response,
-            name: response.data.name,
-            email: response.data.email,
-            googleId: response.data.googleId,
-            photo: response.data.photo,
-            isAuthenticated: response.data.isAuthenticated
-          },
-          () => console.log(this.state)
-        );
+        if (response.data) {
+          this.setState(
+            {
+              response: response,
+              name: response.data.name,
+              email: response.data.email,
+              googleId: response.data.googleId,
+              photo: response.data.photo,
+              isAuthenticated: response.data.isAuthenticated,
+              login: true
+            },
+            () => console.log(this.state)
+          );
+        } else {
+          this.setState({
+            login: false
+          });
+        }
       })
       .catch(err => {
         console.log(err);
@@ -54,11 +61,11 @@ class NavbarComponent extends Component {
       window.location = "/api/logout";
     };
 
-    let display = <p>loading</p>;
-    if (this.state.name === undefined) {
+    let display = <p></p>;
+    if (this.state.login === false) {
       display = (
         <Form inline>
-          <img
+          {/* <img
             src={googleicon}
             style={{
               width: "30px",
@@ -69,9 +76,12 @@ class NavbarComponent extends Component {
             }}
             alt="login cao ni car"
             onClick={() => handleClickGoogle()}
-          />
+          /> */}
           <NavLink className={classes.NavLink} to="/regis">
             Register
+          </NavLink>
+          <NavLink className={classes.NavLink} to="/login">
+            Login
           </NavLink>
         </Form>
       );
@@ -87,7 +97,7 @@ class NavbarComponent extends Component {
           >
             {this.state.name}
           </p>
-          <img
+          {/* <img
             src={this.state.photo}
             style={{
               width: "30px",
@@ -98,7 +108,7 @@ class NavbarComponent extends Component {
             }}
             alt="login cao ni car"
             onClick={() => handleClickPhoto()}
-          />
+          /> */}
           <Nav>
             <NavLink className={classes.NavLink} to="/booking">
               Manage Booking
@@ -115,7 +125,7 @@ class NavbarComponent extends Component {
       );
     }
     return (
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <NavLink className={classes.Header} to="/">
           <img src={logo} style={{ width: 100, marginTop: -7 }} alt="logo" />
         </NavLink>

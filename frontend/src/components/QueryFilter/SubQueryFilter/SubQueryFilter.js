@@ -93,7 +93,7 @@ class SubQueryFilter extends Component {
                                         </Col>
                                     </Row>
                                 </FormGroup>
-                                <div style={{ textAlign: 'right' }}><Button onClick={this.onQuery} variant="danger" style={{ width: '100px' }}>Query</Button></div>
+                                <div style={{ textAlign: 'right' }}><Button onClick={this.onQuery} variant="danger" style={{ width: '200px' }}>Filter Results</Button></div>
                             </Form >
                         </Container>
                     </div>
