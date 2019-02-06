@@ -38,10 +38,10 @@ const carCards = (props) => {
     //     return <Col key={item.id} xs={12} sm={4} md={3}><CarCard id={item.id} brand={item.brand} type={item.type} description={item.description} /></Col>
     // })
 
-    let cars = <strong>Please Enter something</strong>
+    let cars = <strong>Nothing Found</strong>
     if (props.cars.length > 0) {
         cars = props.cars.map((item, index) => { //Delete index after 
-            return <Col key={item.id + String(index)} xs={12} sm={5} md={4} lg={3}><CarCard id={item._id} brand={item.brand} type={item.type} description={item.description} /></Col>
+            return <Col key={item.id + String(index)} xs={12} sm={5} md={4} lg={3}><CarCard id={item._id} brand={item.brand} type={item.type} description={item.description} picture={item.photo} /></Col>
         })
     }
 
