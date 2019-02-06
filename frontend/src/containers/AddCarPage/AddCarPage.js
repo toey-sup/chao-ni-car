@@ -14,6 +14,11 @@ class AddCarPage extends Component {
             validated: false
         };
     }
+    handleChange = event => {
+        this.setState({
+          [event.target.id]: event.target.value
+        });
+      };
     render() {
         return (
             <div className="wrapper" >
@@ -30,6 +35,7 @@ class AddCarPage extends Component {
                                     required
                                     type="Brand"
                                     placeholder="Enter Brand"
+                                    onChange={this.handleChange}
                                 />
                             </Form.Group>
                         </Form.Row>
@@ -41,6 +47,7 @@ class AddCarPage extends Component {
                                     required
                                     type="Seat"
                                     placeholder="Enter Seat"
+                                    onChange={this.handleChange}
                                 />
                             </Form.Group>
                         </Form.Row>
@@ -54,8 +61,8 @@ class AddCarPage extends Component {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        <Dropdown.Item href="#/action-1">Manual</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Auto</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-1" onChange={this.handleChange}>Manual</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-2" onChange={this.handleChange}>Auto</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                              </Form.Group>
@@ -68,6 +75,7 @@ class AddCarPage extends Component {
                                     required
                                     type="Price"
                                     placeholder="Enter Price"
+                                    onChange={this.handleChange}
                                 />
                             </Form.Group>
                         </Form.Row>
@@ -79,6 +87,7 @@ class AddCarPage extends Component {
                                     required
                                     type="Equipment"
                                     placeholder="Enter Equipment"
+                                    onChange={this.handleChange}
                                 />
                             </Form.Group>
                         </Form.Row>
@@ -90,6 +99,7 @@ class AddCarPage extends Component {
                                     required
                                     type="Lnumber"
                                     placeholder="License number"
+                                    onChange={this.handleChange}
                                 />
                             </Form.Group>
                         </Form.Row>
