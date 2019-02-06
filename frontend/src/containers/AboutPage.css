@@ -9,8 +9,10 @@
 }
 
 .MemberImage{
-    max-width: 50;
-    max-height: 50;
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
     padding: 5px;
     margin: 10px auto;
 }

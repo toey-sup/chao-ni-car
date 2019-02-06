@@ -22,17 +22,19 @@ class App extends Component {
         {/* <Profile /> */}
         {/* <LoginComponent/> */}
         <Navbar />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/car/:id" component={CarDetail} />
-          <Route path="/about" component={AboutPage} />
-          <Route path="/result" component={ResultPage} />
-          <Route path="/test" component={testPage} />
-          <Route path="/howtouse" component={HowToUsePage} />
-          <Route path="/regis" component={RegisterPage} />
-          <Route path="/addcar" component={AddCarPage} />
-          <Route path="/login" component={LoginPage} />
-        </Switch>
+        <div style={{paddingTop: 67}}>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/car/:id" component={CarDetail} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/result" component={ResultPage} />
+            <Route path="/test" component={testPage} />
+            <Route path="/howtouse" component={HowToUsePage} />
+            <Route path="/regis" component={RegisterPage} />
+            <Route path="/addcar" component={AddCarPage} />
+            <Route path="/login" component={LoginPage} />
+          </Switch>
+        </div>
       </div>
     );
   }
