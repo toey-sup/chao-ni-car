@@ -4,23 +4,16 @@
 }
 .buttonwrapper {
   margin: 10px auto;
-  text-align: center;
+  width: 300px;
 }
+.forminput {
+  outline: none;
+  border: 1px solid #eb4949;
+}
+
 .cancelbutton {
   margin: 0px auto;
 }
 .submitbutton {
   margin: 0px 10px;
-}
-<<<<<<< HEAD
-.term input {
-  width: 20px;
-  margin: 10px auto;
-}
-=======
-
->>>>>>> d9f20e4e287f493b7a81ec500a167f095b237ae9
-.form-check-label {
-  margin-bottom: 0;
-  padding: 0;
 }
