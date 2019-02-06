@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
+const passportLocalMongoose = require('passport-local-mongoose')
 
 const userSchema = new Schema({
+    username: String,
+    password: String,
     name: String,
     googleId: String,
     photo: String,
@@ -11,5 +14,7 @@ const userSchema = new Schema({
     DLicenseNumber: String,
     isAuthenticated: { type: Boolean, default: false }
 })
+
+userSchema.plugin(passportLocalMongoose)
 
 mongoose.model("users", userSchema)

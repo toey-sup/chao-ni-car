@@ -3,11 +3,11 @@ const Car = mongoose.model('cars')
 const Request = mongoose.model('requests')
 const requireAuthentication = require('../middlewares/requireAuthentication')
 module.exports = (app) => {
-    app.get('/api/request', async (req, res) => {
+    app.get('/api/request', async (req, res) => { // ดึง request ทั้งหมดที่จองไว้
         const requests = await Request.find({_renter: req.user["_id"]})
         res.send(requests)
     })
-    app.post('/api/request', requireAuthentication, async (req, res) => {
+    app.post('/api/request', requireAuthentication, async (req, res) => { // ใช้จองรถ โดยต้องส่งข้อมูลมาจอง เช่น carId, fromLoc, toLoc, dateFrom, dateTo
         const { carId, fromLoc, toLoc, dateFrom, dateTo } = req.body
         const car = await Car.findByIdAndUpdate(
             carId, {
@@ -38,7 +38,7 @@ module.exports = (app) => {
         }
 
     })
-    app.put('/api/request/:requestId', requireAuthentication, async (req, res) => {
+    app.put('/api/request/:requestId', requireAuthentication, async (req, res) => { // ใช้สำหรับ ยืนยัน คืนรถแล้ว
         const request = await Request.update(
             { _id: req.params.requestId }, {
                 $set: {
@@ -68,7 +68,7 @@ module.exports = (app) => {
         }
 
     })
-    app.delete('/api/request/:requestId', requireAuthentication, async (req, res) => {
+    app.delete('/api/request/:requestId', requireAuthentication, async (req, res) => { // ใช้ยกเลิกการจอง
         Request.findByIdAndRemove(req.params.requestId, (err, request) => {
             if (err) return res.status(500).send(err);
             const response = {
