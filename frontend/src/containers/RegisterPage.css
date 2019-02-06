@@ -12,7 +12,14 @@
 .submitbutton {
   margin: 0px 10px;
 }
+<<<<<<< HEAD
+.term input {
+  width: 20px;
+  margin: 10px auto;
+}
+=======
 
+>>>>>>> d9f20e4e287f493b7a81ec500a167f095b237ae9
 .form-check-label {
   margin-bottom: 0;
   padding: 0;
