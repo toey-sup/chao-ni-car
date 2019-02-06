@@ -27,7 +27,7 @@ class HomePage extends Component {
     this.setState({ loading: true })
     console.log(this.state);
     const url = '/api/cars?fromDate=' + this.state.fromDate + "&toDate=" + this.state.toDate
-    axios.get('/api/cars')
+    axios.get(url)
       .then(res => {
         console.log("OK")
         const cars = [...res.data];
@@ -94,7 +94,7 @@ class HomePage extends Component {
       "&toDate=" +
       this.state.toDate;
     axios
-      .get("/api/cars")
+      .get(url)
       .then(res => {
         console.log("OK");
         const cars = [...res.data];
