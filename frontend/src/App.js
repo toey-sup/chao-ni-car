@@ -11,7 +11,11 @@ import HowToUsePage from "./containers/HowToUsePage";
 import CarDetail from "./containers/CarDetail/CarDetail";
 import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./containers/RegisterPage";
+<<<<<<< HEAD
 import ManageBooking from "./containers/ManageBooking";
+=======
+import AddCarPage from "./containers/AddCarPage/AddCarPage"
+>>>>>>> d9f20e4e287f493b7a81ec500a167f095b237ae9
 import LoginComponent from "./components/Login/LoginComponent";
 
 import testPage from "./containers/testPage";
@@ -32,7 +36,11 @@ class App extends Component {
           <Route path="/test" component={testPage} />
           <Route path="/howtouse" component={HowToUsePage} />
           <Route path="/regis" component={RegisterPage} />
+<<<<<<< HEAD
           <Route path="/booking" component={ManageBooking} />
+=======
+          <Route path="/addcar" component={AddCarPage} />
+>>>>>>> d9f20e4e287f493b7a81ec500a167f095b237ae9
         </Switch>
       </div>
     );
