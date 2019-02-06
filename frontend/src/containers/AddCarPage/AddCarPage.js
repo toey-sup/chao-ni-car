@@ -31,19 +31,22 @@ class AddCarPage extends Component {
         this.setState({ validated: true });
         const data = {
           brand: this.state.brand,
+          type: this.state.type,
           seat: this.state.seat,
           regYear:this.state.regYear,
-          transmission: this.state.transmission,
+          gear: this.state.transmission,
           price: this.state.price,
           equipment: this.state.equipment,
-          lnumber: this.state.lnumber,
+          LNumber: this.state.lnumber,
           availFrom:this.state.availFrom,
           availTo:this.state.availTo,
           description:this.state.description,
           deposit:this.state.deposit,
+          pricePerDay:this.state.pricePerDay
         };
+        console.log(data)
         axios
-          .post("/auth/local", data)
+          .post("/api/cars", data)
           .then(res => {
             console.log(res);
             this.props.history.push("/");
@@ -209,8 +212,19 @@ class AddCarPage extends Component {
                                 />
                             </Form.Group>
                         </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} controlId="pricePerDay">
+                                <Form.Label>Price per day</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="Number"
+                                    placeholder="Enter pricePerDay"
+                                    onChange={this.handleChange}
+                                />
+                            </Form.Group>
+                        </Form.Row>
                         <Row>
-                           <Button>Cancle</Button>
+                           <Button>Cancel</Button>
                            <Button type = 'submit'>Submit</Button>
                         </Row>
 
