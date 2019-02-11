@@ -3,10 +3,12 @@ import classes from './CarDetail.module.css';
 import { Row, Col, Button } from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR, carDetailMiddle as CarDetailMiddle } from './CarDetailComponents/CarDetailComponents';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
 
 import testPic1 from './test/img.jpg';
 import testPic2 from './test/img2.jpg';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Rent from '../Rent/Rent';
 
 class CarDetail extends Component {
     state = {
@@ -26,6 +28,8 @@ class CarDetail extends Component {
         pricePerDay: null,
         deposit: null,
         error: null,
+        //==========
+        rentClicked: false
     }
 
     componentWillUnmount() {
@@ -61,6 +65,12 @@ class CarDetail extends Component {
                 this.setState({ loading: false, error: err })
             });
     }
+
+    rentHandler = () => {
+        this.props.history.replace(this.props.match.path + '/rent');
+        this.setState({ rentClicked: true });
+    }
+
     render() {
         let item = <Spinner />;
         if (!this.state.loading && !this.state.error) {
@@ -74,8 +84,12 @@ class CarDetail extends Component {
                                 <CarDetailMiddle payload={this.state} />
                             </Col>
                         </Row>
-                        <div style={{ textAlign: 'right' }}><Button>Rent!</Button></div>
+                        {this.state.rentClicked ? null : <div style={{ textAlign: 'right' }}><Button onClick={this.rentHandler}>Rent!</Button></div>}
                     </div>
+                    <Route path={this.props.match.path + '/rent'}
+                        component={Rent}
+                    // render={(props) => (<ContactData ingredients={this.props.ings} price={this.props.price} {...props} />)} 
+                    />
                 </>
             );
         } else if (this.state.error) {
