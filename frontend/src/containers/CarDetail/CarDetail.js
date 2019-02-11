@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './CarDetail.module.css';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR, carDetailMiddle as CarDetailMiddle } from './CarDetailComponents/CarDetailComponents';
 import axios from 'axios';
 
@@ -74,7 +74,7 @@ class CarDetail extends Component {
                                 <CarDetailMiddle payload={this.state} />
                             </Col>
                         </Row>
-
+                        <div style={{ textAlign: 'right' }}><Button>Rent!</Button></div>
                     </div>
                 </>
             );
