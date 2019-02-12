@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Col, Row, Image, Dropdown } from "react-bootstrap";
 import axios from "axios";
+import FieldUploadFile from '../../components/FieldFileInput/FieldUploadFile'
 class AddCarPage extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +19,8 @@ class AddCarPage extends Component {
             availTo:"",
             description:"",
             deposit:"",
-            validated: false
+            validated: false,
+            fileUrl: null
         };
     }
     handleSubmit(event) {
@@ -31,19 +33,22 @@ class AddCarPage extends Component {
         this.setState({ validated: true });
         const data = {
           brand: this.state.brand,
+          type: this.state.type,
           seat: this.state.seat,
           regYear:this.state.regYear,
-          transmission: this.state.transmission,
-          price: this.state.price,
+          gear: this.state.transmission,
           equipment: this.state.equipment,
-          lnumber: this.state.lnumber,
+          LNumber: this.state.lnumber,
           availFrom:this.state.availFrom,
           availTo:this.state.availTo,
           description:this.state.description,
           deposit:this.state.deposit,
+          pricePerDay:this.state.pricePerDay,
+          photo: this.state.fileUrl
         };
+        console.log(data)
         axios
-          .post("/auth/local", data)
+          .post("/api/cars", data)
           .then(res => {
             console.log(res);
           this.props.history.push("/");
@@ -57,6 +62,11 @@ class AddCarPage extends Component {
           [event.target.id]: event.target.value
         });
       };
+      addFileURLToState = (fileUrl) => {
+        this.setState({
+            fileUrl: fileUrl
+        })
+      }
     render() {
         const { validated } = this.state;
         return (
@@ -69,7 +79,7 @@ class AddCarPage extends Component {
             >
                 <Row>
                     <Col>
-                        <Image style={{ width: 400, height: 400 }} src='http://simpleicon.com/wp-content/uploads/cloud-upload-2.png' />
+                        <FieldUploadFile addFileURLToState={this.addFileURLToState}/>
                     </Col>
                     <Col>
 
@@ -129,17 +139,6 @@ class AddCarPage extends Component {
                          </Form.Group>
                         </Form.Row>
 
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="price">
-                                <Form.Label>Price</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="Number"
-                                    placeholder="Enter Price"
-                                    onChange={this.handleChange}
-                                />
-                            </Form.Group>
-                        </Form.Row>
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="equipment">
@@ -209,8 +208,19 @@ class AddCarPage extends Component {
                                 />
                             </Form.Group>
                         </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} controlId="pricePerDay">
+                                <Form.Label>Price per day</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="Number"
+                                    placeholder="Enter pricePerDay"
+                                    onChange={this.handleChange}
+                                />
+                            </Form.Group>
+                        </Form.Row>
                         <Row>
-                           <Button>Cancle</Button>
+                           <Button>Cancel</Button>
                            <Button type = 'submit'>Submit</Button>
                         </Row>
 
