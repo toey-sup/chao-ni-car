@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form, Col } from "react-bootstrap";
 import "./RegisterPage.css";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
 
 class RegisterPage extends Component {
   constructor(props) {

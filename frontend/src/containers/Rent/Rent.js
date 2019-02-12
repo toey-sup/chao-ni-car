@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Rent.module.css';
-import { Col, Row, FormLabel, FormGroup, FormControl,Form,Button } from 'react-bootstrap';
+import { Col, Row, FormLabel, FormGroup, FormControl,Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 
 class Rent extends Component {

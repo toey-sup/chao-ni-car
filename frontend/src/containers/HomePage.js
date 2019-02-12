@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Button, Collapse } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import classes from "./HomePage.module.css";
 import QueryFilter from "../components/QueryFilter/QueryFilter";
 import CarCards from "../components/CarCard/CarCards";

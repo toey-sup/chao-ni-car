@@ -3,7 +3,7 @@ import axios from "axios";
 import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
 import { withRouter, Link } from "react-router-dom";
 import '../components/Login/LoginComponent';
-import * as actions from '../store/actions/login';
+// import * as actions from '../store/actions/login';
 
 class LoginPage extends Component {
   state = {
@@ -33,6 +33,7 @@ class LoginPage extends Component {
           <img
             className="circle"
             src="https://www.telegraph.co.uk/content/dam/news/2017/11/22/TELEMMGLPICT000147365976_trans_NvBQzQNjv4Bq3XmyF3YIL3K1caQxZsZv2Ssm-UOV8_Q90I8_c5Af0yY.jpeg?imwidth=1400"
+            alt="logo"
             width="100"
             height="100"
           />
