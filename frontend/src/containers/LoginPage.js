@@ -2,22 +2,25 @@ import React, { Component } from "react";
 import axios from "axios";
 import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
 import { withRouter, Link } from "react-router-dom";
-import '../components/Login/LoginComponent';
+import "../components/Login/LoginComponent";
 class LoginPage extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    loginfail: null,
+    message: "No User ID or Password"
   };
   loginHandler = e => {
     e.preventDefault();
-    const data = {...this.state}
-    console.log(data)
-    axios.post('/auth/login', data)
-        .then(res => {
-            console.log(res.user)
-            window.location = '/'
-        })
-        .catch(err => console.log(err)) // Handle Login failed
+    const data = { ...this.state };
+    console.log(data);
+    axios
+      .post("/auth/login", data)
+      .then(res => {
+        console.log(res.user);
+        window.location = "/";
+      })
+      .catch(this.setState({ loginfail: true })); // Handle Login failed
   };
   handleChange = event => {
     this.setState({
@@ -52,6 +55,9 @@ class LoginPage extends Component {
               type="password"
             />
           </FormGroup>
+          {this.state.loginfail && (
+            <p className="errorMessage">{this.state.message}</p>
+          )}
           <Button
             block
             variant="danger"

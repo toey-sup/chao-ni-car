@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
 import "./RegisterPage.css";
-import axios from "axios";
-import { withRouter } from "react-router-dom";
+
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+  Object.values(formErrors).forEach(val => {
+    val.length > 0 && (valid = false);
+  });
+  Object.values(rest).forEach(val => {
+    val === "" && (valid = false);
+  });
+  return valid;
+};
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -18,192 +26,252 @@ class RegisterPage extends Component {
       id: "",
       drivingnumber: "",
       tel: "",
-      validated: false,
-      loading: false
+      formvalid: null,
+      stage: false,
+      formErrors: {
+        name: "",
+        surname: "",
+        username: "",
+        email: "",
+        password: "",
+        confirmpassword: "",
+        id: "",
+        drivingnumber: "",
+        tel: ""
+      }
     };
-  }
-
-  validateid() {
-    return this.state.id.length === 13;
-  }
-
-  validatetel() {
-    return this.state.tel.length === 10;
-  }
-
-  validatepassword() {
-    return this.state.password === this.state.confirmpassword;
   }
 
   handleChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
     this.setState({
-      [event.target.id]: event.target.value
+      [name]: value
     });
+    this.validateField(name, value);
   };
 
-  handleSubmit(event) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      
-      event.stopPropagation();
+  validateField(fieldName, value) {
+    let formErrors = this.state.formErrors;
+
+    switch (fieldName) {
+      case "name":
+        console.log(formErrors.name, value);
+        formErrors.name =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "surname":
+        formErrors.surname =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "username":
+        formErrors.username =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "email":
+        formErrors.email = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+          ? ""
+          : "invalid email";
+        break;
+      case "password":
+        formErrors.password =
+          value.length < 6 ? "minimum 6 characaters required" : "";
+        break;
+      case "confirmpassword":
+        formErrors.confirmpassword =
+          value === this.state.password
+            ? ""
+            : "confirm password and password are not matching";
+        break;
+      case "id":
+        formErrors.id = value.length === 13 ? "" : "invalid id number";
+        break;
+      case "drivingnumber":
+        formErrors.drivingnumber =
+          value.length === 10 ? "" : "invalid driving number";
+        break;
+      case "tel":
+        formErrors.tel = value.length === 10 ? "" : "invalid telephone number";
+        break;
+      default:
+        break;
     }
-    this.setState({ validated: true, loading: true});
-    const data = {
-      name: this.state.name,
-      surname: this.state.surname,
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password,
-      idCardNum: this.state.id,
-      DLicenseNumber: this.state.drivingnumber,
-      tel: this.state.tel,
-      isAuthenticated: true
-    };
-    axios
-      .post("/auth/local", data)
-      .then(res => {
-        console.log(res);
-        this.props.history.push("/");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    this.setState({loading: false})
   }
 
-  render() {
-    let loadingComponent = <p></p>
-    if (this.state.loading) {
-      console.log('Loading')
-      loadingComponent = <p>Loading</p>
+  errorClass(error) {
+    return error.length === 0 ? "" : "has-error";
+  }
+
+  handleSubmit = e => {
+    this.state.stage = true;
+    if (formValid(this.state)) {
+      console.log(`
+        --SUBMITTING--
+        First Name: ${this.state.firstName}
+        Last Name: ${this.state.lastName}
+        Email: ${this.state.email}
+        Password: ${this.state.password}
+      `);
+    } else {
+      e.preventDefault();
+      e.stopPropagation();
+      Object.keys(this.state.item).map(key => {
+        console.log(this.state.item[key]);
+      });
+      console.log(this.state.stage);
     }
-    const { validated } = this.state;
-    const { validatepassword } = this.validatepassword;
+  };
+  render() {
+    const { formErrors } = this.state;
+
     return (
-      <div>
-        <div className="wrapper">
-          <Form
-            noValidate
-            validated={validatepassword}
-            onSubmit={e => this.handleSubmit(e)}
-          >
-            <Form.Row>
-              <Form.Group as={Col} controlId="name">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  required
-                  type="name"
-                  placeholder="Enter your name"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="surname">
-                <Form.Label>Surname</Form.Label>
-                <Form.Control
-                  type="surname"
-                  required
-                  placeholder="Enter your surname"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Group controlId="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                required
-                placeholder="Email.123@caonicar.com"
+      <div className="wrapper">
+        <div className="form-wrapper">
+          <h1>Create Account</h1>
+          <form onSubmit={this.handleSubmit} noValidate>
+            <div className="name">
+              <label htmlFor="name">First Name</label>
+              <input
+                className={formErrors.name.length > 0 ? "error" : null}
+                placeholder="First Name"
+                type="text"
+                name="name"
+                noValidate
                 onChange={this.handleChange}
               />
-            </Form.Group>
-
-            <Form.Group controlId="username">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="username"
-                required
-                placeholder="Username"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-
-            <Form.Row>
-              <Form.Group as={Col} controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  required
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="confirmpassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter your password again"
-                  required
-                  validated={validatepassword}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Group controlId="id">
-              <Form.Label>ID Number</Form.Label>
-              <Form.Control
-                type="idnumber"
-                placeholder="Enter your ID number"
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="drivingnumber">
-              <Form.Label>Driving Number</Form.Label>
-              <Form.Control
-                type="drivingnumber"
-                placeholder="Enter your Driving number"
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="tel">
-              <Form.Label>Telephone Number</Form.Label>
-              <Form.Control
-                type="tel"
-                placeholder="Enter your telephone number"
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-
-            <div className="buttonwrapper">
-              <Form.Group id="termcheck">
-                <Form.Check
-                  type="checkbox"
-                  label="I agree to the Terms and Agreements"
-                  required
-                />
-              </Form.Group>
-                <Button
-                  variant="outline-secondary"
-                  type="cancel"
-                  className="cancelbutton"
-                >
-                  Cancel
-                </Button>
-                <Button variant="primary" type="submit" className="submitbutton">
-                  Submit
-                </Button>
-                {loadingComponent}
+              {formErrors.name.length > 0 && (
+                <span className="errorMessage">{formErrors.name}</span>
+              )}
             </div>
-          </Form>
-          
+            <div className="surname">
+              <label htmlFor="surname">Last Name</label>
+              <input
+                className={formErrors.surname.length > 0 ? "error" : null}
+                placeholder="Last Name"
+                type="text"
+                name="surname"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.surname.length > 0 && (
+                <span className="errorMessage">{formErrors.surname}</span>
+              )}
+            </div>
+            <div className="username">
+              <label htmlFor="username">User Name</label>
+              <input
+                className={formErrors.username.length > 0 ? "error" : null}
+                placeholder="User Name"
+                type="text"
+                name="username"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.username.length > 0 && (
+                <span className="errorMessage">{formErrors.username}</span>
+              )}
+            </div>
+            <div className="email">
+              <label htmlFor="email">Email</label>
+              <input
+                className={formErrors.email.length > 0 ? "error" : null}
+                placeholder="Email"
+                type="email"
+                name="email"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.email.length > 0 && (
+                <span className="errorMessage">{formErrors.email}</span>
+              )}
+            </div>
+            <div className="password">
+              <label htmlFor="password">Password</label>
+              <input
+                className={formErrors.password.length > 0 ? "error" : null}
+                placeholder="Password"
+                type="password"
+                name="password"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.password.length > 0 && (
+                <span className="errorMessage">{formErrors.password}</span>
+              )}
+            </div>
+            <div className="confirmpassword">
+              <label htmlFor="confirmpassword">Confirm Your Password</label>
+              <input
+                className={
+                  formErrors.confirmpassword.length > 0 ? "error" : null
+                }
+                placeholder="Confirm Password"
+                type="text"
+                name="confirmpassword"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.confirmpassword.length > 0 && (
+                <span className="errorMessage">
+                  {formErrors.confirmpassword}
+                </span>
+              )}
+            </div>
+            <div className="id">
+              <label htmlFor="id">ID Number</label>
+              <input
+                className={formErrors.id.length > 0 ? "error" : null}
+                placeholder="First Name"
+                type="text"
+                name="id"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.id.length > 0 && (
+                <span className="errorMessage">{formErrors.id}</span>
+              )}
+            </div>
+            <div className="drivingnumber">
+              <label htmlFor="drivingnumber">Driver Card Number</label>
+              <input
+                className={formErrors.drivingnumber.length > 0 ? "error" : null}
+                placeholder="Driver Card Number"
+                type="text"
+                name="drivingnumber"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.drivingnumber.length > 0 && (
+                <span className="errorMessage">{formErrors.drivingnumber}</span>
+              )}
+            </div>
+            <div className="tel">
+              <label htmlFor="tel">Telephone Number</label>
+              <input
+                className={formErrors.tel.length > 0 ? "error" : null}
+                placeholder="Telephone Number"
+                type="text"
+                name="tel"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.tel.length > 0 && (
+                <span className="errorMessage">{formErrors.tel}</span>
+              )}
+            </div>
+            <div className="term">
+              <input
+                type="checkbox"
+                name="checkbox"
+                label="I agree to the Terms and Agreements"
+                required
+                style={{ display: "flex" }}
+              />
+            </div>
+            <div className="createAccount">
+              <button type="submit">Create Account</button>
+            </div>
+          </form>
         </div>
       </div>
     );
