@@ -13,6 +13,7 @@ const userSchema = new Schema({
     tel: String,
     idCardNum: String,
     DLicenseNumber: String,
+    isProvider: { type: Boolean, default: false },
     isAuthenticated: { type: Boolean, default: false }
 })
 

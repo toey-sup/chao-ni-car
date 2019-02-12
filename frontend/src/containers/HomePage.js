@@ -7,7 +7,7 @@ import axios from "axios";
 import Spinner from "../components/UI/Spinner/Spinner";
 import SubQueryFilter from "../components/QueryFilter/SubQueryFilter/SubQueryFilter";
 import caricon from "../images/caricon.png";
-
+import carCards from "../components/CarCard/CarCards";
 class HomePage extends Component {
   state = {
     fromDate: null,

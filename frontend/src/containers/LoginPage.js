@@ -1,26 +1,43 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
+import {
+  FormGroup,
+  FormLabel,
+  FormControl,
+  Button,
+  Form
+} from "react-bootstrap";
 import { withRouter, Link } from "react-router-dom";
 import "../components/Login/LoginComponent";
 class LoginPage extends Component {
   state = {
     username: "",
     password: "",
-    loginfail: null,
-    message: "No User ID or Password"
+    validated: false,
+    faillogin: false,
+    failmessage: "No User ID or Password"
   };
-  loginHandler = e => {
-    e.preventDefault();
+  loginHandler = event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    }
+    this.setState({ validated: true });
     const data = { ...this.state };
-    console.log(data);
-    axios
-      .post("/auth/login", data)
-      .then(res => {
-        console.log(res.user);
-        window.location = "/";
-      })
-      .catch(this.setState({ loginfail: true })); // Handle Login failed
+    if (form.checkValidity()) {
+      axios
+        .post("/auth/login", data)
+        .then(res => {
+          console.log(res.user);
+          window.location = "/";
+        })
+        .catch(
+          this.setState({
+            faillogin: true
+          })
+        ); // Handle Login failed
+    }
   };
   handleChange = event => {
     this.setState({
@@ -28,9 +45,10 @@ class LoginPage extends Component {
     });
   };
   render() {
+    const { validated } = this.state;
     return (
       <div className="Login">
-        <form onSubmit={this.loginHandler}>
+        <Form onSubmit={this.loginHandler} noValidate validated={validated}>
           <img
             className="circle"
             src="https://www.telegraph.co.uk/content/dam/news/2017/11/22/TELEMMGLPICT000147365976_trans_NvBQzQNjv4Bq3XmyF3YIL3K1caQxZsZv2Ssm-UOV8_Q90I8_c5Af0yY.jpeg?imwidth=1400"
@@ -41,6 +59,7 @@ class LoginPage extends Component {
           <FormGroup controlId="username" bsSize="large">
             <FormLabel>Username</FormLabel>
             <FormControl
+              required
               autoFocus
               type="username"
               value={this.state.username}
@@ -50,13 +69,14 @@ class LoginPage extends Component {
           <FormGroup controlId="password" bsSize="large">
             <FormLabel>Password</FormLabel>
             <FormControl
+              required
               value={this.state.password}
               onChange={this.handleChange}
               type="password"
             />
           </FormGroup>
-          {this.state.loginfail && (
-            <p className="errorMessage">{this.state.message}</p>
+          {this.state.faillogin && (
+            <span className="errorMessage">{this.state.failmessage}</span>
           )}
           <Button
             block
@@ -70,7 +90,7 @@ class LoginPage extends Component {
           </Button>
           <p>Need an account ? </p>
           <Link to="/About">Sign Up</Link>
-        </form>
+        </Form>
       </div>
     );
   }

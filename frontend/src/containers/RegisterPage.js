@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./RegisterPage.css";
-
+import renter from "../images/renter.png";
+import user from "../images/Cars.png";
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
   Object.values(formErrors).forEach(val => {
@@ -28,6 +29,7 @@ class RegisterPage extends Component {
       tel: "",
       formvalid: null,
       stage: false,
+      chosen: false,
       formErrors: {
         name: "",
         surname: "",
@@ -41,7 +43,6 @@ class RegisterPage extends Component {
       }
     };
   }
-
   handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -123,9 +124,42 @@ class RegisterPage extends Component {
   };
   render() {
     const { formErrors } = this.state;
+    const handleClickrenter = () => {
+      this.setState({
+        chosen: true,
+        renter: true
+      });
+    };
 
-    return (
-      <div className="wrapper">
+    const handleClickuser = () => {
+      this.setState({
+        chosen: true,
+        user: true
+      });
+    };
+
+    let display = <p />;
+    let user = <p />;
+    if (this.state.user === true) {
+      user = (
+        <div className="drivingnumber">
+          <label htmlFor="drivingnumber">Driver Card Number</label>
+          <input
+            className={formErrors.drivingnumber.length > 0 ? "error" : null}
+            placeholder="Driver Card Number"
+            type="text"
+            name="drivingnumber"
+            noValidate
+            onChange={this.handleChange}
+          />
+          {formErrors.drivingnumber.length > 0 && (
+            <span className="errorMessage">{formErrors.drivingnumber}</span>
+          )}
+        </div>
+      );
+    }
+    if (this.state.chosen === true) {
+      display = (
         <div className="form-wrapper">
           <h1>Create Account</h1>
           <form onSubmit={this.handleSubmit} noValidate>
@@ -231,20 +265,7 @@ class RegisterPage extends Component {
                 <span className="errorMessage">{formErrors.id}</span>
               )}
             </div>
-            <div className="drivingnumber">
-              <label htmlFor="drivingnumber">Driver Card Number</label>
-              <input
-                className={formErrors.drivingnumber.length > 0 ? "error" : null}
-                placeholder="Driver Card Number"
-                type="text"
-                name="drivingnumber"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.drivingnumber.length > 0 && (
-                <span className="errorMessage">{formErrors.drivingnumber}</span>
-              )}
-            </div>
+            {user}
             <div className="tel">
               <label htmlFor="tel">Telephone Number</label>
               <input
@@ -273,8 +294,32 @@ class RegisterPage extends Component {
             </div>
           </form>
         </div>
-      </div>
-    );
+      );
+    } else {
+      display = (
+        <div
+          className="choseImage"
+          style={{
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "stretch"
+          }}
+        >
+          <div className="renter" onClick={() => handleClickrenter()}>
+            <div className="rentertext">
+              <p>RENTER</p>
+            </div>
+          </div>
+          <div className="user" onClick={() => handleClickuser()}>
+            <div className="usertext">
+              <p>USER</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return <div className="wrapper">{display}</div>;
   }
 }
 

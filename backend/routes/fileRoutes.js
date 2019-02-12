@@ -20,7 +20,12 @@ module.exports = (app) => {
                 res.send(error)
             }
             console.log("result", result)
-            res.status(200).json({ success: true, fileUrl: result.secure_url })
+            const picture = result.secure_url
+            const tempArrURL = picture.split('/');
+            tempArrURL.splice(6,0,'c_scale,w_400');
+            const picturePH = tempArrURL.join('/');
+            console.log(picturePH)
+            res.status(200).json({ success: true, secure_url: picturePH, url: result.url})
         }).end(req.file.buffer)
         
     })
