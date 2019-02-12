@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const storeLogin = (state, action) => {
-    const updatedLogin = { auth: action.auth, user: action.user };
+    const updatedLogin = { auth: true, user: action.user };
     return updateObject(state, updatedLogin);
 };
 

@@ -3,6 +3,8 @@ import axios from "axios";
 import { FormGroup, FormLabel, FormControl, Button } from "react-bootstrap";
 import { withRouter, Link } from "react-router-dom";
 import '../components/Login/LoginComponent';
+import * as actions from '../store/actions/login';
+
 class LoginPage extends Component {
   state = {
     username: "",
@@ -10,14 +12,14 @@ class LoginPage extends Component {
   };
   loginHandler = e => {
     e.preventDefault();
-    const data = {...this.state}
+    const data = { ...this.state }
     console.log(data)
     axios.post('/auth/login', data)
-        .then(res => {
-            console.log(res.user)
-            window.location = '/'
-        })
-        .catch(err => console.log(err)) // Handle Login failed
+      .then(res => {
+        console.log(res.user)
+        window.location = '/'
+      })
+      .catch(err => console.log(err)) // Handle Login failed
   };
   handleChange = event => {
     this.setState({
@@ -69,5 +71,6 @@ class LoginPage extends Component {
     );
   }
 }
+
 
 export default withRouter(LoginPage);

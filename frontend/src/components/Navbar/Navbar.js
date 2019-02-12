@@ -5,6 +5,8 @@ import classes from "./Navbar.module.css";
 import logo from "./logo.png";
 import googleicon from "./googleicon.png";
 import axios from "axios";
+import * as actions from '../../store/actions/login';
+import {connect} from 'react-redux';
 
 class NavbarComponent extends Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class NavbarComponent extends Component {
               isAuthenticated: response.data.isAuthenticated,
               login: true
             },
-            () => console.log(this.state)
+            () => this.props.login(response.data)
           );
         } else {
           this.setState({
@@ -151,4 +153,18 @@ class NavbarComponent extends Component {
   }
 }
 
-export default NavbarComponent;
+const mapStateToProps = state => {
+  return {
+    auth: state.login.auth,
+    user: state.login.user
+  }
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (user) => dispatch(actions.storeLogin(user)),
+    logout: ()=> dispatch(actions.storeLogout()),
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent);

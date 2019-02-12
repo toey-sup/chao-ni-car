@@ -1,9 +1,9 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-orders';
+import axios from 'axios';
 
 export const storeLogin = (user) => {
     return {
-        type: actionTypes.storeLogin,
+        type: actionTypes.STORE_LOGIN,
         user: user,
     }
 }

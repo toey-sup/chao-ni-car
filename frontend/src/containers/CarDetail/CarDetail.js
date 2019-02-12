@@ -4,6 +4,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR, carDetailMiddle as CarDetailMiddle } from './CarDetailComponents/CarDetailComponents';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import testPic1 from './test/img.jpg';
 import testPic2 from './test/img2.jpg';
@@ -67,6 +68,7 @@ class CarDetail extends Component {
     }
 
     rentHandler = () => {
+        
         this.props.history.replace(this.props.match.path + '/rent');
         this.setState({ rentClicked: true });
     }
@@ -99,7 +101,7 @@ class CarDetail extends Component {
                 </div>
             );
         }
-
+        
         return (
             <>
                 {item}
@@ -108,4 +110,12 @@ class CarDetail extends Component {
     }
 }
 
-export default CarDetail;
+const mapStateToProps = state => {
+    return {
+        auth: state.login.auth,
+        user: state.login.user
+    }
+};
+
+
+export default connect(mapStateToProps)(CarDetail);
