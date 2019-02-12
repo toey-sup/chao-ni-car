@@ -74,6 +74,7 @@ class RegisterPage extends Component {
       .catch(err => {
         console.log(err);
       });
+    this.setState({loading: false})
   }
   render() {
     const { validatepassword } = this.validatepassword;

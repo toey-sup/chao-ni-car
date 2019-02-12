@@ -13,9 +13,19 @@ class CarDetail extends Component {
         loading: false,
         //all of belows will be fetched from server
         picsPath: [testPic1, testPic2],
-        brand: 'Automobile ',
-        type: 'RE4',
-        error: null
+        brand: 'None',
+        type: '',
+        LNumber: '',
+        regYear: '',
+        gear: '',
+        seat: 0,
+        equipment: '',
+        availFrom: null,
+        availTo: null,
+        description: '',
+        pricePerDay: null,
+        deposit: null,
+        error: null,
     }
 
     componentWillUnmount() {
@@ -23,16 +33,33 @@ class CarDetail extends Component {
     }
     componentDidMount() {
         // Bug
-        // console.log(this.props.match.params.id);
-        // axios.get('/api/car/' + this.props.match.params.id)
-        //     .then(res => {
-        //         const cars = { ...res.data };
-        //         const newState = { ...this.state, ...cars, loading: false }
-        //         this.setState(newState);
-        //     })
-        //     .catch(err => {
-        //         this.setState({ loading: false, error: err })
-        //     });
+        //console.log(this.props.match.params.id);
+        this.setState({ loading: true });
+        axios.get('/api/cars/' + this.props.match.params.id)
+            .then(res => {
+                console.log(res.data);
+                const newState = {
+                    ...this.state,
+                    loading: false,
+                    brand: res.data.brand,
+                    type: res.data.type,
+                    LNumber: res.data.LNumber,
+                    regYear: res.data.regYear,
+                    gear: res.data.gear,
+                    seat: res.data.seat,
+                    equipment: res.data.equipment,
+                    picsPath: [res.data.photo],
+                    availFrom: res.data.availFrom,
+                    availTo: res.data.availTo,
+                    description: res.data.description,
+                    pricePerDay: res.data.pricePerDay,
+                    deposit: res.data.deposit
+                }
+                this.setState(newState);
+            })
+            .catch(err => {
+                this.setState({ loading: false, error: err })
+            });
     }
     render() {
         let item = <Spinner />;
@@ -41,10 +68,10 @@ class CarDetail extends Component {
                 <>
                     <div className={classes.Div}>
                         <Row>
-                            <Col xs={6}><CarPic imagesPath={this.state.picsPath} /></Col>
-                            <Col xs={6}>
+                            <Col sm={6} xs={12}><CarPic imagesPath={this.state.picsPath} /></Col>
+                            <Col sm={6} xs={12}>
                                 <Row><Col><CarDetailR brand={this.state.brand} type={this.state.type} /></Col></Row>
-                                <CarDetailMiddle />
+                                <CarDetailMiddle payload={this.state} />
                             </Col>
                         </Row>
 

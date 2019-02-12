@@ -8,6 +8,7 @@ const carPic = (props) => {
             <img
                 className="d-block w-100 h-100"
                 src={path}
+                alt='carPic'
             />
             <Carousel.Caption>
                 <p>Picture {index + 1}</p>
@@ -35,28 +36,31 @@ const carDetailMiddle = (props) => {
     return (
         <div className={classes.Detail}>
             <Row>
-                <Col>รถปี:</Col><Col>XXXX</Col>
+                <Col>รถปี:</Col><Col>{props.payload.regYear}</Col>
             </Row>
             <Row>
-                <Col>เลขทะเบียน:</Col><Col>XXXX</Col>
+                <Col>เลขทะเบียน:</Col><Col>{props.payload.LNumber}</Col>
             </Row>
             <Row>
-                <Col>ประเภทเกียร์:</Col><Col>XXXX</Col>
+                <Col>ประเภทเกียร์:</Col><Col>{props.payload.gear === 'auto' ? 'Auto' : 'Manual'}</Col>
             </Row>
             <Row>
-                <Col>จำนวนที่นั่ง:</Col><Col>XXXX</Col>
+                <Col>จำนวนที่นั่ง:</Col><Col>{props.payload.seat}</Col>
             </Row>
             <Row>
-                <Col>อุปกรณ์เสริม:</Col><Col>XXXX</Col>
+                <Col>อุปกรณ์เสริม:</Col><Col>{props.payload.equipment}</Col>
             </Row>
             <Row>
-                <Col>วันที่สามารถใช้ได้ :</Col><Col>ตั้งแต่ XXXX จนถึง XXXX</Col>
+                <Col>วันที่สามารถใช้ได้ :</Col><Col>ตั้งแต่ {props.payload.availFrom} จนถึง {props.payload.availTo} </Col>
             </Row>
             <Row>
-                <Col>รายละเอียด:</Col><Col>XXXX</Col>
+                <Col>รายละเอียด:</Col><Col>{props.payload.description}</Col>
             </Row>
             <Row>
-                <Col>ราคาต่อวัน:</Col><Col>XXXX</Col>
+                <Col>ราคาต่อวัน:</Col><Col>{props.payload.pricePerDay}</Col>
+            </Row>
+            <Row>
+                <Col>ค่ามัดจำ:</Col><Col>{props.payload.deposit}</Col>
             </Row>
         </div >
     );
