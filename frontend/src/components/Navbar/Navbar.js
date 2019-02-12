@@ -118,7 +118,10 @@ class NavbarComponent extends Component {
           </Nav>
           <p
             className={classes.NavLink}
-            onClick={() => handleClickLogout()}
+            onClick={() => {
+              handleClickLogout();
+              this.props.logout();
+            }}
             style={{ marginTop: 16, cursor: "pointer" }}
           >
             Logout
