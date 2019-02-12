@@ -122,7 +122,7 @@ class HomePage extends Component {
 
     return (
       <>
-      <div className={classes.Banner}>   <img src={Banner} />
+      <div className={classes.Banner}>   <img style={{width:'100%'}} src={Banner} />
       </div>
             
           <div className={classes.Filter} style={{ textAlign: "center" }}>
