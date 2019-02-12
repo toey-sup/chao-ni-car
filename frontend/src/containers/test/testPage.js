@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
-import FieldFileInput from '../../components/FieldFileInput/FieldFileInput'
-import TestFile from './testFile'
+import FieldUploadFile from '../../components/FieldFileInput/FieldUploadFile'
 
 class testPage extends Component {
     state = {
         loading: false,
         cars: null,
         requests: null,
-        file: null
+        fileUrl: null
     }
     componentDidMount = () => {
         axios.get('/api/cars')
@@ -139,7 +138,7 @@ class testPage extends Component {
             <div>
 
 
-                <TestFile sendHandler={this.sendHandler} addFileURLToState={this.addFileURLToState}/>
+                <FieldUploadFile sendHandler={this.sendHandler} addFileURLToState={this.addFileURLToState}/>
 
                 <Button onClick={this.submitCar1}>Mock1</Button>
                 {carQuery}

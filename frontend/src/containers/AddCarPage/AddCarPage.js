@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Col, Row, Image, Dropdown } from "react-bootstrap";
 import axios from "axios";
+import FieldUploadFile from '../../components/FieldFileInput/FieldUploadFile'
 class AddCarPage extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +19,8 @@ class AddCarPage extends Component {
             availTo:"",
             description:"",
             deposit:"",
-            validated: false
+            validated: false,
+            fileUrl: null
         };
     }
     handleSubmit(event) {
@@ -35,14 +37,14 @@ class AddCarPage extends Component {
           seat: this.state.seat,
           regYear:this.state.regYear,
           gear: this.state.transmission,
-          price: this.state.price,
           equipment: this.state.equipment,
           LNumber: this.state.lnumber,
           availFrom:this.state.availFrom,
           availTo:this.state.availTo,
           description:this.state.description,
           deposit:this.state.deposit,
-          pricePerDay:this.state.pricePerDay
+          pricePerDay:this.state.pricePerDay,
+          photo: this.state.fileUrl
         };
         console.log(data)
         axios
@@ -60,6 +62,11 @@ class AddCarPage extends Component {
           [event.target.id]: event.target.value
         });
       };
+      addFileURLToState = (fileUrl) => {
+        this.setState({
+            fileUrl: fileUrl
+        })
+      }
     render() {
         const { validated } = this.state;
         return (
@@ -72,7 +79,7 @@ class AddCarPage extends Component {
             >
                 <Row>
                     <Col>
-                        <Image style={{ width: 400, height: 400 }} src='http://simpleicon.com/wp-content/uploads/cloud-upload-2.png' />
+                        <FieldUploadFile addFileURLToState={this.addFileURLToState}/>
                     </Col>
                     <Col>
 
@@ -132,17 +139,6 @@ class AddCarPage extends Component {
                          </Form.Group>
                         </Form.Row>
 
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="price">
-                                <Form.Label>Price</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="Number"
-                                    placeholder="Enter Price"
-                                    onChange={this.handleChange}
-                                />
-                            </Form.Group>
-                        </Form.Row>
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="equipment">
