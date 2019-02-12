@@ -13,7 +13,7 @@ import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./containers/RegisterPage";
 import AddCarPage from "./containers/AddCarPage/AddCarPage"
 
-import testPage from "./containers/testPage";
+import testPage from "./containers/test/testPage";
 
 class App extends Component {
   render() {

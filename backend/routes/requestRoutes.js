@@ -4,7 +4,7 @@ const Request = mongoose.model('requests')
 const requireAuthentication = require('../middlewares/requireAuthentication')
 module.exports = (app) => {
     app.get('/api/request', async (req, res) => { // ดึง request ทั้งหมดที่จองไว้
-        const requests = await Request.find({_renter: req.user["_id"]})
+        const requests = await Request.find({}) //_renter: req.user["_id"]
         res.send(requests)
     })
     app.post('/api/request', requireAuthentication, async (req, res) => { // ใช้จองรถ โดยต้องส่งข้อมูลมาจอง เช่น carId, fromLoc, toLoc, dateFrom, dateTo
@@ -69,12 +69,24 @@ module.exports = (app) => {
 
     })
     app.delete('/api/request/:requestId', requireAuthentication, async (req, res) => { // ใช้ยกเลิกการจอง
-        Request.findByIdAndRemove(req.params.requestId, (err, request) => {
+        Request.findByIdAndRemove(req.params.requestId, async (err, request) => {
             if (err) return res.status(500).send(err);
+            console.log("request", request)
             const response = {
                 message: "Successfully deleted",
                 id: request.id,
             }
+            const car = await Car.update(
+                { _id: request["_car"] }, {
+                    $set: {
+                        isRented: false
+                    }
+                }, (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
+            console.log("car", car)
             return res.status(200).send(response);
         })
         

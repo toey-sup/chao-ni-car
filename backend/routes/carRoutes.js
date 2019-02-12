@@ -13,6 +13,14 @@ let storage = multer.diskStorage({
 });
 let uploader = multer({ storage: storage });
 
+function isEmpty(obj) {
+  for(var key in obj) {
+      if(obj.hasOwnProperty(key))
+          return false;
+  }
+  return true;
+}
+
 module.exports = app => {
   app.post("/api/upload", uploader.single("fileInput"), (req, res) => {
     res.send("Test");
@@ -20,7 +28,8 @@ module.exports = app => {
   app.get("/api/cars", async (req, res) => {
     // ใช้สำหรับหน้าดูรถทั้งหมด
     console.log("query", req.query);
-    if (req.query.fromDate !== 'null' && req.query.toDate !== 'null') {
+    if (req.query.fromDate !== 'null' && req.query.toDate !== 'null' && !isEmpty(req.query)) {
+      console.log('date query')
         const car = await Car.find({
              
                 "availFrom": {
@@ -34,6 +43,7 @@ module.exports = app => {
         res.send(car)
     }
       else {
+        console.log('normal query')
         const car = await Car.find({});
         res.send(car);
       }
