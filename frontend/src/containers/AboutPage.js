@@ -1,6 +1,5 @@
-import React, {Component} from 'react'
-import Button from 'react-bootstrap/Button';
-import { Container, Row, Col , Image, Card} from 'react-bootstrap';
+import React, {Component} from 'react';
+import { Container, Row, Col , Image} from 'react-bootstrap';
 import "./AboutPage.css";
 
 function MemberInfo(props){

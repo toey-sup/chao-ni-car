@@ -1,38 +1,27 @@
 import React, { Component } from "react";
-import { Button, Form, Row, Col, FormGroup,Modal } from "react-bootstrap";
+import { Button, Form, Col } from "react-bootstrap";
 import "./RegisterPage.css";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
-import Input from "../components/Input/Input";
+
 class RegisterPage extends Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    confirming: false,
-    name: "",
-    surname: "",
-    username: "",
-    email: "",
-    password: "",
-    confirmpassword: "",
-    id: "",
-    drivingnumber: "",
-    tel: "",
-    show: false,
-    validated: false
-  };
-  getValidationState(value) {
-    const length = value.length;
-    if (length > 0) return 'success';
-    else if (length === 0) return 'error';
-    return null;
-  }
-  handleClose() {
-    this.setState({ show: false });
+    this.state = {
+      name: "",
+      surname: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
+      id: "",
+      drivingnumber: "",
+      tel: "",
+      validated: false,
+      loading: false
+    };
   }
 
-  handleShow() {
-    this.setState({ show: true });
-  }
   validateid() {
     return this.state.id.length === 13;
   }
@@ -49,11 +38,16 @@ class RegisterPage extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-    //this.checkValidity(event.target.value,event.target.id)
   };
 
-  handleSubmit = (event) => {
+  handleSubmit(event) {
     event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      
+      event.stopPropagation();
+    }
+    this.setState({ validated: true, loading: true});
     const data = {
       name: this.state.name,
       surname: this.state.surname,
@@ -69,24 +63,32 @@ class RegisterPage extends Component {
       .post("/auth/local", data)
       .then(res => {
         console.log(res);
-        //this.props.history.push("/");
+        this.props.history.push("/");
       })
       .catch(err => {
         console.log(err);
       });
     this.setState({loading: false})
   }
+
   render() {
+    let loadingComponent = <p></p>
+    if (this.state.loading) {
+      console.log('Loading')
+      loadingComponent = <p>Loading</p>
+    }
+    const { validated } = this.state;
     const { validatepassword } = this.validatepassword;
     return (
       <div>
         <div className="wrapper">
           <Form
+            noValidate
+            validated={validatepassword}
             onSubmit={e => this.handleSubmit(e)}
-            validated={this.state.validated}
           >
             <Form.Row>
-              <Form.Group as={Col} controlId="name" >
+              <Form.Group as={Col} controlId="name">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   required
@@ -181,36 +183,26 @@ class RegisterPage extends Component {
 
             <div className="buttonwrapper">
               <Form.Group id="termcheck">
-                <Form.Check 
-                  onChange={()=> this.setState({show:true})}
+                <Form.Check
                   type="checkbox"
                   label="I agree to the Terms and Agreements"
                   required
                 />
               </Form.Group>
-              <Button
-                variant="outline-secondary"
-                type="cancel"
-                className="cancelbutton"
-              >
-                Cancel
+                <Button
+                  variant="outline-secondary"
+                  type="cancel"
+                  className="cancelbutton"
+                >
+                  Cancel
                 </Button>
-              <Button variant="primary" type="submit" className="submitbutton" onClick={() => { this.setState({ validated: true }); }}>
-                Submit
+                <Button variant="primary" type="submit" className="submitbutton">
+                  Submit
                 </Button>
+                {loadingComponent}
             </div>
           </Form>
-          <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Agreement</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>This Registration Rights Agreement (this “Agreement”) is made and entered into as of December __, 2015 between KaloBios Pharmaceuticals, Inc., a Delaware corporation (the “Company”), and each of the several purchasers signatory hereto (each such purchaser, a “Purchaser” and, collectively, the “Purchasers”).</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary"  onClick={()=> this.setState({show:false})}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
+          
         </div>
       </div>
     );
