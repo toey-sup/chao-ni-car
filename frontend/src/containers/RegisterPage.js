@@ -1,60 +1,127 @@
 import React, { Component } from "react";
-import { Button, Form, Row, Col, FormGroup,Modal } from "react-bootstrap";
 import "./RegisterPage.css";
+import renter from "../images/renter.png";
+import user from "../images/Cars.png";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
-import Input from "../components/Input/Input";
+import { text } from "@fortawesome/fontawesome-svg-core";
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+  Object.values(formErrors).forEach(val => {
+    val.length > 0 && (valid = false);
+  });
+  Object.values(rest).forEach(val => {
+    val === "" && (valid = false);
+  });
+  return valid;
+};
+
 class RegisterPage extends Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    confirming: false,
-    name: "",
-    surname: "",
-    username: "",
-    email: "",
-    password: "",
-    confirmpassword: "",
-    id: "",
-    drivingnumber: "",
-    tel: "",
-    show: false,
-    validated: false
-  };
-  getValidationState(value) {
-    const length = value.length;
-    if (length > 0) return 'success';
-    else if (length === 0) return 'error';
-    return null;
+    this.state = {
+      name: "",
+      surname: "",
+      username: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
+      id: "",
+      drivingnumber: "",
+      tel: "",
+      formvalid: null,
+      stage: false,
+      chosen: false,
+      formErrors: {
+        name: "",
+        surname: "",
+        username: "",
+        email: "",
+        password: "",
+        confirmpassword: "",
+        id: "",
+        drivingnumber: "",
+        tel: ""
+      }
+    };
   }
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
-    this.setState({ show: true });
-  }
-  validateid() {
-    return this.state.id.length === 13;
-  }
-
-  validatetel() {
-    return this.state.tel.length === 10;
-  }
-
-  validatepassword() {
-    return this.state.password === this.state.confirmpassword;
-  }
-
   handleChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
     this.setState({
-      [event.target.id]: event.target.value
+      [name]: value
     });
-    //this.checkValidity(event.target.value,event.target.id)
+    this.validateField(name, value);
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const data = {
+  validateField(fieldName, value) {
+    let formErrors = this.state.formErrors;
+
+    switch (fieldName) {
+      case "name":
+        console.log(formErrors.name, value);
+        formErrors.name =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "surname":
+        formErrors.surname =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "username":
+        formErrors.username =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "email":
+        formErrors.email = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+          ? ""
+          : "invalid email";
+        break;
+      case "password":
+        formErrors.password =
+          value.length < 6 ? "minimum 6 characaters required" : "";
+        break;
+      case "confirmpassword":
+        formErrors.confirmpassword =
+          value === this.state.password
+            ? ""
+            : "confirm password and password are not matching";
+        break;
+      case "id":
+        formErrors.id = value.length === 13 ? "" : "invalid id number";
+        break;
+      case "drivingnumber":
+        formErrors.drivingnumber =
+          value.length === 10 ? "" : "invalid driving number";
+        break;
+      case "tel":
+        formErrors.tel = value.length === 10 ? "" : "invalid telephone number";
+        break;
+      default:
+        break;
+    }
+  }
+
+  errorClass(error) {
+    return error.length === 0 ? "" : "has-error";
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let data={}
+    if(this.state.chosen === true){
+    data = {
+      name: this.state.name,
+      surname: this.state.surname,
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      idCardNum: this.state.id,
+      tel: this.state.tel,
+      isAuthenticated: true
+    };
+  }
+  else{
+     data = {
       name: this.state.name,
       surname: this.state.surname,
       username: this.state.username,
@@ -65,6 +132,7 @@ class RegisterPage extends Component {
       tel: this.state.tel,
       isAuthenticated: true
     };
+  }
     axios
       .post("/auth/local", data)
       .then(res => {
@@ -74,146 +142,207 @@ class RegisterPage extends Component {
       .catch(err => {
         console.log(err);
       });
-    this.setState({loading: false})
-  }
+
+  };
   render() {
-    const { validatepassword } = this.validatepassword;
-    return (
-      <div>
-        <div className="wrapper">
-          <Form
-            onSubmit={e => this.handleSubmit(e)}
-            validated={this.state.validated}
-          >
-            <Form.Row>
-              <Form.Group as={Col} controlId="name" >
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  required
-                  type="name"
-                  placeholder="Enter your name"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="surname">
-                <Form.Label>Surname</Form.Label>
-                <Form.Control
-                  type="surname"
-                  required
-                  placeholder="Enter your surname"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
+    const { formErrors } = this.state;
+    const handleClickrenter = () => {
+      this.setState({
+        chosen: true,
+        renter: true
+      });
+    };
 
-            <Form.Group controlId="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                required
-                placeholder="Email.123@caonicar.com"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
+    const handleClickuser = () => {
+      this.setState({
+        chosen: true,
+        user: true
+      });
+    };
 
-            <Form.Group controlId="username">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="username"
-                required
-                placeholder="Username"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-
-            <Form.Row>
-              <Form.Group as={Col} controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  required
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="confirmpassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter your password again"
-                  required
-                  validated={validatepassword}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Group controlId="id">
-              <Form.Label>ID Number</Form.Label>
-              <Form.Control
-                type="idnumber"
-                placeholder="Enter your ID number"
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="drivingnumber">
-              <Form.Label>Driving Number</Form.Label>
-              <Form.Control
-                type="drivingnumber"
-                placeholder="Enter your Driving number"
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="tel">
-              <Form.Label>Telephone Number</Form.Label>
-              <Form.Control
-                type="tel"
-                placeholder="Enter your telephone number"
-                required
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-
-            <div className="buttonwrapper">
-            <label>I agree to the Terms and Agreements</label>
-              <Form.Group controliId="termcheck">
-                <Form.Check 
-                  onChange={()=> this.setState({show:true})}
-                  type="checkbox"
-                  required
-                />
-              </Form.Group>
-              <Button
-                variant="outline-secondary"
-                type="cancel"
-                className="cancelbutton"
-              >
-                Cancel
-                </Button>
-              <Button variant="primary" type="submit" className="submitbutton" onClick={() => { this.setState({ validated: true }); }}>
-                Submit
-                </Button>
-            </div>
-          </Form>
-          <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Agreement</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>This Registration Rights Agreement (this “Agreement”) is made and entered into as of December __, 2015 between KaloBios Pharmaceuticals, Inc., a Delaware corporation (the “Company”), and each of the several purchasers signatory hereto (each such purchaser, a “Purchaser” and, collectively, the “Purchasers”).</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary"  onClick={()=> this.setState({show:false})}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
+    let display = <p />;
+    let user = <p />;
+    if (this.state.user === true) {
+      user = (
+        <div className="drivingnumber">
+          <label htmlFor="drivingnumber">Driver Card Number</label>
+          <input
+            className={formErrors.drivingnumber.length > 0 ? "error" : null}
+            placeholder="Driver Card Number"
+            type="text"
+            name="drivingnumber"
+            noValidate
+            onChange={this.handleChange}
+          />
+          {formErrors.drivingnumber.length > 0 && (
+            <span className="errorMessage">{formErrors.drivingnumber}</span>
+          )}
         </div>
-      </div>
-    );
+      );
+    }
+    if (this.state.chosen === true) {
+      display = (
+        <div className="form-wrapper">
+          <h1>Create Account</h1>
+          <form onSubmit={this.handleSubmit} noValidate>
+            <div className="name">
+              <label htmlFor="name">First Name</label>
+              <input
+                className={formErrors.name.length > 0 ? "error" : null}
+                placeholder="First Name"
+                type="text"
+                name="name"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.name.length > 0 && (
+                <span className="errorMessage">{formErrors.name}</span>
+              )}
+            </div>
+            <div className="surname">
+              <label htmlFor="surname">Last Name</label>
+              <input
+                className={formErrors.surname.length > 0 ? "error" : null}
+                placeholder="Last Name"
+                type="text"
+                name="surname"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.surname.length > 0 && (
+                <span className="errorMessage">{formErrors.surname}</span>
+              )}
+            </div>
+            <div className="username">
+              <label htmlFor="username">User Name</label>
+              <input
+                className={formErrors.username.length > 0 ? "error" : null}
+                placeholder="User Name"
+                type="text"
+                name="username"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.username.length > 0 && (
+                <span className="errorMessage">{formErrors.username}</span>
+              )}
+            </div>
+            <div className="email">
+              <label htmlFor="email">Email</label>
+              <input
+                className={formErrors.email.length > 0 ? "error" : null}
+                placeholder="Email"
+                type="email"
+                name="email"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.email.length > 0 && (
+                <span className="errorMessage">{formErrors.email}</span>
+              )}
+            </div>
+            <div className="password">
+              <label htmlFor="password">Password</label>
+              <input
+                className={formErrors.password.length > 0 ? "error" : null}
+                placeholder="Password"
+                type="password"
+                name="password"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.password.length > 0 && (
+                <span className="errorMessage">{formErrors.password}</span>
+              )}
+            </div>
+            <div className="confirmpassword">
+              <label htmlFor="confirmpassword">Confirm Your Password</label>
+              <input
+                className={
+                  formErrors.confirmpassword.length > 0 ? "error" : null
+                }
+                placeholder="Confirm Password"
+                type="text"
+                name="confirmpassword"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.confirmpassword.length > 0 && (
+                <span className="errorMessage">
+                  {formErrors.confirmpassword}
+                </span>
+              )}
+            </div>
+            <div className="id">
+              <label htmlFor="id">ID Number</label>
+              <input
+                className={formErrors.id.length > 0 ? "error" : null}
+                placeholder="First Name"
+                type="text"
+                name="id"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.id.length > 0 && (
+                <span className="errorMessage">{formErrors.id}</span>
+              )}
+            </div>
+            {user}
+            <div className="tel">
+              <label htmlFor="tel">Telephone Number</label>
+              <input
+                className={formErrors.tel.length > 0 ? "error" : null}
+                placeholder="Telephone Number"
+                type="text"
+                name="tel"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.tel.length > 0 && (
+                <span className="errorMessage">{formErrors.tel}</span>
+              )}
+            </div>
+            <div className="term">
+            <label > I agree to the Terms and Agreements</label>
+              <input
+                
+                type="checkbox"
+                name="checkbox"
+                required
+                style={{ display: "flex" }}
+              />
+            </div>
+            <div className="createAccount">
+              <button type="submit">Create Account</button>
+            </div>
+          </form>
+        </div>
+      );
+    } else {
+      display = (
+        <div
+          className="choseImage"
+          style={{
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "stretch"
+          }}
+        >
+          <div className="renter" onClick={() => handleClickrenter()}>
+            <div className="rentertext">
+              <p>RENTER</p>
+            </div>
+          </div>
+          <div className="user" onClick={() => handleClickuser()}>
+            <div className="usertext">
+              <p>USER</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return <div className="wrapper">{display}</div>;
   }
 }
 
