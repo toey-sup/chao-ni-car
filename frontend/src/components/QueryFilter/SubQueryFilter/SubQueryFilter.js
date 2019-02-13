@@ -76,8 +76,8 @@ class SubQueryFilter extends Component {
                                             <Form.Label>ประเภทเกียร์</Form.Label>
                                             <Form.Control as="select" value={this.state.gear} onChange={(e) => this.onChangeHandler(e, 'gear')}>
                                                 <option value=''>All</option>
-                                                <option value='auto'>Auto</option>
-                                                <option value='manual'>Manual</option>
+                                                <option value='Auto'>Auto</option>
+                                                <option value='Manual'>Manual</option>
                                             </Form.Control>
                                         </Col>
                                         <Col>

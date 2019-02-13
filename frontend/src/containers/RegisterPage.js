@@ -183,9 +183,9 @@ class RegisterPage extends Component {
 
             <div className="buttonwrapper">
               <Form.Group id="termcheck">
+                <Form.Label>I agree to the Terms and Agreements</Form.Label>
                 <Form.Check
                   type="checkbox"
-                  label="I agree to the Terms and Agreements"
                   required
                 />
               </Form.Group>

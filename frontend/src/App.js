@@ -20,7 +20,7 @@ class App extends Component {
         {/* <Profile /> */}
         {/* <LoginComponent/> */}
         <Navbar />
-        <div style={{paddingTop: 67}}>
+        <div style={{paddingTop: '3%'}}>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/car/:id" component={CarDetail} />

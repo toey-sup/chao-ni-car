@@ -3,7 +3,7 @@ import classes from './CarDetail.module.css';
 import { Row, Col, Button } from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR, carDetailMiddle as CarDetailMiddle } from './CarDetailComponents/CarDetailComponents';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
+import { Route,withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import testPic1 from './test/img.jpg';
@@ -38,6 +38,8 @@ class CarDetail extends Component {
     }
     componentDidMount() {
         // Bug
+        
+        console.log(this.props.location.pathname)
         //console.log(this.props.match.params.id);
         this.setState({ loading: true });
         axios.get('/api/cars/' + this.props.match.params.id)
@@ -68,8 +70,8 @@ class CarDetail extends Component {
     }
 
     rentHandler = () => {
-        
-        this.props.history.replace(this.props.match.path + '/rent');
+        //console.log(this.props.match.path + '/rent')
+        this.props.history.replace(this.props.location.pathname + '/rent');
         this.setState({ rentClicked: true });
     }
 
@@ -118,4 +120,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps)(CarDetail);
+export default connect(mapStateToProps)(withRouter(CarDetail));
