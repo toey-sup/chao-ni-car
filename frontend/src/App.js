@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import Button from "react-bootstrap/Button";
-import Profile from "./containers/Profile";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./containers/HomePage";
 import AboutPage from "./containers/AboutPage";
@@ -22,7 +20,7 @@ class App extends Component {
         {/* <Profile /> */}
         {/* <LoginComponent/> */}
         <Navbar />
-        <div style={{paddingTop: 67}}>
+        <div style={{paddingTop: '3%'}}>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/car/:id" component={CarDetail} />

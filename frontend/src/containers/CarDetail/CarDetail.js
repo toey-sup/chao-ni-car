@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import classes from './CarDetail.module.css';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR, carDetailMiddle as CarDetailMiddle } from './CarDetailComponents/CarDetailComponents';
 import axios from 'axios';
+import { Route,withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import testPic1 from './test/img.jpg';
 import testPic2 from './test/img2.jpg';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Rent from '../Rent/Rent';
 
 class CarDetail extends Component {
     state = {
@@ -26,6 +29,8 @@ class CarDetail extends Component {
         pricePerDay: null,
         deposit: null,
         error: null,
+        //==========
+        rentClicked: false
     }
 
     componentWillUnmount() {
@@ -33,6 +38,8 @@ class CarDetail extends Component {
     }
     componentDidMount() {
         // Bug
+        
+        console.log(this.props.location.pathname)
         //console.log(this.props.match.params.id);
         this.setState({ loading: true });
         axios.get('/api/cars/' + this.props.match.params.id)
@@ -61,6 +68,13 @@ class CarDetail extends Component {
                 this.setState({ loading: false, error: err })
             });
     }
+
+    rentHandler = () => {
+        //console.log(this.props.match.path + '/rent')
+        this.props.history.replace(this.props.location.pathname + '/rent');
+        this.setState({ rentClicked: true });
+    }
+
     render() {
         let item = <Spinner />;
         if (!this.state.loading && !this.state.error) {
@@ -74,8 +88,12 @@ class CarDetail extends Component {
                                 <CarDetailMiddle payload={this.state} />
                             </Col>
                         </Row>
-
+                        {this.state.rentClicked ? null : <div style={{ textAlign: 'right' }}><Button onClick={this.rentHandler}>Rent!</Button></div>}
                     </div>
+                    <Route path={this.props.match.path + '/rent'}
+                        component={Rent}
+                    // render={(props) => (<ContactData ingredients={this.props.ings} price={this.props.price} {...props} />)} 
+                    />
                 </>
             );
         } else if (this.state.error) {
@@ -85,7 +103,7 @@ class CarDetail extends Component {
                 </div>
             );
         }
-
+        
         return (
             <>
                 {item}
@@ -94,4 +112,12 @@ class CarDetail extends Component {
     }
 }
 
-export default CarDetail;
+const mapStateToProps = state => {
+    return {
+        auth: state.login.auth,
+        user: state.login.user
+    }
+};
+
+
+export default connect(mapStateToProps)(withRouter(CarDetail));

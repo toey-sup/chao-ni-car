@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Button, Collapse } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import classes from "./HomePage.module.css";
 import QueryFilter from "../components/QueryFilter/QueryFilter";
 import CarCards from "../components/CarCard/CarCards";
@@ -122,7 +122,7 @@ class HomePage extends Component {
 
     return (
       <>
-      <div className={classes.Banner}>   <img src={Banner} />
+      <div className={classes.Banner}>   <img style={{width:'100%'}} src={Banner} />
       </div>
             
           <div className={classes.Filter} style={{ textAlign: "center" }}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import classes from './CarCard.module.css';
 import "./CarCard.css"
-import logo from './Untitled.png';
+// import logo from './Untitled.png';
 import { withRouter } from 'react-router-dom';
 
 const carCard = (props) => {

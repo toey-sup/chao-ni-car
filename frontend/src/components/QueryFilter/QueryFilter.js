@@ -1,9 +1,7 @@
-
 import React, { Component } from "react";
 import {
   Form,
   FormGroup,
-  FormControl,
   Button,
   FormLabel,
   Row,
@@ -33,38 +31,40 @@ class QueryFilter extends Component {
 
   render() {
     return (
-      <Form>
-        <FormGroup controlId={this.props.controlId}>
-          <FormLabel>
-            <strong>Choose Date</strong>
-          </FormLabel>
-          <Row>
-            <Col sm={6}>
-              From Date:{" "}
-              <DatePicker
-                selected={this.state.fromDate}
-                onChange={date => this.dateChangeHandler(date, "fromDate")}
-                isClearable
-              />
-            </Col>
-            <Col sm={6}>
-              To Date:{" "}
-              <DatePicker
-                selected={this.state.toDate}
-                onChange={date => this.dateChangeHandler(date, "toDate")}
-                isClearable
-              />
-            </Col>
-          </Row>
-        </FormGroup>
-        <Button
-          onClick={() => this.props.change(this.state)}
-          variant="danger"
-          style={{ width: "100%" }}
-        >
-          Search
-        </Button>
-      </Form>
+      <div className="wrapper">
+        <Form>
+          <FormGroup controlId={this.props.controlId}>
+            <FormLabel>
+              <strong>Choose Date</strong>
+            </FormLabel>
+            <Row>
+              <Col sm={6}>
+                From Date:{" "}
+                <DatePicker
+                  selected={this.state.fromDate}
+                  onChange={date => this.dateChangeHandler(date, "fromDate")}
+                  isClearable
+                />
+              </Col>
+              <Col sm={6}>
+                To Date:{" "}
+                <DatePicker
+                  selected={this.state.toDate}
+                  onChange={date => this.dateChangeHandler(date, "toDate")}
+                  isClearable
+                />
+              </Col>
+            </Row>
+          </FormGroup>
+          <Button
+            onClick={() => this.props.change(this.state)}
+            variant="danger"
+            style={{ width: "100%" }}
+          >
+            Search
+          </Button>
+        </Form>
+      </div>
     );
   }
 }

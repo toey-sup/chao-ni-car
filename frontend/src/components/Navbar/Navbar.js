@@ -5,6 +5,7 @@ import classes from "./Navbar.module.css";
 import logo from "./logo.png";
 import googleicon from "./googleicon.png";
 import axios from "axios";
+import Popup from "reactjs-popup";
 
 class NavbarComponent extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class NavbarComponent extends Component {
       window.location = "/api/logout";
     };
 
-    let display = <p></p>;
+    let display = <p />;
     if (this.state.login === false) {
       display = (
         <Form inline>
@@ -78,7 +79,7 @@ class NavbarComponent extends Component {
             onClick={() => handleClickGoogle()}
           /> */}
           <NavLink className={classes.NavLink} to="/regis">
-            Register
+            Sign In
           </NavLink>
           <NavLink className={classes.NavLink} to="/login">
             Login
@@ -125,7 +126,7 @@ class NavbarComponent extends Component {
       );
     }
     return (
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <NavLink className={classes.Header} to="/">
           <img src={logo} style={{ width: 100, marginTop: -7 }} alt="logo" />
         </NavLink>

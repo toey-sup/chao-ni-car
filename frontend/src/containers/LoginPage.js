@@ -13,7 +13,9 @@ class LoginPage extends Component {
   state = {
     username: "",
     password: "",
-    validated: false
+    validated: false,
+    faillogin: false,
+    failmessage: "No User ID or Password"
   };
   loginHandler = event => {
     event.preventDefault();
@@ -25,14 +27,17 @@ class LoginPage extends Component {
     const data = { ...this.state };
     if (form.checkValidity()) {
       axios
-      .post("/auth/login", data)
-      .then(res => {
-        console.log(res.user);
-        window.location = "/";
-      })
-      .catch(err => console.log(err)); // Handle Login failed
+        .post("/auth/login", data)
+        .then(res => {
+          console.log(res.user);
+          window.location = "/";
+        })
+        .catch(e => {
+          this.setState({
+            faillogin: true
+          });
+        }); // Handle Login failed
     }
-    
   };
   handleChange = event => {
     this.setState({
@@ -70,6 +75,9 @@ class LoginPage extends Component {
               type="password"
             />
           </FormGroup>
+          {this.state.faillogin && (
+            <span className="errorMessage">{this.state.failmessage}</span>
+          )}
           <Button
             block
             variant="danger"
