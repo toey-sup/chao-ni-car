@@ -9,7 +9,7 @@ import HowToUsePage from "./containers/HowToUsePage";
 import CarDetail from "./containers/CarDetail/CarDetail";
 import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./containers/RegisterPage";
-import AddCarPage from "./containers/AddCarPage/AddCarPage"
+import AddCarPage from "./containers/AddCarPage/AddCarPage";
 
 import testPage from "./containers/test/testPage";
 
@@ -19,8 +19,10 @@ class App extends Component {
       <div>
         {/* <Profile /> */}
         {/* <LoginComponent/> */}
-        <Navbar />
-        <div style={{paddingTop: '3%'}}>
+        <div style={{ marginBottom: "69.64px" }}>
+          <Navbar />
+        </div>
+        <div>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/car/:id" component={CarDetail} />
