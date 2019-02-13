@@ -4,6 +4,7 @@ import renter from "../images/renter.png";
 import user from "../images/Cars.png";
 import axios from "axios";
 import { text } from "@fortawesome/fontawesome-svg-core";
+import { Button, Form, Row, Col, FormGroup,Modal } from "react-bootstrap";
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
   Object.values(formErrors).forEach(val => {
@@ -32,6 +33,7 @@ class RegisterPage extends Component {
       formvalid: null,
       stage: false,
       chosen: false,
+      show: false,
       formErrors: {
         name: "",
         surname: "",
@@ -305,7 +307,7 @@ class RegisterPage extends Component {
             <div className="term">
             <label > I agree to the Terms and Agreements</label>
               <input
-                
+                onClick={()=> this.setState({show:true})}
                 type="checkbox"
                 name="checkbox"
                 required
@@ -315,8 +317,47 @@ class RegisterPage extends Component {
             <div className="createAccount">
               <button type="submit">Create Account</button>
             </div>
+
+            
           </form>
+          <Modal show={this.state.show}>
+          <Modal.Header>
+            <Modal.Title>Agreement</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>This End User License Agreement ("Agreement") is a legal agreement between you and CAO NI CAR </p>
+            <ul >
+                <li>Limited License</li>
+                <ul>
+                  <li>Use, copy, modify, transmit, adapt, vary or create derivative works based on the Software in whole or part. </li>
+                  <li>Rent, lease, sub-license, sell or otherwise transfer the Software to any third party or allow it (or the Documentation) to be accessed by or copied onto another person's device.</li>
+                  <li>Translate, reverse engineer, decompile, or disassemble the Software; or use any access software system to search the data in the Software other than the Software provided under this agreement.</li>
+                </ul>
+                <li>Prohibited Uses</li>
+                  <ul>
+                    <li>
+                    You agree to comply with all applicable laws, rules and regulations. Should you use the Software to break any applicable law, rule, regulation or this Agreement, your right to use the Software shall terminate immediately and without notice. And TouchPal is not liable for any damage or loss resulting from such termination.
+                    </li>
+                  </ul>
+                <li>Your Responsibilities</li>
+                  <ul>
+                    <li>In order to offer you more tailored service, TouchPal and/or its partners may provide you with a variety of value-added services or products, free and paid. TouchPal may change the charges payable for the purchase of such Products or Services at any time without any notice to you. You can choose whether or not to accept the new charges prior to completing your next purchase of the applicable Product. The new charges will apply to your next purchase after the new charges have been published. 
+                    </li>
+                    <li>You can use your Google Play account or create a TouchPal Keyboard user account to purchase and use the services or products provided. TouchPal owns the TouchPal Keyboard account and enjoys the right of ownership. You shall obtain the right to use the account after completing the registration process. The right to use the account only belongs to the initial legal registrant. Paid or unpaid transfer, succession and sell are prohibited. You are solely responsible and liable for all activities conducted through your User Account.</li>
+                  </ul>
+                <li>Value-added Services and Products</li>
+                <li>No Warranty</li>
+              </ul>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary"  onClick={()=> this.setState({show:false})}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
         </div>
+        
       );
     } else {
       display = (
