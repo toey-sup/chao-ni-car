@@ -56,7 +56,7 @@ class LoginPage extends Component {
             height="100"
           />
           <p className="center_text">MEMBER LOGIN</p>
-          <FormGroup controlId="username" bsSize="large">
+          <FormGroup controlId="username" size="large">
             <FormLabel>Username</FormLabel>
             <FormControl
               required
@@ -66,7 +66,7 @@ class LoginPage extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password" size="large">
             <FormLabel>Password</FormLabel>
             <FormControl
               required
@@ -81,7 +81,7 @@ class LoginPage extends Component {
           <Button
             block
             variant="danger"
-            bsSize="large"
+            size="large"
             style={{ width: "40%", margin: "0 auto" }}
             // disabled={!this.validateForm()}
             type="submit"
@@ -89,7 +89,7 @@ class LoginPage extends Component {
             Login
           </Button>
           <p>Need an account ? </p>
-          <Link to="/About">Sign Up</Link>
+          <Link to="/regis">Sign Up</Link>
         </Form>
       </div>
     );

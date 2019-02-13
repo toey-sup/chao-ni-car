@@ -132,7 +132,7 @@ class AddCarPage extends Component {
                         <Form.Group as={Col} controlId=" transmission">
                             <Form.Label> Transmission</Form.Label>
                              <Form.Control as="select" onChange={this.handleChange}>
-                                  <option>Select</option>
+                                  <option value="">Select</option>
                                   <option>Manual</option>
                                   <option>Auto</option>
                             </Form.Control>

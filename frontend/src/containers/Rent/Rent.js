@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import classes from './Rent.module.css';
-import { Col, Row, FormLabel, FormGroup, FormControl, Form } from 'react-bootstrap';
+import { Col, Row, FormLabel, FormGroup, FormControl, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 
 class Rent extends Component {
     state = {
-        formDate: null,
+        fromDate: null,
         toDate: null,
-        formLoc: '',
+        fromLoc: '',
         toLoc: '',
         diffDate: null,
+        validated: false
     }
 
     onChangeHandler(e, state) {
@@ -30,6 +31,12 @@ class Rent extends Component {
         console.log(this.state);
     }
 
+    rentHandler = (event) => {
+        event.preventDefault();
+        if (this.state.fromDate === null || this.state.toDate === null) return;
+        alert("Rent");
+    }
+
     render() {
         let item = (
             <div className={classes.Div} style={{ textAlign: 'center' }}>
@@ -42,7 +49,7 @@ class Rent extends Component {
                     <div style={{ textAlign: 'center' }}><h3>Rent</h3></div>
                     <p><i>กรุณากรอกข้อมูลให้ครบทุกช่อง</i></p>
                     {/* เลือกวันเวลาสถานที่ + ชำระเงิน */}
-                    <Form>
+                    <Form validated={this.state.validated} onSubmit={this.rentHandler}>
                         <FormGroup>
                             <FormLabel>
                                 <strong>Choose Date</strong>
@@ -70,6 +77,7 @@ class Rent extends Component {
                             <Row>
                                 <Col sm={12} md={6}><FormLabel>สถานที่ที่ต้องการรับรถ</FormLabel>
                                     <FormControl
+                                        required
                                         size='sm'
                                         type="text"
                                         value={this.state.fromLoc}
@@ -79,6 +87,7 @@ class Rent extends Component {
                                 <Col sm={12} md={6}>
                                     <FormLabel>สถานที่ที่ต้องการส่งรถ</FormLabel>
                                     <FormControl
+                                        required
                                         size='sm'
                                         type="text"
                                         value={this.state.toLoc}
@@ -88,7 +97,9 @@ class Rent extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col></Col>
+                                <Col style={{textAlign:'right'}}><Button variant='danger' type='submit' style={{marginTop:'8px'}}
+                                    onClick={() => { this.setState({ validated: true }) }}
+                                >Rent!</Button></Col>
                             </Row>
                         </FormGroup>
                     </Form>
