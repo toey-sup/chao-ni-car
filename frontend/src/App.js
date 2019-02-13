@@ -9,9 +9,9 @@ import HowToUsePage from "./containers/HowToUsePage";
 import CarDetail from "./containers/CarDetail/CarDetail";
 import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./containers/RegisterPage";
-import AddCarPage from "./containers/AddCarPage/AddCarPage"
+import AddCarPage from "./containers/AddCarPage/AddCarPage";
 import testPage from "./containers/test/testPage";
-import carmanage from "./containers/CarManagePage/CarManagePage"
+import carmanage from "./containers/CarManagePage/CarManagePage";
 
 class App extends Component {
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
         {/* <Profile /> */}
         {/* <LoginComponent/> */}
         <Navbar />
-        <div style={{paddingTop: '3%'}}>
+        <div>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/car/:id" component={CarDetail} />
@@ -31,7 +31,7 @@ class App extends Component {
             <Route path="/regis" component={RegisterPage} />
             <Route path="/addcar" component={AddCarPage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/carmanage" component = {carmanage}/>
+            <Route path="/carmanage" component={carmanage} />
           </Switch>
         </div>
       </div>
