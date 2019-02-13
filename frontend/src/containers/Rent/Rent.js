@@ -97,7 +97,7 @@ class Rent extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col><Button variant='danger' type='submit'
+                                <Col style={{textAlign:'right'}}><Button variant='danger' type='submit' style={{marginTop:'8px'}}
                                     onClick={() => { this.setState({ validated: true }) }}
                                 >Rent!</Button></Col>
                             </Row>
