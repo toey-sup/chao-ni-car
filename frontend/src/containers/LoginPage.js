@@ -89,7 +89,7 @@ class LoginPage extends Component {
             Login
           </Button>
           <p>Need an account ? </p>
-          <Link to="/About">Sign Up</Link>
+          <Link to="/regis">Sign Up</Link>
         </Form>
       </div>
     );
