@@ -2,16 +2,6 @@ const mongoose = require("mongoose");
 const Car = mongoose.model("cars");
 const requireAuthentication = require("../middlewares/requireAuthentication");
 
-const multer = require("multer");
-let storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, "upload/");
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + "_" + file.originalname);
-  }
-});
-let uploader = multer({ storage: storage });
 
 function isEmpty(obj) {
   for(var key in obj) {
@@ -22,9 +12,6 @@ function isEmpty(obj) {
 }
 
 module.exports = app => {
-  app.post("/api/upload", uploader.single("fileInput"), (req, res) => {
-    res.send("Test");
-  });
   app.get("/api/cars", async (req, res) => {
     // ใช้สำหรับหน้าดูรถทั้งหมด
     console.log("query", req.query);
