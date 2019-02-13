@@ -32,11 +32,11 @@ class LoginPage extends Component {
           console.log(res.user);
           window.location = "/";
         })
-        .catch(
+        .catch(e => {
           this.setState({
             faillogin: true
-          })
-        ); // Handle Login failed
+          });
+        }); // Handle Login failed
     }
   };
   handleChange = event => {
