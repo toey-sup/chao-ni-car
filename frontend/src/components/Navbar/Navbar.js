@@ -5,8 +5,7 @@ import classes from "./Navbar.module.css";
 import logo from "./logo.png";
 import googleicon from "./googleicon.png";
 import axios from "axios";
-import * as actions from '../../store/actions/login';
-import {connect} from 'react-redux';
+import Popup from "reactjs-popup";
 
 class NavbarComponent extends Component {
   constructor(props) {
@@ -39,7 +38,7 @@ class NavbarComponent extends Component {
               isAuthenticated: response.data.isAuthenticated,
               login: true
             },
-            () => this.props.login(response.data)
+            () => console.log(this.state)
           );
         } else {
           this.setState({
@@ -63,7 +62,7 @@ class NavbarComponent extends Component {
       window.location = "/api/logout";
     };
 
-    let display = <p></p>;
+    let display = <p />;
     if (this.state.login === false) {
       display = (
         <Form inline>
@@ -80,7 +79,7 @@ class NavbarComponent extends Component {
             onClick={() => handleClickGoogle()}
           /> */}
           <NavLink className={classes.NavLink} to="/regis">
-            Register
+            Sign In
           </NavLink>
           <NavLink className={classes.NavLink} to="/login">
             Login
@@ -118,10 +117,7 @@ class NavbarComponent extends Component {
           </Nav>
           <p
             className={classes.NavLink}
-            onClick={() => {
-              handleClickLogout();
-              this.props.logout();
-            }}
+            onClick={() => handleClickLogout()}
             style={{ marginTop: 16, cursor: "pointer" }}
           >
             Logout
@@ -130,7 +126,7 @@ class NavbarComponent extends Component {
       );
     }
     return (
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <NavLink className={classes.Header} to="/">
           <img src={logo} style={{ width: 100, marginTop: -7 }} alt="logo" />
         </NavLink>
@@ -156,18 +152,4 @@ class NavbarComponent extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    auth: state.login.auth,
-    user: state.login.user
-  }
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    login: (user) => dispatch(actions.storeLogin(user)),
-    logout: ()=> dispatch(actions.storeLogout()),
-  };
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent);
+export default NavbarComponent;
