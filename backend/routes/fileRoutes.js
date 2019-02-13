@@ -40,21 +40,6 @@ module.exports = (app) => {
 
     })
 
-    app.post('/api/changeProfilePicture', async (req, res) => {
-        console.log('/api/changeProfilePicture')
-        console.log(req.body)
-        // you can do whatever you want with this data
-        // change profile pic, save to DB, or send it to another API 
-        try {
-            console.log(req.body.url)
-            res.end();
-        }
-        catch (err) {
-            console.log("ERR" + err)
-        }
-
-    })
-
     app.delete('/api/files/:publicID', (req, res) => {
         //console.log(req.params.publicID)
         cloudinary.v2.uploader.destroy(req.params.publicID, (error, result) => {

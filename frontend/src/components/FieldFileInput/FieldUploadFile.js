@@ -54,7 +54,7 @@ export default class App extends Component {
     return (
       <div>
         <div className='buttons'>
-            {this.state.images.length > 0 ? 'YES' : 'NO'}
+            {this.state.images.length > 0 ? '' : 'Please upload your car picture.'}
             {content}
         </div>
       </div>
