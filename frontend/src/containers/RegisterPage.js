@@ -30,6 +30,7 @@ class RegisterPage extends Component {
       id: "",
       drivingnumber: "",
       tel: "",
+      
       formvalid: null,
       stage: false,
       chosen: false,
@@ -132,7 +133,8 @@ class RegisterPage extends Component {
       idCardNum: this.state.id,
       DLicenseNumber: this.state.drivingnumber,
       tel: this.state.tel,
-      isAuthenticated: true
+      isAuthenticated: true,
+      isProvider: true
     };
   }
     axios
