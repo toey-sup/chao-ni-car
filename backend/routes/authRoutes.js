@@ -83,26 +83,26 @@ module.exports = app => {
     res.send(req.user);
   });
 
-  app.post("/api/authentication", requireLogin, async (req, res) => {
-    const { tel, idCardNum, DLicenseNumber, isAuthenticated } = req.body;
-    console.log(tel, idCardNum, DLicenseNumber, isAuthenticated);
-    const user = await User.findByIdAndUpdate(
-      req.user["_id"],
-      {
-        $set: {
-          tel,
-          idCardNum,
-          DLicenseNumber,
-          isAuthenticated
-        }
-      },
-      (err, result) => {
-        if (err) {
-          console.log(err);
-        }
-      }
-    );
-    console.log(user);
-    res.send(user);
-  });
+  // app.post("/api/authentication", requireLogin, async (req, res) => {
+  //   const { tel, idCardNum, DLicenseNumber, isAuthenticated } = req.body;
+  //   console.log(tel, idCardNum, DLicenseNumber, isAuthenticated);
+  //   const user = await User.findByIdAndUpdate(
+  //     req.user["_id"],
+  //     {
+  //       $set: {
+  //         tel,
+  //         idCardNum,
+  //         DLicenseNumber,
+  //         isAuthenticated
+  //       }
+  //     },
+  //     (err, result) => {
+  //       if (err) {
+  //         console.log(err);
+  //       }
+  //     }
+  //   );
+  //   console.log(user);
+  //   res.send(user);
+  // });
 };

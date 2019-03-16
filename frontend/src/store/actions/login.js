@@ -1,15 +1,14 @@
-import * as actionTypes from './actionTypes';
-// import axios from 'axios';
+import * as actionTypes from "./actionTypes";
+import axios from "axios";
 
-export const storeLogin = (user) => {
-    return {
-        type: actionTypes.STORE_LOGIN,
-        user: user,
-    }
-}
+export const storeLogin = () => async dispatch => {
+  const res = await axios.get("/api/current_user");
+  dispatch({ type: actionTypes.FETCH_USER, user: res.data });
+};
 
-export const storeLogout = () => {
-    return {
-        type: actionTypes.STORE_LOGOUT
-    }
-}
+
+// manage card token for payment
+export const handleToken = token => async dispatch => {
+  const res = await axios.post("/api/stripe", token);
+  dispatch({ type: actionTypes.FETCH_USER, user: res.data });
+};

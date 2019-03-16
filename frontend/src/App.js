@@ -11,14 +11,20 @@ import Navbar from "./components/Navbar/Navbar";
 import RegisterPage from "./containers/RegisterPage";
 import AddCarPage from "./containers/AddCarPage/AddCarPage";
 import testPage from "./containers/test/testPage";
-import carmanage from "./containers/CarManagePage/CarManagePage";
+import CarManagePage from "./containers/CarManagePage/CarManagePage";
+import PaymentPage from './containers/PaymentPage'
+
+import { connect } from 'react-redux';
+import * as actions from './store/actions/login';
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.storeLogin()
+  }
   render() {
     return (
       <div>
-        {/* <Profile /> */}
-        {/* <LoginComponent/> */}
         <Navbar />
         <div>
           <Switch>
@@ -31,7 +37,8 @@ class App extends Component {
             <Route path="/regis" component={RegisterPage} />
             <Route path="/addcar" component={AddCarPage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/carmanage" component={carmanage} />
+            <Route path="/carmanage" component={CarManagePage} />
+            <Route path="/payment" component={PaymentPage} />
           </Switch>
         </div>
       </div>
@@ -39,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(connect(null, actions)(App));

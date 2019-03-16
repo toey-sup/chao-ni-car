@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Car = mongoose.model("cars");
-const requireAuthentication = require("../middlewares/requireAuthentication");
+const requireLogin = require("../middlewares/requireLogin");
 
 
 function isEmpty(obj) {
@@ -37,7 +37,7 @@ module.exports = app => {
       
     }
   );
-  app.post("/api/cars", requireAuthentication, async (req, res) => {
+  app.post("/api/cars", requireLogin, async (req, res) => {
     // ใช้สำหรับสร้างรถคันใหม่ โดยเจ้าของรถต้องยืนยันตัวตนแล้ว
     const {
       brand,
@@ -78,7 +78,7 @@ module.exports = app => {
     const car = await Car.findById(req.params.id);
     res.send(car);
   });
-  app.delete("/api/cars/:id", requireAuthentication, async (req, res) => {
+  app.delete("/api/cars/:id", requireLogin, async (req, res) => {
     // ใช้สำหรับลบรถ
     Car.findByIdAndRemove(req.params.id, (err, blog) => {
       if (err) return res.status(500).send(err);

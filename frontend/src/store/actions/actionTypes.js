@@ -1,2 +1,1 @@
-export const STORE_LOGIN = 'STORE_LOGIN';
-export const STORE_LOGOUT = 'STORE_LOGOUT';
+export const FETCH_USER = 'FETCH_USER';
