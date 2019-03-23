@@ -32,10 +32,10 @@ class QueryFilter extends Component {
 
   render() {
     return (
-      <Form>
+      <Form className = "textcolor">
         <FormGroup controlId={this.props.controlId}>
           <FormLabel>
-            <strong>Choose Date</strong>
+            
           </FormLabel>
           <Row>
             <Col sm={6}>

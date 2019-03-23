@@ -38,8 +38,9 @@ class SubQueryFilter extends Component {
     render() {
         const { open } = this.state;
         return (
-            <>
-                <div style={{ margin: '0 auto', textAlign: 'right' }}><Button
+            <>       
+              <p className = {classes.textcolor}>FILTER CAR</p>
+                <div style={{ margin: '0 auto', textAlign: 'center' }}><Button
                     onClick={() => this.setState({ open: !open })}
                     aria-controls="example-collapse-text"
                     aria-expanded={open}
@@ -47,12 +48,12 @@ class SubQueryFilter extends Component {
                     size='sm'
                 >Filter</Button></div>
                 <Collapse in={this.state.open}>
-                    <div className={classes.Div}>
+                    <div className={classes.Div} >
                         <Container>
                             <Form>
                                 <FormGroup controlId={this.props.controlId}>
                                     <Row>
-                                        <Col sm={6}><FormLabel>สถานที่ที่ต้องการรับรถ</FormLabel>
+                                        <Col sm={6}><FormLabel className={classes.textcolor} >สถานที่ที่ต้องการรับรถ</FormLabel>
                                             <FormControl
                                                 size='sm'
                                                 type="text"
@@ -61,7 +62,7 @@ class SubQueryFilter extends Component {
                                                 onChange={(e) => this.onChangeHandler(e, 'fromLoc')}
                                             /></Col>
                                         <Col sm={6}>
-                                            <FormLabel>สถานที่ที่ต้องการส่งรถ</FormLabel>
+                                            <FormLabel className={classes.textcolor}>สถานที่ที่ต้องการส่งรถ</FormLabel>
                                             <FormControl
                                                 size='sm'
                                                 type="text"
@@ -73,7 +74,7 @@ class SubQueryFilter extends Component {
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <Form.Label>ประเภทเกียร์</Form.Label>
+                                            <Form.Label className={classes.textcolor}>ประเภทเกียร์</Form.Label>
                                             <Form.Control as="select" value={this.state.gear} onChange={(e) => this.onChangeHandler(e, 'gear')}>
                                                 <option value=''>All</option>
                                                 <option value='Auto'>Auto</option>
@@ -81,7 +82,7 @@ class SubQueryFilter extends Component {
                                             </Form.Control>
                                         </Col>
                                         <Col>
-                                            <Form.Label>จำนวนที่นั่ง</Form.Label>
+                                            <Form.Label className={classes.textcolor}>จำนวนที่นั่ง</Form.Label>
                                             <Form.Control as="select" value={this.state.seat} onChange={(e) => this.onChangeHandlerNumber(e, 'seat')}>
                                                 <option value='0'>All</option>
                                                 <option value='2'>2</option>

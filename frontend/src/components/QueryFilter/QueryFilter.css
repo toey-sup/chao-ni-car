@@ -1,4 +1,6 @@
-
+.textcolor{
+    color: white;
+}
 input {
     width: 100% !important;
 }

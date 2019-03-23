@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import "./RegisterPage.css";
-
+import renter from "../images/renter.png";
+import user from "../images/Cars.png";
 import axios from "axios";
 import { text } from "@fortawesome/fontawesome-svg-core";
-import { Button, Form, Row, Col, FormGroup, Modal } from "react-bootstrap";
-
-const formValid = ({ formErrors, errormessage, ...rest }) => {
+import { Button, Form, Row, Col, FormGroup,Modal } from "react-bootstrap";
+const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
   Object.values(formErrors).forEach(val => {
     val.length > 0 && (valid = false);
   });
   Object.values(rest).forEach(val => {
-    val === null && (valid = false);
+    val === "" && (valid = false);
   });
   return valid;
 };
@@ -30,6 +30,7 @@ class RegisterPage extends Component {
       id: "",
       drivingnumber: "",
       tel: "",
+      
       formvalid: null,
       stage: false,
       chosen: false,
@@ -44,17 +45,6 @@ class RegisterPage extends Component {
         id: "",
         drivingnumber: "",
         tel: ""
-      },
-      errormessage: {
-        name: "minimum 3 characaters required",
-        surname: "minimum 3 characaters required",
-        username: "minimum 3 characaters required",
-        email: "invalid email",
-        password: "minimum 6 characaters required",
-        confirmpassword: "confirm password and password are not matching",
-        id: "invalid id number",
-        drivingnumber: "invalid driving number",
-        tel: "invalid telephone number"
       }
     };
   }
@@ -69,39 +59,45 @@ class RegisterPage extends Component {
 
   validateField(fieldName, value) {
     let formErrors = this.state.formErrors;
-    let errorMessage = this.state.errormessage;
+
     switch (fieldName) {
       case "name":
         console.log(formErrors.name, value);
-        formErrors.name = value.length < 3 ? errorMessage.name : "";
+        formErrors.name =
+          value.length < 3 ? "minimum 3 characaters required" : "";
         break;
       case "surname":
-        formErrors.surname = value.length < 3 ? errorMessage.surname : "";
+        formErrors.surname =
+          value.length < 3 ? "minimum 3 characaters required" : "";
         break;
       case "username":
-        formErrors.username = value.length < 3 ? errorMessage.username : "";
+        formErrors.username =
+          value.length < 3 ? "minimum 3 characaters required" : "";
         break;
       case "email":
         formErrors.email = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
           ? ""
-          : errorMessage.email;
+          : "invalid email";
         break;
       case "password":
-        formErrors.password = value.length < 6 ? errorMessage.password : "";
+        formErrors.password =
+          value.length < 6 ? "minimum 6 characaters required" : "";
         break;
       case "confirmpassword":
         formErrors.confirmpassword =
-          value === this.state.password ? "" : errorMessage.confirmpassword;
+          value === this.state.password
+            ? ""
+            : "confirm password and password are not matching";
         break;
       case "id":
-        formErrors.id = value.length === 13 ? "" : errorMessage.id;
+        formErrors.id = value.length === 13 ? "" : "invalid id number";
         break;
       case "drivingnumber":
         formErrors.drivingnumber =
-          value.length === 10 ? "" : errorMessage.drivingnumber;
+          value.length === 10 ? "" : "invalid driving number";
         break;
       case "tel":
-        formErrors.tel = value.length === 10 ? "" : errorMessage.tel;
+        formErrors.tel = value.length === 10 ? "" : "invalid telephone number";
         break;
       default:
         break;
@@ -114,28 +110,43 @@ class RegisterPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    let data = {};
-    if (formValid(this.state)) {
-      data = {
-        name: this.state.name,
-        surname: this.state.surname,
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password,
-        idCardNum: this.state.id,
-        tel: this.state.tel,
-        isAuthenticated: true
-      };
-      axios
-        .post("/auth/local", data)
-        .then(res => {
-          console.log(res);
-          this.props.history.push("/");
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+    let data={}
+    if(this.state.chosen === true){
+    data = {
+      name: this.state.name,
+      surname: this.state.surname,
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      idCardNum: this.state.id,
+      tel: this.state.tel,
+      isAuthenticated: true
+    };
+  }
+  else{
+     data = {
+      name: this.state.name,
+      surname: this.state.surname,
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+      idCardNum: this.state.id,
+      DLicenseNumber: this.state.drivingnumber,
+      tel: this.state.tel,
+      isAuthenticated: true,
+      isProvider: true
+    };
+  }
+    axios
+      .post("/auth/local", data)
+      .then(res => {
+        console.log(res);
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
   };
   render() {
     const { formErrors } = this.state;
@@ -145,6 +156,7 @@ class RegisterPage extends Component {
         renter: true
       });
     };
+
     const handleClickuser = () => {
       this.setState({
         chosen: true,
@@ -295,99 +307,59 @@ class RegisterPage extends Component {
               )}
             </div>
             <div className="term">
-              <label> I agree to the Terms and Agreements</label>
+            <label > I agree to the Terms and Agreements</label>
               <input
-                onClick={() => this.setState({ show: true })}
+                onClick={()=> this.setState({show:true})}
                 type="checkbox"
                 name="checkbox"
                 required
                 style={{ display: "flex" }}
               />
             </div>
-            <div className="createAccount" style={{ marginBottom: "40px" }}>
+            <div className="createAccount">
               <button type="submit">Create Account</button>
             </div>
+
+            
           </form>
           <Modal show={this.state.show}>
-            <Modal.Header>
-              <Modal.Title>Agreement</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>
-                This End User License Agreement ("Agreement") is a legal
-                agreement between you and CAO NI CAR{" "}
-              </p>
-              <ul>
+          <Modal.Header>
+            <Modal.Title>Agreement</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>This End User License Agreement ("Agreement") is a legal agreement between you and CAO NI CAR </p>
+            <ul >
                 <li>Limited License</li>
                 <ul>
-                  <li>
-                    Use, copy, modify, transmit, adapt, vary or create
-                    derivative works based on the Software in whole or part.{" "}
-                  </li>
-                  <li>
-                    Rent, lease, sub-license, sell or otherwise transfer the
-                    Software to any third party or allow it (or the
-                    Documentation) to be accessed by or copied onto another
-                    person's device.
-                  </li>
-                  <li>
-                    Translate, reverse engineer, decompile, or disassemble the
-                    Software; or use any access software system to search the
-                    data in the Software other than the Software provided under
-                    this agreement.
-                  </li>
+                  <li>Use, copy, modify, transmit, adapt, vary or create derivative works based on the Software in whole or part. </li>
+                  <li>Rent, lease, sub-license, sell or otherwise transfer the Software to any third party or allow it (or the Documentation) to be accessed by or copied onto another person's device.</li>
+                  <li>Translate, reverse engineer, decompile, or disassemble the Software; or use any access software system to search the data in the Software other than the Software provided under this agreement.</li>
                 </ul>
                 <li>Prohibited Uses</li>
-                <ul>
-                  <li>
-                    You agree to comply with all applicable laws, rules and
-                    regulations. Should you use the Software to break any
-                    applicable law, rule, regulation or this Agreement, your
-                    right to use the Software shall terminate immediately and
-                    without notice. And TouchPal is not liable for any damage or
-                    loss resulting from such termination.
-                  </li>
-                </ul>
+                  <ul>
+                    <li>
+                    You agree to comply with all applicable laws, rules and regulations. Should you use the Software to break any applicable law, rule, regulation or this Agreement, your right to use the Software shall terminate immediately and without notice. And TouchPal is not liable for any damage or loss resulting from such termination.
+                    </li>
+                  </ul>
                 <li>Your Responsibilities</li>
-                <ul>
-                  <li>
-                    In order to offer you more tailored service, TouchPal and/or
-                    its partners may provide you with a variety of value-added
-                    services or products, free and paid. TouchPal may change the
-                    charges payable for the purchase of such Products or
-                    Services at any time without any notice to you. You can
-                    choose whether or not to accept the new charges prior to
-                    completing your next purchase of the applicable Product. The
-                    new charges will apply to your next purchase after the new
-                    charges have been published.
-                  </li>
-                  <li>
-                    You can use your Google Play account or create a TouchPal
-                    Keyboard user account to purchase and use the services or
-                    products provided. TouchPal owns the TouchPal Keyboard
-                    account and enjoys the right of ownership. You shall obtain
-                    the right to use the account after completing the
-                    registration process. The right to use the account only
-                    belongs to the initial legal registrant. Paid or unpaid
-                    transfer, succession and sell are prohibited. You are solely
-                    responsible and liable for all activities conducted through
-                    your User Account.
-                  </li>
-                </ul>
+                  <ul>
+                    <li>In order to offer you more tailored service, TouchPal and/or its partners may provide you with a variety of value-added services or products, free and paid. TouchPal may change the charges payable for the purchase of such Products or Services at any time without any notice to you. You can choose whether or not to accept the new charges prior to completing your next purchase of the applicable Product. The new charges will apply to your next purchase after the new charges have been published. 
+                    </li>
+                    <li>You can use your Google Play account or create a TouchPal Keyboard user account to purchase and use the services or products provided. TouchPal owns the TouchPal Keyboard account and enjoys the right of ownership. You shall obtain the right to use the account after completing the registration process. The right to use the account only belongs to the initial legal registrant. Paid or unpaid transfer, succession and sell are prohibited. You are solely responsible and liable for all activities conducted through your User Account.</li>
+                  </ul>
                 <li>Value-added Services and Products</li>
                 <li>No Warranty</li>
               </ul>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button
-                variant="secondary"
-                onClick={() => this.setState({ show: false })}
-              >
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary"  onClick={()=> this.setState({show:false})}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
         </div>
+        
       );
     } else {
       display = (

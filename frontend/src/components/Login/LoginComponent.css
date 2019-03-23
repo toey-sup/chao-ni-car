@@ -2,7 +2,7 @@
   width: 500px;
   margin: 100px auto;
   padding: 12px;
-
+  
   border: 1px solid #eee;
   box-shadow: 0 2px 3px #ccc;
 }
@@ -19,4 +19,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 15px;
+}
+.loginbackground{
+  background-color: rgb(255,219,75);
 }

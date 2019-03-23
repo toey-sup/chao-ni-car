@@ -80,10 +80,10 @@ class NavbarComponent extends Component {
             onClick={() => handleClickGoogle()}
           /> */}
           <NavLink className={classes.NavLink} to="/regis">
-            Register
+            REGISTER
           </NavLink>
           <NavLink className={classes.NavLink} to="/login">
-            Login
+            LOGIN
           </NavLink>
         </Form>
       );
@@ -130,22 +130,21 @@ class NavbarComponent extends Component {
       );
     }
     return (
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <NavLink className={classes.Header} to="/">
-          <img src={logo} style={{ width: 100, marginTop: -7 }} alt="logo" />
-        </NavLink>
+      <Navbar className={classes.Nav}  expand="lg">
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavLink className={classes.NavLink} to="/">
-              Rent A Car
+              HOME
             </NavLink>
             <NavLink className={classes.NavLink} to="/about">
-              About
+              ABOUT
             </NavLink>
             <NavLink className={classes.NavLink} to="/howtouse">
-              How to use
+              HOWTO
             </NavLink>
+            
           </Nav>
           {display}
           {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" />

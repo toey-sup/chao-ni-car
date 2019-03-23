@@ -1,5 +1,5 @@
 .Nav {
-    background-color: red;
+    background-color: rgb(27, 29,34);
 }
 
 .NavLink {
@@ -12,7 +12,7 @@
 
 .NavLink:hover, .NavLink:active {
     color: rgba(255, 255, 255, .75);
-    text-decoration: none;
+    text-decoration: underline orange;
 }
 
 .Header {
