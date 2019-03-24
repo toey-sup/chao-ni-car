@@ -3,7 +3,8 @@
 }
 
 .NavLink {
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, 0.904);
+    text-shadow: 1px 0px #5a5959;
     padding: 0.5rem 0.5rem;
     display: block;
     text-decoration: none;
@@ -12,7 +13,7 @@
 
 .NavLink:hover, .NavLink:active {
     color: rgba(255, 255, 255, .75);
-    text-decoration: underline orange;
+    text-decoration: underline orangered;
 }
 
 .Header {

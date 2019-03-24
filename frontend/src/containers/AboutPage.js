@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import { Container, Row, Col , Image} from 'react-bootstrap';
 import "./AboutPage.css";
-
+import Profile from "../components/ProfileCard/ProfileCard"
+import back_profile1 from "../images/back_profile1.jpg"
+import back_profile2 from "../images/back_profile2.jpeg"
+import back_profile3 from "../images/back_profile3.jpeg"
+import back_profile4 from "../images/back_profile4.jpeg"
+import back_profile5 from "../images/back_profile5.jpg"
+import back_profile6 from "../images/back_profile6.jpg"
 function MemberInfo(props){
     return(
         <div className="MemberBlock">
@@ -25,24 +31,24 @@ class AboutPage extends Component {
                     </Row>
                     <Row style={{paddingBottom: 20}}>
                         <Col>
-                            <MemberInfo name="Satasuk Viparksinlapin" imgSrc = "https://cdn.pixabay.com/photo/2017/10/25/18/21/attribution-icon-2888829_960_720.png"/>
+                             <Profile name = "Kitipat Teachasupinun" role = "UI Developer / front-end developer" back_profile = {back_profile1}/>
                         </Col>
                         <Col>
-                            <MemberInfo name="Supanat Wongwiwatchai" imgSrc = "https://cdn.pixabay.com/photo/2017/10/25/18/21/attribution-icon-2888829_960_720.png"/>
+                             <Profile name = "Satasuk Viparksinlapin" role = "PROJECT MANAGER" back_profile = {back_profile2}/>
                         </Col>
                         <Col>
-                            <MemberInfo name="Nuttapon Vittayaprechapon" imgSrc = "https://cdn.pixabay.com/photo/2017/10/25/18/21/attribution-icon-2888829_960_720.png"/>
+                             <Profile name = "Supanat Wongwiwatchai" role = "PROJECT COORDINATOR" back_profile = {back_profile3}/>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <MemberInfo name="Sahapol Tongsom" imgSrc = "https://cdn.pixabay.com/photo/2017/10/25/18/21/attribution-icon-2888829_960_720.png"/>
+                            <Profile name = "Nuttapon Vittayaprechapon" role = "BACKEND DEVELOPER" back_profile = {back_profile4}/>
                         </Col>
                         <Col>
-                            <MemberInfo name="Kitipat Teachasupinun" imgSrc = "https://cdn.pixabay.com/photo/2017/10/25/18/21/attribution-icon-2888829_960_720.png"/>
+                            <Profile name = "Sahapol Tongsom" role = "PROJECT COORDINATOR" back_profile = {back_profile5}/>
                         </Col>
                         <Col>
-                            <MemberInfo name="Ravipas Plitnonkiat" imgSrc = "https://cdn.pixabay.com/photo/2017/10/25/18/21/attribution-icon-2888829_960_720.png"/>
+                            <Profile name = "Ravipas Plitnonkiat" role = "FRONTEND DEVELOPER" back_profile = {back_profile6}/>
                         </Col>
                     </Row>
                 </Container>

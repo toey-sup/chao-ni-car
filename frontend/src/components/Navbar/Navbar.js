@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Navbar, Nav, Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
-import logo from "./logo.png";
 import googleicon from "./googleicon.png";
 import axios from "axios";
 import * as actions from '../../store/actions/login';
 import {connect} from 'react-redux';
+import logo from "./logo2.png";
 
 class NavbarComponent extends Component {
   constructor(props) {
@@ -85,6 +85,7 @@ class NavbarComponent extends Component {
           <NavLink className={classes.NavLink} to="/login">
             LOGIN
           </NavLink>
+          
         </Form>
       );
     } else {
@@ -131,7 +132,7 @@ class NavbarComponent extends Component {
     }
     return (
       <Navbar className={classes.Nav}  expand="lg">
-
+        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -144,12 +145,19 @@ class NavbarComponent extends Component {
             <NavLink className={classes.NavLink} to="/howtouse">
               HOWTO
             </NavLink>
+            <NavLink  className = "align-self-md-center" to="/">
+             <img  src={logo}/>
+            </NavLink>
+           
             
           </Nav>
+
+          
           {display}
           {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-danger">Search</Button> */}
         </Navbar.Collapse>
+        
       </Navbar>
     );
   }

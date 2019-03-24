@@ -1,6 +1,7 @@
 .Header{
     padding: 10px;
     margin: 10px auto;
+    color: white;
 }
 
 .MemberName{
@@ -18,7 +19,7 @@
 }
 
 .Background{
-    background-image: url("https://www.thinc.in.th/engadmission/img/carousel3.jpg");
+    background-color: rgb(36,39,46);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
