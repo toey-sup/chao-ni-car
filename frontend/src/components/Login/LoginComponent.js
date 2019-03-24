@@ -7,48 +7,29 @@ const loginComponent = (props) => {
 
     return (
 
-        <div className="Login">
-            <form>
-                <img
-                    className="circle"
-                    src="https://www.telegraph.co.uk/content/dam/news/2017/11/22/TELEMMGLPICT000147365976_trans_NvBQzQNjv4Bq3XmyF3YIL3K1caQxZsZv2Ssm-UOV8_Q90I8_c5Af0yY.jpeg?imwidth=1400"
-                    alt="logo"
-                    width="100"
-                    height="100"
-                />
-                <p className="center_text">MEMBER LOGIN</p>
-                <FormGroup controlId="email" bsSize="large">
-                    <FormLabel>Email</FormLabel>
-                    <FormControl
-                        autoFocus
-                        type="email"
-                    // value={this.state.email}
-                    // onChange={this.handleChange}
-                    />
-                </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                    <FormLabel>Password</FormLabel>
-                    <FormControl
-                        // value={this.state.password}
-                        // onChange={this.handleChange}
-                        type="password"
-                    />
-                </FormGroup>
-                <Button
-                    block
-                    variant="danger"
-                    bsSize="large"
-                    style={{ width: '40%', margin: '0 auto' }}
-                    // disabled={!this.validateForm()}
-                    type="submit"
-                >
-                    Login
-          </Button>
-                <p>Need an account ? </p>
-                <Link to="/About">Sign Up</Link>
-            </form>
-            <Route path="/XXXX" component={AboutPage} />
+        <div class="wrapper fadeInDown">
+        <div id="formContent">
+      
+          <h2 class="active"> Sign In </h2>
+      
+      
+          <div class="fadeIn first">
+            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+          </div>
+      
+          
+          <form>
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login"/>
+            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"/>
+            <input type="submit" class="fadeIn fourth" value="Log In"/>
+          </form>
+      
+          <div id="formFooter">
+          <h2 class="inactive underlineHover">Sign Up </h2>
+          </div>
+      
         </div>
+      </div>
     );
 }
 export default loginComponent;

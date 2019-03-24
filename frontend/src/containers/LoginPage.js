@@ -8,6 +8,7 @@ import {
   Form
 } from "react-bootstrap";
 import { withRouter, Link } from "react-router-dom";
+import Userimg from "../images/user.png";
 import "../components/Login/LoginComponent";
 class LoginPage extends Component {
   state = {
@@ -47,7 +48,35 @@ class LoginPage extends Component {
   render() {
     const { validated } = this.state;
     return (
-      <div className="Login">
+    <div className ="loginbackground">
+      <div class="wrapper fadeInDown">
+  <div id="formContent">
+ 
+    <h4 class="active"> LOG IN </h4>
+
+
+    <div class="fadeIn first">
+      <img src={Userimg} />
+    </div>
+
+
+    <form>
+      <input type="text" id="username" class="fadeIn second" name="login" placeholder="login" onChange={this.handleChange}/>
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" onChange={this.handleChange}/>
+      <input type="submit" class="fadeIn fourth" value="Log In" onClick={this.loginHandler}/>
+    </form>
+
+
+    <div id="formFooter">
+    <a class="inactive underlineHover" href = "/regis">Sign Up </a>
+    </div>
+
+  </div>
+</div>
+</div>
+      /*
+    <div className="loginbackground">
+      <div className="Login" className="wrapper fadeInDown">
         <Form onSubmit={this.loginHandler} noValidate validated={validated}>
           <img
             className="circle"
@@ -92,6 +121,8 @@ class LoginPage extends Component {
           <Link to="/regis">Sign Up</Link>
         </Form>
       </div>
+      </div>
+      */
     );
   }
 }
