@@ -135,30 +135,30 @@ class HomePage extends Component {
     return (
       <>
         <div className={classes.Banner}>
-        <div className={classes.center}>
-          <h1 className = {classes.texteffect}>RENTAL CAR SERVICE</h1>
-          <img style={{ width: "60%", paddingTop: "0" }} src={Banner} />
-          <div>
-          <button className = {classes.button}>EXPLORE</button>
+          <div className={classes.center}>
+            <h1 className={classes.texteffect}>RENTAL CAR SERVICE</h1>
+            <img style={{ width: "60%", paddingTop: "0" }} src={Banner} />
+            <div>
+              <button className={classes.button}>EXPLORE</button>
+            </div>
           </div>
         </div>
+        <div className={classes.sec2}>
+          <div className={classes.center}>
+            <h2>SEARCH</h2>
+            <div className={classes.Filter} style={{ textAlign: "center" }}>
+              <QueryFilter change={this.onChangeHandler} />
+            </div>
+            <div className={classes.Filter}>
+              <SubQueryFilter handler={this.subQueryHandler} />
+            </div>
+          </div>
         </div>
-      <div className={classes.sec2}>
-      <div className={classes.center}>
-       <h2>SEARCH</h2>
-        <div className={classes.Filter} style={{ textAlign: "center" }}>
-          <QueryFilter change={this.onChangeHandler} />
+        <div className={classes.sec3}>
+          <div className={classes.Div}>
+            <Container>{cards}</Container>
+          </div>
         </div>
-        <div className={classes.Filter}>
-          <SubQueryFilter handler={this.subQueryHandler} />
-        </div>
-      </div>
-      </div>
-      <div className={classes.sec3}>
-        <div className={classes.Div}>
-          <Container>{cards}</Container>
-        </div>
-      </div>
       </>
     );
   }
