@@ -4,6 +4,7 @@ import "./HowToUsePage.css";
 class HowToUsePage extends Component {
   render() {
     return (
+    <div className = "howtobackground">
       <div style={{ paddingTop: "20px" }}>
         <div>
           <h1 align="center">How to use CAO-NI-CAR system?</h1>
@@ -77,6 +78,7 @@ class HowToUsePage extends Component {
           />
         </div>
         <hr />
+      </div>
       </div>
     );
   }

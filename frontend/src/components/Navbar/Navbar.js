@@ -145,8 +145,8 @@ class NavbarComponent extends Component {
             <NavLink className={classes.NavLink} to="/howtouse">
               HOWTO
             </NavLink>
-            <NavLink  className = "align-self-md-center" to="/">
-             <img  src={logo}/>
+            <NavLink  to="/">
+             <img  className={classes.center} src={logo}/>
             </NavLink>
            
             
@@ -162,7 +162,7 @@ class NavbarComponent extends Component {
     );
   }
 }
-
+/*
 const mapStateToProps = state => {
   return {
     auth: state.login.auth,
@@ -175,6 +175,7 @@ const mapDispatchToProps = dispatch => {
     logout: ()=> dispatch(actions.storeLogout()),
   };
 };
+*/
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent);
+export default/* connect(mapStateToProps, mapDispatchToProps)*/(NavbarComponent);

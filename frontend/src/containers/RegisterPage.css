@@ -4,10 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgb(36,39,46);
 }
 .buttonwrapper {
   margin: 10px auto;
-  width: 500px;
+  width: 80%;
   text-align: center;
 }
 .form-wrapper {

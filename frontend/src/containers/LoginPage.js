@@ -61,7 +61,7 @@ class LoginPage extends Component {
 
 
     <form>
-      <input type="text" id="username" class="fadeIn second" name="login" placeholder="login" onChange={this.handleChange}/>
+      <input  type="text" id="username" class="fadeIn second" name="login" placeholder="login" onChange={this.handleChange}/>
       <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" onChange={this.handleChange}/>
       <input type="submit" class="fadeIn fourth" value="Log In" onClick={this.loginHandler}/>
     </form>

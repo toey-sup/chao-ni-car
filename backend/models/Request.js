@@ -9,6 +9,8 @@ const requestSchema = new Schema({
   toLoc: {type: String, required: true},
   dateFrom: {type: Date, required: true},
   dateTo: {type: Date, required: true},
+  total: {type: Number, required: true},
+  isPaid: {type: Boolean, default: false},
   isCompleted: {type: Boolean, default: false},
 
 });

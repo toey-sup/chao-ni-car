@@ -3,6 +3,5 @@ module.exports = {
     googleClientSecret: 'T05XqDVs5uGIXbXL5AdYWQZb',
     cookieKey: 'dsofihvinsdivunasovfkjojaisdpovgkdjaspovka',
     mongoURI: 'mongodb://punch:punch1234@ds219095.mlab.com:19095/chao-ni-car-dev',
-    FACEBOOK_APP_ID: '',
-    FACEBOOK_APP_SECRET: ''
+    stripeSecretKey: 'sk_test_yUI4QzbYMGoTZRNUafc7hPZW'
 }

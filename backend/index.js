@@ -9,7 +9,8 @@ require('./models/Car');
 require('./models/User');
 require('./models/Request');
 require('./services/passport');
-
+// Add payment gateway
+//require('./services/payment')
 
 //Set up default mongoose connection
 var mongoDB = keys.mongoURI;
@@ -58,6 +59,7 @@ require('./routes/authRoutes')(app);
 require('./routes/carRoutes')(app);
 require('./routes/requestRoutes')(app);
 require('./routes/fileRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

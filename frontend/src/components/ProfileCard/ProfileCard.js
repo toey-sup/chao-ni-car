@@ -7,7 +7,7 @@ const ProfileCard = (props) => {
 
     return (
 
-        <div class="wrapper">
+      <div class="wrapper">
          <div class="back">
             <div class="img-container">
              <img src={props.back_profile} alt="" class="banner-img"/>
@@ -15,9 +15,10 @@ const ProfileCard = (props) => {
       
       <div class="share">
         <ul>
-          <li class="git"><i aria-hidden="true"></i> 
+        <a href="https://github.com/Kitipatteacha"><li class="git"><i aria-hidden="true"></i> 
             Git
           </li>
+        </a>
         </ul>
       </div>
     </div>
