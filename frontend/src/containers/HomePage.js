@@ -92,6 +92,10 @@ class HomePage extends Component {
     this.setState(newState, () => this.searchHandler()); //make search after set the state
   };
 
+  buttonHandler(){
+    
+  }
+
   searchHandler() {
     //ยิง GET request
     this.setState({ loading: true });
@@ -122,6 +126,7 @@ class HomePage extends Component {
 
   render() {
     let cards = <Spinner />;
+    let centerClass = [classes.center];
     if (!this.state.loading && !this.state.error) {
       cards = <CarCards cars={this.state.cars} />;
     } else if (this.state.error) {
@@ -131,11 +136,11 @@ class HomePage extends Component {
         </div>
       );
     }
-
+    
     return (
       <>
         <div className={classes.Banner}>
-          <div className={classes.center}>
+          <div className={centerClass.join(' ')}>
             <h1 className={classes.texteffect}>RENTAL CAR SERVICE</h1>
             <img style={{ width: "60%", paddingTop: "0" }} src={Banner} />
             <div>

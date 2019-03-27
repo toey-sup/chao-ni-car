@@ -79,7 +79,7 @@ class CarDetail extends Component {
         let item = <Spinner />;
         if (!this.state.loading && !this.state.error) {
             item = (
-                <>
+                <><div className={classes.cardetailbackground}>
                     <div className={classes.Div}>
                         <Row>
                             <Col sm={6} xs={12}><CarPic imagesPath={this.state.picsPath} /></Col>
@@ -88,8 +88,13 @@ class CarDetail extends Component {
                                 <CarDetailMiddle payload={this.state} />
                             </Col>
                         </Row>
-                        {this.state.rentClicked ? null : <div style={{ textAlign: 'right' }}><Button onClick={this.rentHandler}>Rent!</Button></div>}
+                        {this.state.rentClicked ? null : <div style={{ textAlign: 'left' }}>
+                        <a href = "/"><button className = {classes.back} >Back</button></a>
+                        <button className = {classes.rent} onClick={this.rentHandler}>Rent</button>
+                        
+                        </div>}
                     </div>
+                  </div>
                     <Route path={this.props.match.path + '/rent'}
                         component={Rent}
                     // render={(props) => (<ContactData ingredients={this.props.ings} price={this.props.price} {...props} />)} 

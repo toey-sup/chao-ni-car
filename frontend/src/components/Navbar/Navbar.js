@@ -64,10 +64,10 @@ class NavbarComponent extends Component {
         display =  (
           <Form inline>
             <NavLink className={classes.NavLink} to="/regis">
-              Register
+              REGISTER
             </NavLink>
             <NavLink className={classes.NavLink} to="/login">
-              Login
+              LOGIN
             </NavLink>
           </Form>
         );
@@ -104,18 +104,18 @@ class NavbarComponent extends Component {
         break;
       }
     return (
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar className = {classes.Nav} expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <NavLink className={classes.NavLink} to="/">
-              Rent A Car
+              HOME
             </NavLink>
             <NavLink className={classes.NavLink} to="/about">
-              About
+              ABOUT
             </NavLink>
             <NavLink className={classes.NavLink} to="/howtouse">
-              How to use
+              HOWTO
             </NavLink>
             <NavLink  to="/">
               <img  className={classes.center} src={logo}/>

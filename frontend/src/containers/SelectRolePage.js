@@ -25,9 +25,9 @@ class SelectRolePage extends Component {
 
                   <h3>CAR RENTER</h3>
                   <p>
-                    Mussum ipsum cacilds, vidis litro abertis. Consetis
-                    adipiscings elitis. Pra lá , depois divoltis porris,
-                   
+                    Find the best rental prices on luxury, economy, and family rental cars 
+                    with FREE commission, reserve online today!
+                    Found a good deal, and was able to compare prices from many vendors
                   </p>
                   
                 </div>
@@ -49,9 +49,8 @@ class SelectRolePage extends Component {
 
                   <h3>CAR OWNER</h3>
                   <p>
-                    Mussum ipsum cacilds, vidis litro abertis. Consetis
-                    adipiscings elitis. Pra lá , depois divoltis porris,
-                    paradis. Paisis, filhis, espiritis santis. Mé faiz elementum
+                    Let your car rent in our system to make money with FREE commission.
+                    Easy to be rented with over 250,000 customer in your country. 
                     
                   </p>
                   

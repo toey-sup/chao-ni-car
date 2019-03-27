@@ -35,32 +35,33 @@ const carDetailMiddle = (props) => {
 
     return (
         <div className={classes.Detail}>
+            <p className={classes.buttomline}></p>
             <Row>
-                <Col>รถปี:</Col><Col>{props.payload.regYear}</Col>
+                <Col>YEAR : </Col><Col>{props.payload.regYear}</Col>
             </Row>
             <Row>
-                <Col>เลขทะเบียน:</Col><Col>{props.payload.LNumber}</Col>
+                <Col>CAR NUMBER : </Col><Col>{props.payload.LNumber}</Col>
             </Row>
             <Row>
-                <Col>ประเภทเกียร์:</Col><Col>{props.payload.gear === 'auto' ? 'Auto' : 'Manual'}</Col>
+                <Col>GEAR TYPE : </Col><Col>{props.payload.gear === 'auto' ? 'Auto' : 'Manual'}</Col>
             </Row>
             <Row>
-                <Col>จำนวนที่นั่ง:</Col><Col>{props.payload.seat}</Col>
+                <Col>SEAT : </Col><Col>{props.payload.seat}</Col>
             </Row>
             <Row>
-                <Col>อุปกรณ์เสริม:</Col><Col>{props.payload.equipment}</Col>
+                <Col>EQUIPMENT : </Col><Col>{props.payload.equipment}</Col>
             </Row>
             <Row>
-                <Col>วันที่สามารถใช้ได้ :</Col><Col>ตั้งแต่ {props.payload.availFrom} จนถึง {props.payload.availTo} </Col>
+                <Col>DETAIL : </Col><Col>{props.payload.description}</Col>
             </Row>
             <Row>
-                <Col>รายละเอียด:</Col><Col>{props.payload.description}</Col>
+                <Col>PRICE PER DAY : </Col><Col>{props.payload.pricePerDay}</Col>
             </Row>
             <Row>
-                <Col>ราคาต่อวัน:</Col><Col>{props.payload.pricePerDay}</Col>
+                <Col>DEPOSIT : </Col><Col>{props.payload.deposit}</Col>
             </Row>
             <Row>
-                <Col>ค่ามัดจำ:</Col><Col>{props.payload.deposit}</Col>
+                <Col>AVAILABLE DATE : </Col><Col>FROM {props.payload.availFrom} UNTIL {props.payload.availTo} </Col>
             </Row>
         </div >
     );
