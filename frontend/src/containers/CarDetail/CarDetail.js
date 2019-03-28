@@ -119,7 +119,6 @@ class CarDetail extends Component {
 
 const mapStateToProps = state => {
     return {
-        auth: state.login.auth,
         user: state.login.user
     }
 };

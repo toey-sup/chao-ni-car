@@ -43,7 +43,7 @@ class Rent extends Component {
                 <p><strong>Please Login First!</strong></p>
             </div>
         );
-        if (this.props.auth) {
+        if (this.props.user) {
             item = (
                 <div className={classes.Div}>
                     <div style={{ textAlign: 'center' }}><h3>Rent</h3></div>
@@ -116,7 +116,6 @@ class Rent extends Component {
 
 const mapStateToProps = state => {
     return {
-        auth: state.login.auth,
         user: state.login.user
     }
 };
