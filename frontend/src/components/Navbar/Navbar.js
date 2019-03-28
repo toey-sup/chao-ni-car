@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Navbar, Nav, Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
-import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import logo from "./logo2.png";
 
 class NavbarComponent extends Component {
@@ -54,14 +54,14 @@ class NavbarComponent extends Component {
       window.location = "/api/logout";
     };
 
-    let display = <p></p>;
-    switch(this.props.user) {
+    let display = <p />;
+    switch (this.props.user) {
       case null:
-        console.log("null")
+        console.log("null");
         break;
       case false:
-        console.log("false")
-        display =  (
+        console.log("false");
+        display = (
           <Form inline>
             <NavLink className={classes.NavLink} to="/regis">
               REGISTER
@@ -73,7 +73,7 @@ class NavbarComponent extends Component {
         );
         break;
       default:
-        console.log("Logout")
+        console.log("Logout");
         display = (
           <Form inline>
             <p
@@ -102,27 +102,61 @@ class NavbarComponent extends Component {
           </Form>
         );
         break;
-      }
+    }
     return (
-      <Navbar className = {classes.Nav} expand="lg">
+      <Navbar className={classes.Nav}>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <NavLink className={classes.NavLink} to="/">
-              HOME
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            width: "100%"
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flex: "1",
+              alignItems: "center",
+              justifyContent: "start"
+            }}
+          >
+            <Nav>
+              <NavLink className={classes.NavLink} to="/">
+                HOME
+              </NavLink>
+              <NavLink className={classes.NavLink} to="/about">
+                ABOUT
+              </NavLink>
+              <NavLink className={classes.NavLink} to="/howtouse">
+                HOWTO
+              </NavLink>
+            </Nav>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flex: "1",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <NavLink to="/">
+              <img className={classes.center} src={logo} />
             </NavLink>
-            <NavLink className={classes.NavLink} to="/about">
-              ABOUT
-            </NavLink>
-            <NavLink className={classes.NavLink} to="/howtouse">
-              HOWTO
-            </NavLink>
-            <NavLink  to="/">
-              <img  className={classes.center} src={logo}/>
-            </NavLink>
-          </Nav>
-          {display}
-        </Navbar.Collapse>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flex: "1",
+              alignItems: "center",
+              justifyContent: "flex-end"
+            }}
+          >
+            {display}
+          </div>
+        </div>
       </Navbar>
     );
   }
@@ -131,8 +165,7 @@ class NavbarComponent extends Component {
 const mapStateToProps = state => {
   return {
     user: state.login.user
-  }
+  };
 };
-
 
 export default withRouter(connect(mapStateToProps)(NavbarComponent));
