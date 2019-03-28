@@ -167,15 +167,13 @@
 }
 
 @keyframes scrollAnimate {
-  0%{
-    top:0px;
-  }
   100% {
+    position: fixed;
     top: 100px;
   }
 }
 
-.button:active {
+.homeScroll {
   animation-name: scrollAnimate;
   animation-duration: 1s;
   animation-direction: normal;

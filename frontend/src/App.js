@@ -12,7 +12,7 @@ import RegisterPage from "./containers/RegisterPage";
 import AddCarPage from "./containers/AddCarPage/AddCarPage";
 import testPage from "./containers/test/testPage";
 import CarManagePage from "./containers/CarManagePage/CarManagePage";
-import PaymentPage from './containers/PaymentPage'
+import PaymentPage from './containers/PaymentPage/PaymentPage'
 import SelectRole from './containers/SelectRolePage'
 import RegisterRenter from './containers/RegisterRenterPage'
 import RegisterCarOwner from './containers/RegisterCarOwnerPage'

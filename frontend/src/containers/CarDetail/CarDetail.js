@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './CarDetail.module.css';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR, carDetailMiddle as CarDetailMiddle } from './CarDetailComponents/CarDetailComponents';
 import axios from 'axios';
 import { Route,withRouter } from 'react-router-dom';
