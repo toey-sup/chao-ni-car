@@ -50,7 +50,7 @@ class PaymentPage extends Component {
                     availTo: res.data.availTo,
                     description: res.data.description,
                     pricePerDay: res.data.pricePerDay,
-                    deposit: res.data.deposit
+                    deposit: res.data.deposit,
                 }
                 this.setState(newState);
             })
@@ -59,6 +59,7 @@ class PaymentPage extends Component {
             });
     }
     render() {
+        let previousPage = "/car/" + this.props.match.params.id;
         let availdateFrom = new Date(this.state.availFrom);
         let readableDateFrom = availdateFrom.toDateString();
         let availdateTo = new Date(this.state.availTo);
@@ -109,16 +110,19 @@ class PaymentPage extends Component {
                         <Row>
                             <Col>
                             <p className = "highlight"><b>TOTAL PRICE</b></p>
-                            <p> <b>DEPOSIT :</b> {this.state.deposit} </p>
-                            <p> <b>PRICEPERDAY :</b> {this.state.pricePerDay}</p>
+                            <p> <b>DEPOSIT :</b> {this.state.deposit} bath</p>
+                            <p> <b>PRICEPERDAY :</b> {this.state.pricePerDay} bath</p>
                             <p> <b>RENT DAY :</b> {diffdate} days </p>
                             <p className = "bottomline"></p>
-                            <p> <b>Total :</b> {totalprice}</p>
+                            <p> <b>Total :</b> {totalprice} bath</p>
                             <p className = "bottomline"></p>
                             </Col>
                         </Row>
                         <Row>
+                            <Col  className = "btnwrapper">
+                           <a href = {previousPage} ><button  className = "backbtn">BACK</button></a>
                             <Payment requestID="1234" />
+                            </Col>
                         </Row>
                         </div>
                     </div>
