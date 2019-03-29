@@ -4,6 +4,7 @@ import logo from "../../images/logo.png";
 import Payment from '../../components/Payments/Payment';
 import "./PaymentPage.css";
 import axios from 'axios';
+import moment from 'moment'
 class PaymentPage extends Component {
     state = {
         loading: false,
@@ -58,11 +59,22 @@ class PaymentPage extends Component {
             });
     }
     render() {
+        let availdateFrom = new Date(this.state.availFrom);
+        let readableDateFrom = availdateFrom.toDateString();
+        let availdateTo = new Date(this.state.availTo);
+        let readableDateTo = availdateTo.toDateString();
+        var deposit = Number(this.state.deposit);
+        var pricePerDay = Number(this.state.pricePerDay);
+        var dateT = moment(this.state.availTo,);
+        var dateF = moment(this.state.availFrom);
+        var diffdate = (dateT.diff(dateF, 'days'));
+        var totalprice = deposit + (pricePerDay * diffdate);
+        console.log(diffdate);
         return (
             <div className = "paymentpagebackground">
                 <div className = "paymentcontainer">
                     <div className = "header">
-                        <p className = "headertext">Payment Detail</p>
+                        <p className = "headertext"><b>Payment Detail</b></p>
                         <div className = "paymentcontent">
                         <Row>
                             <Col>
@@ -73,7 +85,7 @@ class PaymentPage extends Component {
                             <Col>
                                 <img src = {logo}></img>
                                 <p className = "highlight"><b>Provider</b></p>
-                                <p><b>Invoice date:</b> 17/12/2018</p>
+                                <p><b>Invoice date:</b> {moment().format('YYYY MM DD')}</p>
                                 <p><b>Email:</b> Kitipat@outlook.co.th</p>
                             </Col>
                         </Row>
@@ -88,8 +100,10 @@ class PaymentPage extends Component {
                             </Col>
                             <Col>
                                 <p className = "highlight"><b>DATE</b></p>
-                                <p><b>AVAILABLE DATE FROM:</b> {this.state.availFrom}</p>
-                                <p><b>AVAILABLE DATE TO:</b> {this.state.availTo}</p>
+                                <p><b>AVAILABLE DATE FROM:</b></p>
+                                <p>{readableDateFrom}</p>
+                                <p><b>AVAILABLE DATE TO:</b></p>
+                                <p>{readableDateTo}</p>
                             </Col>
                         </Row>
                         <Row>
@@ -97,9 +111,9 @@ class PaymentPage extends Component {
                             <p className = "highlight"><b>TOTAL PRICE</b></p>
                             <p> <b>DEPOSIT :</b> {this.state.deposit} </p>
                             <p> <b>PRICEPERDAY :</b> {this.state.pricePerDay}</p>
-                            <p> <b>RENT DAY :</b> 30 days </p>
+                            <p> <b>RENT DAY :</b> {diffdate} days </p>
                             <p className = "bottomline"></p>
-                            <p> <b>Total : 9000 bath</b></p>
+                            <p> <b>Total :</b> {totalprice}</p>
                             <p className = "bottomline"></p>
                             </Col>
                         </Row>

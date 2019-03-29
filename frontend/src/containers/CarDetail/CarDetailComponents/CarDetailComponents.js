@@ -32,6 +32,10 @@ const carDetailR = (props) => {
 }
 
 const carDetailMiddle = (props) => {
+    let availdateFrom = new Date(props.payload.availFrom);
+    let readableDateFrom = availdateFrom.toDateString();
+    let availdateTo = new Date(props.payload.availTo);
+    let readableDateTo = availdateTo.toDateString();
 
     return (
         <div className={classes.Detail}>
@@ -61,7 +65,10 @@ const carDetailMiddle = (props) => {
                 <Col>DEPOSIT : </Col><Col>{props.payload.deposit}</Col>
             </Row>
             <Row>
-                <Col>AVAILABLE DATE : </Col><Col>FROM {props.payload.availFrom} UNTIL {props.payload.availTo} </Col>
+                <Col>AVAILABLE DATE FROM: </Col><Col> {readableDateFrom }  </Col>
+            </Row>
+            <Row>
+                <Col>AVAILABLE DATE UNTIL: </Col><Col> {readableDateTo} </Col>
             </Row>
         </div >
     );
