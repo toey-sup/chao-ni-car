@@ -71,7 +71,7 @@ class CarDetail extends Component {
 
     rentHandler = () => {
         //console.log(this.props.match.path + '/rent')
-        this.props.history.replace(this.props.location.pathname + '/rent');
+        this.props.history.replace('/payment/' + this.props.match.params.id );
         this.setState({ rentClicked: true });
     }
 

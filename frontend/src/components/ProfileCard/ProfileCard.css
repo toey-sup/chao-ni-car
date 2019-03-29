@@ -64,7 +64,8 @@
       opacity: 1;
   }
 }
-  .back{
+
+  .card-container{
     width: 300px;
     height: 460px;
     border-radius: 10px;
@@ -175,6 +176,9 @@
   .Detail:hover{
     color: #fff;
     background: orangered;
+  }
+  .Detail:active {
+
   }
   
 

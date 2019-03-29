@@ -41,7 +41,7 @@ class App extends Component {
             <Route path="/addcar" component={AddCarPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/carmanage" component={CarManagePage} />
-            <Route path="/payment" component={PaymentPage} />
+            <Route path="/payment/:id" component={PaymentPage} />
             <Route path="/regisrenter" component={RegisterRenter}/>
             <Route path="/regiscarowner" component={RegisterCarOwner}/>
           </Switch>
