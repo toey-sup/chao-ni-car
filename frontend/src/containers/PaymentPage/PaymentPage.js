@@ -85,8 +85,6 @@ class PaymentPage extends Component {
                                 <p><b>GEAR TYPE : </b>{this.state.gear}</p>
                                 <p><b>SEAT :</b> {this.state.seat}</p>
                                 <p><b>EQUIPMENT :</b> {this.state.equipment}</p>
-                                <p><b>PRICE PER DAY :</b> {this.state.pricePerDay}</p>
-                                <p><b>DEPOSIT :</b> {this.state.deposit}</p>
                             </Col>
                             <Col>
                                 <p className = "highlight"><b>DATE</b></p>
