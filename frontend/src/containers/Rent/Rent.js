@@ -3,6 +3,9 @@ import classes from './Rent.module.css';
 import { Col, Row, FormLabel, FormGroup, FormControl, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
+
+import * as actionTypes from '../../store/actions/actionTypes';
 
 class Rent extends Component {
     state = {
@@ -73,7 +76,7 @@ class Rent extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <hr />
+                            {/* <hr />
                             <Row>
                                 <Col sm={12} md={6}><FormLabel>สถานที่ที่ต้องการรับรถ</FormLabel>
                                     <FormControl
@@ -95,10 +98,13 @@ class Rent extends Component {
                                         onChange={(e) => this.onChangeHandler(e, 'toLoc')}
                                     />
                                 </Col>
-                            </Row>
+                            </Row> */}
                             <Row>
-                                <Col style={{textAlign:'right'}}><Button variant='danger' type='submit' style={{marginTop:'8px'}}
-                                    onClick={() => { this.setState({ validated: true }) }}
+                                <Col style={{ textAlign: 'right' }}><Button variant='danger' type='submit' style={{ marginTop: '8px' }}
+                                    onClick={() => { this.setState({ validated: true });
+                                    this.props.rent(this.state.fromDate,this.state.toDate,this.state.diffDate);
+                                    this.props.history.push("/payment")
+                                }}
                                 >Rent!</Button></Col>
                             </Row>
                         </FormGroup>
@@ -120,4 +126,11 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(Rent);
+const mapDispatchToProps = dispatch => {
+    return {
+        rent: (from, to, duration, ) => dispatch({ type: actionTypes.PAY_RENT, fromDate: from, toDate: to, duration: duration }),
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Rent));

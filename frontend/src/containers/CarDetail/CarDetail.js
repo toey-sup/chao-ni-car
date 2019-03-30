@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import classes from './CarDetail.module.css';
-import { Row, Col} from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR, carDetailMiddle as CarDetailMiddle } from './CarDetailComponents/CarDetailComponents';
 import axios from 'axios';
-import { Route,withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import testPic1 from './test/img.jpg';
 import testPic2 from './test/img2.jpg';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Rent from '../Rent/Rent';
+import * as actionTypes from '../../store/actions/actionTypes';
 
 class CarDetail extends Component {
     state = {
         loading: false,
+        carId: null,
         //all of belows will be fetched from server
         picsPath: [testPic1, testPic2],
         brand: 'None',
@@ -38,10 +40,10 @@ class CarDetail extends Component {
     }
     componentDidMount() {
         // Bug
-        
+
         console.log(this.props.location.pathname)
         //console.log(this.props.match.params.id);
-        this.setState({ loading: true });
+        this.setState({ loading: true, carId: this.props.match.params.id });
         axios.get('/api/cars/' + this.props.match.params.id)
             .then(res => {
                 console.log(res.data);
@@ -71,6 +73,8 @@ class CarDetail extends Component {
 
     rentHandler = () => {
         //console.log(this.props.match.path + '/rent')
+        console.log(this.props.user);
+        this.props.setCarId(this.state.carId, this.state.pricePerDay, this.props.user._id, this.state);
         this.props.history.replace(this.props.location.pathname + '/rent');
         this.setState({ rentClicked: true });
     }
@@ -89,12 +93,12 @@ class CarDetail extends Component {
                             </Col>
                         </Row>
                         {this.state.rentClicked ? null : <div style={{ textAlign: 'left' }}>
-                        <a href = "/"><button className = {classes.back} >Back</button></a>
-                        <button className = {classes.rent} onClick={this.rentHandler}>Rent</button>
-                        
+                            <a href="/"><button className={classes.back} >Back</button></a>
+                            <button className={classes.rent} onClick={this.rentHandler}>Rent</button>
+
                         </div>}
                     </div>
-                  </div>
+                </div>
                     <Route path={this.props.match.path + '/rent'}
                         component={Rent}
                     // render={(props) => (<ContactData ingredients={this.props.ings} price={this.props.price} {...props} />)} 
@@ -108,7 +112,7 @@ class CarDetail extends Component {
                 </div>
             );
         }
-        
+
         return (
             <>
                 {item}
@@ -123,5 +127,10 @@ const mapStateToProps = state => {
     }
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        setCarId: (id, price, user, car) => dispatch({ type: actionTypes.SET_INITIAL_DATA, carId: id, pricePerDay: price, userId: user, car:car }),
+    };
+};
 
-export default connect(mapStateToProps)(withRouter(CarDetail));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CarDetail));
