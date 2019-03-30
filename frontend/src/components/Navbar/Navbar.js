@@ -86,7 +86,7 @@ class NavbarComponent extends Component {
               {this.props.user.name}
             </p>
             <Nav>
-              <NavLink className={classes.NavLink} to="/booking">
+              <NavLink className={classes.NavLink} to="/managebooking">
                 Manage Booking
               </NavLink>
             </Nav>

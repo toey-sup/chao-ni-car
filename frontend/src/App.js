@@ -15,6 +15,7 @@ import PaymentPage from './containers/PaymentPage/PaymentPage';
 import SelectRole from './containers/RegisterPage/SelectRolePage';
 import RegisterRenter from './containers/RegisterPage/RegisterRenterPage';
 import RegisterCarOwner from './containers/RegisterPage/RegisterCarOwnerPage';
+import ManageBooking from './containers/ManageBookingPage/ManageBooking';
 
 import { connect } from 'react-redux';
 import * as actions from './store/actions/login';
@@ -43,6 +44,7 @@ class App extends Component {
             <Route path="/payment/:id" component={PaymentPage} />
             <Route path="/regisrenter" component={RegisterRenter}/>
             <Route path="/regiscarowner" component={RegisterCarOwner}/>
+            <Route path="/managebooking" component={ManageBooking}/>
           </Switch>
         </div>
       </div>
