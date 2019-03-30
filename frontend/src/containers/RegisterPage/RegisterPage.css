@@ -102,7 +102,9 @@ input {
   flex-direction: column;
   align-items: center;
 }
-
+.center{
+  text-align: center;
+}
 .createAccount button {
   background-color: #519e8a;
   color: #fff;
