@@ -1,25 +1,13 @@
 import React, {Component} from 'react';
-import { Container, Row, Col , Image} from 'react-bootstrap';
+import { Container, Row, Col} from 'react-bootstrap';
 import "./AboutPage.css";
-import Profile from "../components/ProfileCard/ProfileCard"
-import back_profile1 from "../images/back_profile1.jpg"
-import back_profile2 from "../images/back_profile2.jpeg"
-import back_profile3 from "../images/back_profile3.jpeg"
-import back_profile4 from "../images/back_profile4.jpeg"
-import back_profile5 from "../images/back_profile5.jpg"
-import back_profile6 from "../images/back_profile6.jpg"
-function MemberInfo(props){
-    return(
-        <div className="MemberBlock">
-            <div className="MemberImage" >
-                <Image src={props.imgSrc} roundedCircle fluid/>
-            </div>
-            <h4 className="MemberName">
-                {props.name}
-            </h4>
-        </div>
-    );
-}
+import Profile from "../../components/ProfileCard/ProfileCard"
+import back_profile1 from "../../images/back_profile1.jpg"
+import back_profile2 from "../../images/back_profile2.jpeg"
+import back_profile3 from "../../images/back_profile3.jpeg"
+import back_profile4 from "../../images/back_profile4.jpeg"
+import back_profile5 from "../../images/back_profile5.jpg"
+import back_profile6 from "../../images/back_profile6.jpg"
 
 class AboutPage extends Component {
     render() {

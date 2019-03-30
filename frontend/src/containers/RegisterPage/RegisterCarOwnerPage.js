@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import "./RegisterPage.css";
-import renter from "../images/renter.png";
-import user from "../images/Cars.png";
 import axios from "axios";
-import { text } from "@fortawesome/fontawesome-svg-core";
-import { Button, Form, Row, Col, FormGroup,Modal } from "react-bootstrap";
+import { Button,Modal } from "react-bootstrap";
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
   Object.values(formErrors).forEach(val => {
@@ -16,7 +13,7 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
-class RegisterPage extends Component {
+class RegisterCarOwnerPage extends Component {
   constructor(props) {
     super(props);
 
@@ -150,43 +147,8 @@ class RegisterPage extends Component {
   };
   render() {
     const { formErrors } = this.state;
-    const handleClickrenter = () => {
-      this.setState({
-        chosen: true,
-        renter: true
-      });
-    };
-
-    const handleClickuser = () => {
-      this.setState({
-        chosen: true,
-        user: true
-      });
-    };
-
-    let display = <p />;
-    let user = <p />;
-    if (this.state.user === true) {
-      user = (
-        <div className="drivingnumber">
-          <label htmlFor="drivingnumber">Driver Card Number</label>
-          <input
-            className={formErrors.drivingnumber.length > 0 ? "error" : null}
-            placeholder="Driver Card Number"
-            type="text"
-            name="drivingnumber"
-            noValidate
-            onChange={this.handleChange}
-          />
-          {formErrors.drivingnumber.length > 0 && (
-            <span className="errorMessage">{formErrors.drivingnumber}</span>
-          )}
-        </div>
-      );
-    }
-    if (this.state.chosen === true) {
-      display = (
-      
+    return(
+        <div className= "wrapper">
         <div className="form-wrapper">
           <h1>Create Account</h1>
           <form onSubmit={this.handleSubmit} noValidate>
@@ -292,7 +254,6 @@ class RegisterPage extends Component {
                 <span className="errorMessage">{formErrors.id}</span>
               )}
             </div>
-            {user}
             <div className="tel">
               <label htmlFor="tel">Telephone Number</label>
               <input
@@ -360,34 +321,10 @@ class RegisterPage extends Component {
         </Modal>
 
         </div>
-        
-      );
-    } else {
-      display = (
-        <div
-          className="choseImage"
-          style={{
-            flex: 1,
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "stretch"
-          }}
-        >
-          <div className="renter" onClick={() => handleClickrenter()}>
-            <div className="rentertext">
-              <p>RENTER</p>
-            </div>
-          </div>
-          <div className="user" onClick={() => handleClickuser()}>
-            <div className="usertext">
-              <p>USER</p>
-            </div>
-          </div>
         </div>
-      );
-    }
-    return <div className="wrapper">{display}</div>;
+              
+      )    
   }
 }
 
-export default RegisterPage;
+export default RegisterCarOwnerPage;

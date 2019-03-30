@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
-import HomePage from "./containers/HomePage";
-import AboutPage from "./containers/AboutPage";
-import LoginPage from "./containers/LoginPage";
+import HomePage from "./containers/HomePage/HomePage";
+import AboutPage from "./containers/AboutPage/AboutPage";
+import LoginPage from "./containers/LoginPage/LoginPage";
 import ResultPage from "./containers/ResultPage";
-import HowToUsePage from "./containers/HowToUsePage";
+import HowToUsePage from "./containers/HowToPage/HowToUsePage";
 import CarDetail from "./containers/CarDetail/CarDetail";
 import Navbar from "./components/Navbar/Navbar";
-import RegisterPage from "./containers/RegisterPage";
 import AddCarPage from "./containers/AddCarPage/AddCarPage";
 import testPage from "./containers/test/testPage";
 import CarManagePage from "./containers/CarManagePage/CarManagePage";
-import PaymentPage from './containers/PaymentPage/PaymentPage'
-import SelectRole from './containers/SelectRolePage'
-import RegisterRenter from './containers/RegisterRenterPage'
-import RegisterCarOwner from './containers/RegisterCarOwnerPage'
+import PaymentPage from './containers/PaymentPage/PaymentPage';
+import SelectRole from './containers/RegisterPage/SelectRolePage';
+import RegisterRenter from './containers/RegisterPage/RegisterRenterPage';
+import RegisterCarOwner from './containers/RegisterPage/RegisterCarOwnerPage';
 
 import { connect } from 'react-redux';
 import * as actions from './store/actions/login';

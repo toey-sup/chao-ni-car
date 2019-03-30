@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import classes from "./HomePage.module.css";
-import QueryFilter from "../components/QueryFilter/QueryFilter";
-import CarCards from "../components/CarCard/CarCards";
+import QueryFilter from "../../components/QueryFilter/QueryFilter";
+import CarCards from "../../components/CarCard/CarCards";
 import axios from "axios";
-import Spinner from "../components/UI/Spinner/Spinner";
-import SubQueryFilter from "../components/QueryFilter/SubQueryFilter/SubQueryFilter";
-import Banner from "../images/Banner.png";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import SubQueryFilter from "../../components/QueryFilter/SubQueryFilter/SubQueryFilter";
+import Banner from "../../images/Banner.png";
 class HomePage extends Component {
   state = {
     fromDate: null,

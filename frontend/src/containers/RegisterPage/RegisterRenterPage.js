@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import "./RegisterPage.css";
-import renter from "../images/renter.png";
-import user from "../images/Cars.png";
 import axios from "axios";
-import { text } from "@fortawesome/fontawesome-svg-core";
-import { Button, Form, Row, Col, FormGroup,Modal } from "react-bootstrap";
+import { Button,Modal } from "react-bootstrap";
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
   Object.values(formErrors).forEach(val => {
