@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import classes from './CarDetail.module.css';
-import { Row, Col} from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { carPic as CarPic, carDetailR as CarDetailR, carDetailMiddle as CarDetailMiddle } from './CarDetailComponents/CarDetailComponents';
 import axios from 'axios';
-import { Route,withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import testPic1 from './test/img.jpg';
@@ -38,7 +38,7 @@ class CarDetail extends Component {
     }
     componentDidMount() {
         // Bug
-        
+
         console.log(this.props.location.pathname)
         //console.log(this.props.match.params.id);
         this.setState({ loading: true });
@@ -71,7 +71,7 @@ class CarDetail extends Component {
 
     rentHandler = () => {
         //console.log(this.props.match.path + '/rent')
-        this.props.history.replace('/payment/' + this.props.match.params.id );
+        //this.props.history.replace('/payment/' + this.props.match.params.id );
         this.setState({ rentClicked: true });
     }
 
@@ -89,16 +89,13 @@ class CarDetail extends Component {
                             </Col>
                         </Row>
                         {this.state.rentClicked ? null : <div style={{ textAlign: 'left' }}>
-                        <a href = "/"><button className = {classes.back} >Back</button></a>
-                        <button className = {classes.rent} onClick={this.rentHandler}>Rent</button>
-                        
+                            <a href="/"><button className={classes.back} >Back</button></a>
+                            <button className={classes.rent} onClick={this.rentHandler}>Rent</button>
+
                         </div>}
                     </div>
-                  </div>
-                    <Route path={this.props.match.path + '/rent'}
-                        component={Rent}
-                    // render={(props) => (<ContactData ingredients={this.props.ings} price={this.props.price} {...props} />)} 
-                    />
+                </div>
+                    {this.state.rentClicked ? <Rent pricePerDay={this.state.pricePerDay} deposit={this.state.deposit} /> : null}
                 </>
             );
         } else if (this.state.error) {
@@ -108,7 +105,7 @@ class CarDetail extends Component {
                 </div>
             );
         }
-        
+
         return (
             <>
                 {item}
