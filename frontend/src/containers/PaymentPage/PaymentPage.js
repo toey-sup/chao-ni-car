@@ -4,7 +4,9 @@ import logo from "../../images/logo.png";
 import Payment from '../../components/Payments/Payment';
 import "./PaymentPage.css";
 import axios from 'axios';
-import moment from 'moment'
+import moment from 'moment';
+import { connect } from 'react-redux';
+
 class PaymentPage extends Component {
     state = {
         loading: false,
@@ -46,8 +48,8 @@ class PaymentPage extends Component {
                     seat: res.data.seat,
                     equipment: res.data.equipment,
                     picsPath: [res.data.photo],
-                    availFrom: res.data.availFrom,
-                    availTo: res.data.availTo,
+                    availFrom: this.props.rent.fromDate,//res.data.availFrom,
+                    availTo: this.props.rent.toDate,//res.data.availTo,
                     description: res.data.description,
                     pricePerDay: res.data.pricePerDay,
                     deposit: res.data.deposit,
@@ -57,6 +59,7 @@ class PaymentPage extends Component {
             .catch(err => {
                 this.setState({ loading: false, error: err })
             });
+            
     }
     render() {
         let previousPage = "/car/" + this.props.match.params.id;
@@ -105,6 +108,7 @@ class PaymentPage extends Component {
                                 <p>{readableDateFrom}</p>
                                 <p><b>AVAILABLE DATE TO:</b></p>
                                 <p>{readableDateTo}</p>
+
                             </Col>
                         </Row>
                         <Row>
@@ -121,7 +125,7 @@ class PaymentPage extends Component {
                         <Row>
                             <Col  className = "btnwrapper">
                            <a href = {previousPage} ><button  className = "backbtn">BACK</button></a>
-                            <Payment requestID="1234" />
+                            <Payment requestID="1234" price={totalprice} />
                             </Col>
                         </Row>
                         </div>
@@ -131,5 +135,11 @@ class PaymentPage extends Component {
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+        user: state.login.user,
+        rent: state.rent
+    }
+  };
 
-export default PaymentPage;
+export default connect(mapStateToProps)(PaymentPage);

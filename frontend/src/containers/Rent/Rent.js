@@ -3,6 +3,8 @@ import classes from './Rent.module.css';
 import { Col, Row, FormLabel, FormGroup, FormControl, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import * as actionTypes from '../../store/actions/actionTypes';
 
 class Rent extends Component {
     state = {
@@ -54,7 +56,7 @@ class Rent extends Component {
                             <FormLabel>
                                 <strong>Choose Date</strong>
                             </FormLabel>
-                            <Row><Col>{this.state.diffDate ? <div style={{ textAlign: 'center' }}><strong>เป็นเวลา: {this.state.diffDate}วัน</strong></div> : null}</Col></Row>
+                            <Row><Col>{this.state.diffDate ? <div style={{ textAlign: 'center' }}><strong>เป็นเวลา: {this.state.diffDate}วัน ราคา: {this.state.diffDate*this.props.pricePerDay+this.props.deposit}บาท</strong></div> : null}</Col></Row>
                             <Row>
                                 <Col sm={6}>
                                     วันที่จะรับรถ:{" "}
@@ -73,7 +75,7 @@ class Rent extends Component {
                                     />
                                 </Col>
                             </Row>
-                            <hr />
+                            {/* <hr />
                             <Row>
                                 <Col sm={12} md={6}><FormLabel>สถานที่ที่ต้องการรับรถ</FormLabel>
                                     <FormControl
@@ -95,10 +97,13 @@ class Rent extends Component {
                                         onChange={(e) => this.onChangeHandler(e, 'toLoc')}
                                     />
                                 </Col>
-                            </Row>
+                            </Row> */}
                             <Row>
                                 <Col style={{textAlign:'right'}}><Button variant='danger' type='submit' style={{marginTop:'8px'}}
-                                    onClick={() => { this.setState({ validated: true }) }}
+                                    onClick={() => { this.setState({ validated: true })
+                                    this.props.onRent(this.state.fromDate,this.state.toDate,this.state.diffDate,this.state.diffDate*this.props.pricePerDay+this.props.deposit);
+                                    this.props.history.replace('/payment/' + this.props.match.params.id );
+                                }}
                                 >Rent!</Button></Col>
                             </Row>
                         </FormGroup>
@@ -119,5 +124,10 @@ const mapStateToProps = state => {
         user: state.login.user
     }
 };
+const mapDispatchToProps = dispatch => {
+    return {
+        onRent: (from,to,du,price) => dispatch({ type: actionTypes.SET_RENT, fromDate: from, toDate: to, duration:du, price:price }),
+    };
+};
 
-export default connect(mapStateToProps)(Rent);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Rent));
