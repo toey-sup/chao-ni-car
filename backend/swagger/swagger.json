@@ -1,0 +1,57 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Asset Service",
+        "description": "Asset Service"
+    },
+    "host": "127.0.0.1:5000",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "Asset",
+            "description": "API for asset in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/cars/{id}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Car id"
+                    },
+                    {
+                        "name": "availFrom",
+                        "in": "query"
+                    },
+                    {
+                        "name": "availTo",
+                        "in": "query"
+                    }
+                ],
+                "summary": "Get image object that",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "username": {
+            "type": "string"
+        }
+    }
+}

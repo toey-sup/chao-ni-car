@@ -28,6 +28,10 @@ db.once('open', function() {
 //////////////////////////////////////
 
 const app = express();
+const swaggerUI = require('swagger-ui-express')
+const swaggerDoc = require('./swagger/swagger.json')
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())

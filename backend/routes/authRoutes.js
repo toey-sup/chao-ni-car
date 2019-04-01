@@ -4,12 +4,6 @@ const User = mongoose.model("users");
 const requireLogin = require("../middlewares/requireLogin");
 
 module.exports = app => {
-  app.get(
-    "/auth/google", // login with google
-    passport.authenticate("google", {
-      scope: ["profile", "email"]
-    })
-  );
   app.post("/auth/local", (req, res) => {
     const {
       name,
@@ -63,14 +57,6 @@ module.exports = app => {
   );
   
 
-  app.get(
-    // callback after succesfully login
-    "/auth/google/callback",
-    passport.authenticate("google"),
-    (req, res) => {
-      res.redirect("/");
-    }
-  );
 
   app.get("/api/logout", (req, res) => {
     // logout
