@@ -11,6 +11,21 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "paths": {
+    "/api/cars/": {
+        "get": {
+          "tags": ["car"],
+          "summary": "Get all car in database",
+          "description": "",
+          "operationId": "API for car in the system",
+          "consumes": ["application/json", "application/xml"],
+          "produces": ["application/xml", "application/json"],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
     "/api/cars/{id}": {
       "get": {
         "tags": ["car"],
@@ -40,7 +55,32 @@
           }
         }
       }
-    }
+    },
+    "/auth/login": {
+        "post": {
+          "tags": ["user"],
+          "summary": "Log in",
+          "description": "",
+          "operationId": "API for user in the system",
+          "consumes": ["application/json", "application/xml"],
+          "produces": ["application/xml", "application/json"],
+          "parameters": [
+            {
+              "name": "username",
+              "in": "query"
+            },
+            {
+              "name": "password",
+              "in": "query"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
   },
   "definitions": {
     "availFrom": {
