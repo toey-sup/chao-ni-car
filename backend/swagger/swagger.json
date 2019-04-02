@@ -1,57 +1,53 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Asset Service",
-        "description": "Asset Service"
-    },
-    "host": "127.0.0.1:5000",
-    "basePath": "",
-    "tags": [
-        {
-            "name": "Asset",
-            "description": "API for asset in the system"
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Asset Service",
+    "description": "Asset Service"
+  },
+  "host": "127.0.0.1:5000",
+  "basePath": "",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/cars/{id}": {
+      "get": {
+        "tags": ["car"],
+        "summary": "Get car in database",
+        "description": "",
+        "operationId": "API for car in the system",
+        "consumes": ["application/json", "application/xml"],
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Car id"
+          },
+          {
+            "name": "availFrom",
+            "in": "query"
+          },
+          {
+            "name": "availTo",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
         }
-    ],
-    "schemes": [
-        "http"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "paths": {
-        "/api/cars/{id}": {
-            "get": {
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Car id"
-                    },
-                    {
-                        "name": "availFrom",
-                        "in": "query"
-                    },
-                    {
-                        "name": "availTo",
-                        "in": "query"
-                    }
-                ],
-                "summary": "Get image object that",
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "username": {
-            "type": "string"
-        }
+      }
     }
+  },
+  "definitions": {
+    "availFrom": {
+      "type": "Date"
+    },
+    "availTo": {
+        "type": "Date"
+      }
+  }
 }
