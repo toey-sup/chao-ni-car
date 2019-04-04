@@ -10,12 +10,11 @@ module.exports = app => {
     res.send(requests);
   });
 
-  app.post("/api/request", 
-    requireLogin, 
+  app.post("/api/request",  
     async (req, res) => {
     // ใช้จองรถ โดยต้องส่งข้อมูลมาจอง เช่น carId, fromLoc, toLoc, dateFrom, dateTo
-    const { carId, fromLoc, toLoc, dateFrom, dateTo, total } = req.body;
-    console.log(carId, fromLoc, toLoc, dateFrom, dateTo, total);
+    const { carId, dateFrom, dateTo, amount } = req.body;
+    console.log(carId, dateFrom, dateTo, amount);
     try {
         const car = await Car.findOneAndUpdate(
             { _id: carId, isRented: false },
@@ -39,19 +38,20 @@ module.exports = app => {
             _renter: req.user,
             _owner: car._owner,
             _car: carId,
-            fromLoc,
-            toLoc,
+            //fromLoc,
+            //toLoc,
             dateFrom,
             dateTo,
-            total
+            amount
           }).save();
+        console.log("newRequest", request)
           res.send(request);
         
     } catch (err) {
         if (err.name === "CarError") {
-            res.status(400).send(err.message)
+            res.status(400).send(err)
         } else {
-            res.status(400).send("Request is not successful")
+            res.status(400).send(err)
         }
     }
   });
