@@ -10,7 +10,6 @@ const carSchema = new Schema({
   seat: { type: Number, required: true },
   equipment: { type: String },
   
-  photo: String,
   availFrom:  { type: Date, required: true },
   availTo: { type: Date, required: true },
   description: { type: String },
@@ -19,7 +18,7 @@ const carSchema = new Schema({
   deposit: {type: Number, required: true},
 
   isRented: { type: Boolean, default: false},
-  _owner: {type: Schema.Types.ObjectId, ref: 'User'}
+  _owner: {type: Schema.Types.ObjectId, ref: 'User', required: true}
 });
 
 mongoose.model("cars", carSchema);

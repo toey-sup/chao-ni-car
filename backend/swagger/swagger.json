@@ -80,6 +80,86 @@
             }
           }
         }
+      },
+      "/auth/local": {
+        "post": {
+          "tags": ["user"],
+          "summary": "Sign up",
+          "description": "",
+          "operationId": "API for user in the system",
+          "consumes": ["application/json", "application/xml"],
+          "produces": ["application/xml", "application/json"],
+          "parameters": [
+            {
+              "name": "username",
+              "in": "query"
+            },
+            {
+              "name": "password",
+              "in": "query"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/request": {
+        "get": {
+          "tags": ["request"],
+          "summary": "Get all request in database",
+          "description": "",
+          "operationId": "API for request in the system",
+          "consumes": ["application/json"],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/request/{requestId}": {
+        "put": {
+          "tags": ["request"],
+          "summary": "Using to complete the request",
+          "description": "",
+          "operationId": "API for request in the system",
+          "consumes": ["application/json", "application/xml"],
+          "produces": ["application/xml", "application/json"],
+          "parameters": [
+            {
+              "name": "requestId",
+              "in": "path"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "delete": {
+          "tags": ["request"],
+          "summary": "Delete the request",
+          "description": "",
+          "operationId": "API for request in the system",
+          "consumes": ["application/json", "application/xml"],
+          "produces": ["application/xml", "application/json"],
+          "parameters": [
+            {
+              "name": "requestId",
+              "in": "path"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
       }
   },
   "definitions": {

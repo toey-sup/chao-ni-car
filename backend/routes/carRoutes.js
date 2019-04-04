@@ -78,6 +78,11 @@ module.exports = app => {
     const car = await Car.findById(req.params.id);
     res.send(car);
   });
+  app.get("/api/ownerCars", async (req, res) => {
+    // ใช้สำหรับจัดการรถของเจ้าของรถ
+    const car = await Car.find({_owner: req.user["_id"]});
+    res.send(car);
+  })
   app.delete("/api/cars/:id", requireLogin, async (req, res) => {
     // ใช้สำหรับลบรถ
     Car.findByIdAndRemove(req.params.id, (err, blog) => {
