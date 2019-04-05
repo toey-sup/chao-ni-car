@@ -52,9 +52,12 @@ class CarManage extends Component {
 
     return (
       <>
-        <div className={classes.Div}>
+      <div className={classes.carmanagebackground}>
           <Container>{cards}</Container>
-        </div>
+          <div>
+            
+          </div>
+      </div>
       </>
     );
   }

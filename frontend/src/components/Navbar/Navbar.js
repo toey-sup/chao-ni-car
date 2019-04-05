@@ -132,6 +132,7 @@ class NavbarComponent extends Component {
               <NavLink className={classes.NavLink} to="/howtouse">
                 HOWTO
               </NavLink>
+              
             </Nav>
           </div>
           <div

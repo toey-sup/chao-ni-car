@@ -10,9 +10,6 @@ const carPic = (props) => {
                 src={path}
                 alt='carPic'
             />
-            <Carousel.Caption>
-                <p>Picture {index + 1}</p>
-            </Carousel.Caption>
         </Carousel.Item>
     ))
     return (
