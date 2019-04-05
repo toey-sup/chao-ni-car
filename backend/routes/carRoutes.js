@@ -75,10 +75,11 @@ module.exports = app => {
   });
   app.get("/api/cars/:id", async (req, res) => {
     // ใช้สำหรับดูรถแต่ละคันได้ โดยใช้ key เป็น id
-    const car = await Car.findById(req.params.id);
+    const car = await Car.findById(req.params.id).populate('_owner');
+    console.log(car)
     res.send(car);
   });
-  app.get("/api/ownerCars", async (req, res) => {
+  app.get("/api/ownercars", async (req, res) => {
     // ใช้สำหรับจัดการรถของเจ้าของรถ
     const car = await Car.find({_owner: req.user["_id"]});
     res.send(car);

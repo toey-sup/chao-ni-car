@@ -27,8 +27,13 @@ module.exports = app => {
       description: "cao-ni-car payment",
       source: req.body.token.id
     });
+    const { carId, dateFrom, dateTo, amount } = req.body;
+    const requestInput = {
+      carId, dateFrom, dateTo, amount,
+      renter: req.user["_id"]
+    }
     try {
-      const createdRequest = await fetchPOST("/api/request", req.body);
+      const createdRequest = await fetchPOST("/api/request", requestInput);
       console.log("createRequest", createdRequest);
       if (createdRequest) {
         const request = await Request.findOneAndUpdate(

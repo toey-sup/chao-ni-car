@@ -6,13 +6,29 @@ const requireLogin = require("../middlewares/requireLogin");
 module.exports = app => {
   app.get("/api/request", async (req, res) => {
     // ดึง request ทั้งหมดที่จองไว้
-    const requests = await Request.find({_renter: req.user["_id"]}); //_renter: req.user["_id"]
-    res.send(requests);
+    console.log(req.user)
+    let query  = {
+      _renter: req.user["_id"]
+    }
+    if (req.user.isProvider) {
+      query = {
+        _owner: req.user["_id"]
+      }
+    }
+    try {
+      const requests = await Request.find(query).populate('_owner').populate('_car'); //_renter: req.user["_id"]
+      res.send(requests);
+    } catch(err) {
+      res.status(400).send(err)
+    }
+    
+    
+    
   });
 
   app.post("/api/request", async (req, res) => {
     // ใช้จองรถ โดยต้องส่งข้อมูลมาจอง เช่น carId, fromLoc, toLoc, dateFrom, dateTo
-    const { carId, dateFrom, dateTo, amount } = req.body;
+    const { carId, dateFrom, dateTo, amount, renter } = req.body;
     console.log(carId, dateFrom, dateTo, amount);
     try {
       const car = await Car.findOneAndUpdate(
@@ -31,10 +47,10 @@ module.exports = app => {
         };
       }
       console.log("car", car)
-      console.log("_renter", req.user);
+      console.log("_renter", renter);
       console.log("_owner", car._owner);
       const request = await new Request({
-        _renter: req.user,
+        _renter: renter,
         _owner: car._owner,
         _car: carId,
         //fromLoc,

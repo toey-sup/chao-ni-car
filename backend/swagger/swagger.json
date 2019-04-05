@@ -10,6 +10,14 @@
   "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+    
+  },
   "paths": {
     "/api/cars/": {
         "get": {
@@ -109,6 +117,11 @@
       "/api/request": {
         "get": {
           "tags": ["request"],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
           "summary": "Get all request in database",
           "description": "",
           "operationId": "API for request in the system",
