@@ -9,6 +9,7 @@
     display: block;
     text-decoration: none;
     box-sizing: border-box;
+    
 }
 
 .NavLink:hover, .NavLink:active {

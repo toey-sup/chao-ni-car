@@ -229,7 +229,7 @@ class RegisterCarOwnerPage extends Component {
                   formErrors.confirmpassword.length > 0 ? "error" : null
                 }
                 placeholder="Confirm Password"
-                type="text"
+                type="password"
                 name="confirmpassword"
                 noValidate
                 onChange={this.handleChange}
