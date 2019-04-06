@@ -5,6 +5,7 @@ import "./PaymentPage.css";
 import axios from "axios";
 import moment from "moment";
 import { connect } from "react-redux";
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class PaymentPage extends Component {
   state = {
@@ -67,8 +68,8 @@ class PaymentPage extends Component {
           seat: res.data.seat,
           equipment: res.data.equipment,
           picsPath: [res.data.photo],
-          fromDate: this.props.rent.fromDate, 
-          toDate: this.props.rent.toDate, 
+          fromDate: this.props.rent.fromDate,
+          toDate: this.props.rent.toDate,
           description: res.data.description,
           pricePerDay: res.data.pricePerDay,
           deposit: res.data.deposit,
@@ -108,8 +109,7 @@ class PaymentPage extends Component {
     let readableDateFrom = fromDate.toDateString();
     let toDate = new Date(this.state.toDate);
     let readableDateTo = toDate.toDateString();
-    
-    return (
+    let renderItem = (
       <div className="paymentpagebackground">
         <div className="paymentcontainer">
           <div className="header">
@@ -117,27 +117,27 @@ class PaymentPage extends Component {
               <b>Payment Detail</b>
             </p>
             <div className="paymentcontent">
-            <Row>
-              <Col>
-              <p className="highlight">
-                    <b>INVOICE</b>
-                  </p>
-              </Col>
-            </Row>
               <Row>
                 <Col>
-                    <p><b>Bill from</b></p>
-                    <p>Name : {this.props.user.username}</p>
-                    <p>Surname : {this.props.user.surname}</p>
-                    <p>E-mail : {this.props.user.email}</p>
-                    <p>Tel : {this.props.user.tel}</p>
+                  <p className="highlight">
+                    <b>INVOICE</b>
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <p><b>Bill from</b></p>
+                  <p>Name : {this.props.user.username}</p>
+                  <p>Surname : {this.props.user.surname}</p>
+                  <p>E-mail : {this.props.user.email}</p>
+                  <p>Tel : {this.props.user.tel}</p>
                 </Col>
                 <Col>
-                    <p><b>Bill to</b></p>
-                    <p>Name : {this.state.providerName}</p>
-                    <p>Surname : {this.state.providerSurname}</p>
-                    <p>E-mail : {this.state.providerEmail}</p>
-                    <p>Tel : {this.state.providerTel}</p>
+                  <p><b>Bill to</b></p>
+                  <p>Name : {this.state.providerName}</p>
+                  <p>Surname : {this.state.providerSurname}</p>
+                  <p>E-mail : {this.state.providerEmail}</p>
+                  <p>Tel : {this.state.providerTel}</p>
                 </Col>
               </Row>
               <Row>
@@ -218,6 +218,8 @@ class PaymentPage extends Component {
         </div>
       </div>
     );
+
+    return this.state.loading? <Spinner/>:renderItem;
   }
 }
 const mapStateToProps = state => {
