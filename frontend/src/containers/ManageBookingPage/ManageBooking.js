@@ -2,38 +2,49 @@ import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import "./ManageBooking.css";
 import Booking from "../../components/Booking/Booking";
+import Spinner from '../../components/UI/Spinner/Spinner'
+import { connect } from 'react-redux';
 import axios from "axios";
 
 class ManageBooking extends Component {
   state = {
-    isProvider: null
+    loading: true,
+    requests: []
   };
 
   componentDidMount = async () => {
     const res = await axios.get("/api/request");
     console.log(res);
     this.setState({
-      isProvider: res.data.isProvider
+      requests: res.data
     });
   };
 
   render() {
-    let reservations = <p>NULL</p>;
-    switch (this.state.isProvider) {
-      case true: // แสดงสำหรับเจ้าของรถ มีปุ่ม complete เพื่อยิงไปบอก server ว่างานเสร็จแล้ว
-
-        break;
-      case false: // แสดงสำหรับคนเช่า มีปุ่ม cancel สำหรับแต่ละ reservation ที่งานยังไม่ isCompleted
-        reservations = <p></p>
-        break;
-      default: // ใส่ loading
-        break;
+    let reservations = <Spinner />
+    if (this.props.user) {
+      switch (this.props.user.isProvider) {
+        case true: // แสดงสำหรับเจ้าของรถ มีปุ่ม complete เพื่อยิงไปบอก server ว่างานเสร็จแล้ว
+          reservations = <p>Owner</p>
+          break;
+        case false: // แสดงสำหรับคนเช่า มีปุ่ม cancel สำหรับแต่ละ reservation ที่งานยังไม่ isCompleted
+          reservations = <p>Renter</p>
+          break;
+        default: // ใส่ loading
+          reservations = <Spinner />
+          break;
+      }
     }
+    
     return (
       <div className="bookingbackground">
         <div className="manageContainer">
           <div className="managetitle">ManageBooking</div>
-          <Booking />
+          {/* <Booking /> */}
+          {reservations}
+
+
+
           <div className="btnwrapper">
             <a href="/">
               <button className="backbtn">BACK</button>
@@ -45,4 +56,10 @@ class ManageBooking extends Component {
   }
 }
 
-export default ManageBooking;
+const mapStateToProps = state => {
+  return {
+      user: state.login.user
+  }
+};
+
+export default connect(mapStateToProps)(ManageBooking);
