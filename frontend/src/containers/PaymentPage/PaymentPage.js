@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import logo from "../../images/logo.png";
 import Payment from "../../components/Payments/Payment";
 import "./PaymentPage.css";
 import axios from "axios";
@@ -11,6 +10,10 @@ class PaymentPage extends Component {
   state = {
     loading: false,
     //all of belows will be fetched from server
+    providerName: "",
+    providerSurname: "",
+    providerEmail: "",
+    providerTel: "",
     carId: "",
     brand: "None",
     type: "",
@@ -51,6 +54,10 @@ class PaymentPage extends Component {
         const newState = {
           ...this.state,
           loading: false,
+          providerName: res.data._owner.name,
+          providerSurname: res.data._owner.surname,
+          providerEmail: res.data._owner.email,
+          providerTel: res.data._owner.tel,
           carId: res.data._id,
           brand: res.data.brand,
           type: res.data.type,
@@ -87,6 +94,7 @@ class PaymentPage extends Component {
     console.log(request);
     const res = await axios.post("/api/stripe", request);
     console.log(res)
+    console.log(this.state.providerName);
     // ***********************************
     // TODO: redirect to congratulation page by using (res)
     // may be create new page (up to you what you think it's best)
@@ -109,29 +117,27 @@ class PaymentPage extends Component {
               <b>Payment Detail</b>
             </p>
             <div className="paymentcontent">
+            <Row>
+              <Col>
+              <p className="highlight">
+                    <b>INVOICE</b>
+                  </p>
+              </Col>
+            </Row>
               <Row>
                 <Col>
-                  <p>
-                    <b>Invoice</b>
-                  </p>
-                  <p>
-                    <b>Bill from</b>
-                  </p>
-                  <p>
-                    <b>Bill to</b>
-                  </p>
+                    <p><b>Bill from</b></p>
+                    <p>Name : {this.props.user.username}</p>
+                    <p>Surname : {this.props.user.surname}</p>
+                    <p>E-mail : {this.props.user.email}</p>
+                    <p>Tel : {this.props.user.tel}</p>
                 </Col>
                 <Col>
-                  <img src={logo} />
-                  <p className="highlight">
-                    <b>Provider</b>
-                  </p>
-                  <p>
-                    <b>Invoice date:</b> {moment().format("YYYY MM DD")}
-                  </p>
-                  <p>
-                    <b>Email:</b> Kitipat@outlook.co.th
-                  </p>
+                    <p><b>Bill to</b></p>
+                    <p>Name : {this.state.providerName}</p>
+                    <p>Surname : {this.state.providerSurname}</p>
+                    <p>E-mail : {this.state.providerEmail}</p>
+                    <p>Tel : {this.state.providerTel}</p>
                 </Col>
               </Row>
               <Row>
