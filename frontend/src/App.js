@@ -18,7 +18,7 @@ import RegisterCarOwner from './containers/RegisterPage/RegisterCarOwnerPage';
 import ManageBooking from './containers/ManageBookingPage/ManageBooking';
 
 import { connect } from 'react-redux';
-import * as actions from './store/actions/login';
+import * as actions from './store/actions/';
 import { withRouter } from 'react-router-dom';
 
 class App extends Component {

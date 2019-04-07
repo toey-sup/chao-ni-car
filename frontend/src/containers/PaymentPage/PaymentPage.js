@@ -44,10 +44,15 @@ class PaymentPage extends Component {
       .get("/api/cars/" + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
+        console.log("HELLO")
         var deposit = Number(res.data.deposit);
+        console.log("HELLO")
         var pricePerDay = Number(res.data.pricePerDay);
+        console.log("HELLO")
         var dateT = moment(this.props.rent.toDate);
+        console.log("HELLO")
         var dateF = moment(this.props.rent.fromDate);
+        console.log("HELLO")
         var diffdate = dateT.diff(dateF, "days");
         const totalprice = deposit + pricePerDay * diffdate;
         console.log("TOTAL", dateF, dateT, diffdate)
