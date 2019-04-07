@@ -40,6 +40,37 @@ class Rent extends Component {
     }
 
     render() {
+        let providerDisplay = null
+        let pickdate = null
+        let returndate = null
+        if (this.props.user) {
+            if (!this.props.user.isProvider) {
+                providerDisplay = <button className ={classes.rent} type='submit' style={{marginTop:'8px'}}
+                onClick={() => { this.setState({ validated: true })
+                this.props.onRent(this.state.fromDate,this.state.toDate,this.state.diffDate,this.state.diffDate*this.props.pricePerDay+this.props.deposit);
+                this.props.history.replace('/payment/' + this.props.match.params.id );
+            }}
+            >Rent!</button>
+
+            pickdate =     <div>
+            Pick Up Date:{" "}
+               <DatePicker
+                   selected={this.state.fromDate}
+                   onChange={date => this.dateChangeHandler(date, "fromDate")}
+
+               />
+           </div>
+
+           returndate =  <div>
+           Return Date:{" "}
+               <DatePicker
+                   selected={this.state.toDate}
+                   onChange={date => this.dateChangeHandler(date, "toDate")}
+
+               />
+           </div>
+            }
+        }
         let item = (
             <div className={classes.Div} style={{ textAlign: 'center' }}>
                 <p><strong>Please Login First!</strong></p>
@@ -48,31 +79,16 @@ class Rent extends Component {
         if (this.props.user) {
             item = (
                 <div className={classes.Div}>
-                    <div style={{ textAlign: 'center' }}><h3>Rent</h3></div>
-                    <p><i>กรุณากรอกข้อมูลให้ครบทุกช่อง</i></p>
                     {/* เลือกวันเวลาสถานที่ + ชำระเงิน */}
                     <Form validated={this.state.validated} onSubmit={this.rentHandler}>
                         <FormGroup>
-                            <FormLabel>
-                                <strong>Choose Date</strong>
-                            </FormLabel>
-                            <Row><Col>{this.state.diffDate ? <div style={{ textAlign: 'center' }}><strong>เป็นเวลา: {this.state.diffDate}วัน ราคา: {this.state.diffDate*this.props.pricePerDay+this.props.deposit}บาท</strong></div> : null}</Col></Row>
+                            <Row><Col>{this.state.diffDate ? <div style={{ textAlign: 'center' }}><strong>{this.state.diffDate} days Total Price: {this.state.diffDate*this.props.pricePerDay+this.props.deposit}บาท</strong></div> : null}</Col></Row>
                             <Row>
                                 <Col sm={6}>
-                                    วันที่จะรับรถ:{" "}
-                                    <DatePicker
-                                        selected={this.state.fromDate}
-                                        onChange={date => this.dateChangeHandler(date, "fromDate")}
-
-                                    />
+                                {pickdate}
                                 </Col>
                                 <Col sm={6}>
-                                    วันที่จะคืนรถ:{" "}
-                                    <DatePicker
-                                        selected={this.state.toDate}
-                                        onChange={date => this.dateChangeHandler(date, "toDate")}
-
-                                    />
+                               {returndate}
                                 </Col>
                             </Row>
                             {/* <hr />
@@ -98,13 +114,9 @@ class Rent extends Component {
                                     />
                                 </Col>
                             </Row> */}
+                            
                             <Row>
-                                <Col style={{textAlign:'right'}}><Button variant='danger' type='submit' style={{marginTop:'8px'}}
-                                    onClick={() => { this.setState({ validated: true })
-                                    this.props.onRent(this.state.fromDate,this.state.toDate,this.state.diffDate,this.state.diffDate*this.props.pricePerDay+this.props.deposit);
-                                    this.props.history.replace('/payment/' + this.props.match.params.id );
-                                }}
-                                >Rent!</Button></Col>
+                                <Col style={{textAlign:'right'}}>{providerDisplay}</Col>
                             </Row>
                         </FormGroup>
                     </Form>
