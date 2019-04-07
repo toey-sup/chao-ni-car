@@ -18,8 +18,7 @@ class AddCarPage extends Component {
       lnumber: "",
       availFrom: "",
       availTo: "",
-      pickUpLocation: "",
-      dropOffLocation: "",
+      location: "",
       description: "",
       deposit: "",
       validated: false,
@@ -43,8 +42,7 @@ class AddCarPage extends Component {
       LNumber: this.state.lnumber,
       availFrom: this.state.availFrom,
       availTo: this.state.availTo,
-      pickUpLocation: this.state.pickUpLocation,
-      dropOffLocation: this.state.dropOffLocation,
+      location: this.state.location,
       description: this.state.description,
       deposit: this.state.deposit,
       pricePerDay: this.state.pricePerDay,
@@ -215,8 +213,8 @@ class AddCarPage extends Component {
               </Form.Row>
 
               <Form.Row>
-                <Form.Group as={Col} controlId="pickUpLocation">
-                  <Form.Label>Pick Up Location</Form.Label>
+                <Form.Group as={Col} controlId="location">
+                  <Form.Label>Location</Form.Label>
                   <Form.Control as="select" onChange={this.handleChange}>
                     <option>Select</option>
                     <option value="Suvarnabhumi Airport">
@@ -234,25 +232,7 @@ class AddCarPage extends Component {
                 </Form.Group>
               </Form.Row>
 
-              <Form.Row>
-                <Form.Group as={Col} controlId="dropOffLocation">
-                  <Form.Label>Drop Off Location</Form.Label>
-                  <Form.Control as="select" onChange={this.handleChange}>
-                    <option>Select</option>
-                    <option value="Suvarnabhumi Airport">
-                      Suvarnabhumi Airport
-                    </option>
-                    <option value="Don Mueang Airport">
-                      Don Mueang Airport
-                    </option>
-                    <option value="BTS Morchit">BTS Morchit</option>
-                    <option value="BTS Siam">BTS Siam</option>
-                    <option value="BTS Asok">BTS Asok</option>
-                    <option value="BTS Onnut">BTS Onnut</option>
-                    <option value="BTS Bang Wa">BTS Bang Wa</option>
-                  </Form.Control>
-                </Form.Group>
-              </Form.Row>
+              
 
               <Form.Row>
                 <Form.Group as={Col} controlId="deposit">

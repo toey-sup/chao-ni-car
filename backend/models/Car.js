@@ -13,8 +13,7 @@ const carSchema = new Schema({
   availFrom:  { type: Date, required: true },
   availTo: { type: Date, required: true },
   description: { type: String },
-  pickUpLocation: {type: String, required: true},
-  dropOffLocation: {type: String, required: true},
+  location: {type: String, required: true},
   pricePerDay: {type: Number, required: true},
   deposit: {type: Number, required: true},
 
