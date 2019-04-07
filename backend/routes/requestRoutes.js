@@ -18,7 +18,8 @@ module.exports = app => {
     try {
       const requests = await Request.find(query)
         .populate("_owner")
-        .populate("_car"); //_renter: req.user["_id"]
+        .populate("_car")
+        .populate("_renter"); //_renter: req.user["_id"]
       res.send(requests);
     } catch (err) {
       res.status(400).send(err);

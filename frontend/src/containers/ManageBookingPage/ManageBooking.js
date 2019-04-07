@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Row, Col } from "react-bootstrap";
 import "./ManageBooking.css";
 import Booking from "../../components/Booking/Booking";
 import Spinner from "../../components/UI/Spinner/Spinner";
@@ -80,17 +80,21 @@ class ManageBooking extends Component {
                   <Card.Title>
                     {_car["brand"]} {_car["type"]}
                   </Card.Title>
-                  <img
-                    src={_car["photo"]}
-                    alt="carphoto"
-                    height="100"
-                    width="150"
-                  />
-                  <Card.Text>
-                    seat: {_car["seat"]} gear: {_car["gear"]}
-                  </Card.Text>
-                  <Card.Text>สถานที่รับรถ: ??? สถานที่ส่งรถ: ???</Card.Text>
-                  <Card.Text>status: {request["status"]}</Card.Text>
+
+                  <Row>
+                    <Col>
+                      <Card.Img src={_car["photo"]} />
+                    </Col>
+                    <Col>
+                      <Card.Text>
+                        seat: {_car["seat"]} gear: {_car["gear"]}
+                      </Card.Text>
+                      <Card.Text>วันเริ่ม: {new Date(request["dateFrom"]).toDateString()} วันสิ้นสุด: {new Date(request["dateTo"]).toDateString()}</Card.Text>
+                      <Card.Text>สถานที่รับรถ: ??? สถานที่ส่งรถ: ???</Card.Text>
+                      <Card.Text>Renter: {request["_renter"]["name"]}</Card.Text>
+                      <Card.Text>status: {request["status"]}</Card.Text>
+                    </Col>
+                  </Row>
                   <Button
                     variant="success"
                     onClick={() => this.completeTaskHandler(request["_id"])}
@@ -108,17 +112,15 @@ class ManageBooking extends Component {
           });
           break;
         case false: // แสดงสำหรับคนเช่า มีปุ่ม cancel สำหรับแต่ละ reservation ที่งานยังไม่ isCompleted
-
           reservations = this.props.requests.map(request => {
             const _car = request["_car"];
             const status = request["status"];
             let isCancelDisabled = false;
             let isPickingUpDisabled = false;
-            if (status === 'PickedUp') {
+            if (status === "PickedUp") {
               isCancelDisabled = true;
               isPickingUpDisabled = true;
             }
-
 
             let showedButton = null;
             if (status !== "Completed") {
@@ -147,10 +149,9 @@ class ManageBooking extends Component {
                     )}
                   </Button>
                 </div>
-              )
+              );
             }
-                
-            
+
             return (
               <Card>
                 <Card.Header as="h5">Request ID: {request["_id"]}</Card.Header>
@@ -158,17 +159,21 @@ class ManageBooking extends Component {
                   <Card.Title>
                     {_car["brand"]} {_car["type"]}
                   </Card.Title>
-                  <img
-                    src={_car["photo"]}
-                    alt="carphoto"
-                    height="100"
-                    width="150"
-                  />
-                  <Card.Text>
-                    seat: {_car["seat"]} gear: {_car["gear"]}
-                  </Card.Text>
-                  <Card.Text>สถานที่รับรถ: ??? สถานที่ส่งรถ: ???</Card.Text>
-                  <Card.Text>status: {request["status"]}</Card.Text>
+
+                  <Row>
+                    <Col>
+                      <Card.Img src={_car["photo"]} />
+                    </Col>
+                    <Col>
+                      <Card.Text>
+                        seat: {_car["seat"]} gear: {_car["gear"]}
+                      </Card.Text>
+                      <Card.Text>วันเริ่ม: {new Date(request["dateFrom"]).toDateString()} วันสิ้นสุด: {new Date(request["dateTo"]).toDateString()}</Card.Text>
+                      <Card.Text>สถานที่รับรถ: ??? สถานที่ส่งรถ: ???</Card.Text>
+                      <Card.Text>Owner: {request["_owner"]["name"]}</Card.Text>
+                      <Card.Text>status: {request["status"]}</Card.Text>
+                    </Col>
+                  </Row>
 
                   {showedButton}
                 </Card.Body>
