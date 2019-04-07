@@ -81,11 +81,13 @@ class CarDetail extends Component {
     render() {
         let item = <Spinner />;
         let providerDisplay = null
+        /*
         if (this.props.user) {
             if (!this.props.user.isProvider) {
                 providerDisplay = <button className={classes.rent} onClick={this.rentHandler}>Rent</button>
             }
         }
+        */
         if (!this.state.loading && !this.state.error) {
             item = (
                 <><div className={classes.cardetailbackground}>
@@ -98,7 +100,6 @@ class CarDetail extends Component {
                             </Col>
                         </Row>
                         {this.state.rentClicked ? null : <div style={{ textAlign: 'left' }}>
-                            <a href="/"><button className={classes.back} >Back</button></a>
                             {providerDisplay}
                             
                         </div>}

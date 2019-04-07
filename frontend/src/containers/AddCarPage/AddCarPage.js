@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, Col, Row, Image, Dropdown } from "react-bootstrap";
 import axios from "axios";
 import FieldUploadFile from "../../components/FieldFileInput/FieldUploadFile";
+import classes from "./AddCarPage.module.css";
 class AddCarPage extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +18,7 @@ class AddCarPage extends Component {
       lnumber: "",
       availFrom: "",
       availTo: "",
+      location: "",
       description: "",
       deposit: "",
       validated: false,
@@ -40,6 +42,7 @@ class AddCarPage extends Component {
       LNumber: this.state.lnumber,
       availFrom: this.state.availFrom,
       availTo: this.state.availTo,
+      location: this.state.location,
       description: this.state.description,
       deposit: this.state.deposit,
       pricePerDay: this.state.pricePerDay,
@@ -69,7 +72,7 @@ class AddCarPage extends Component {
   render() {
     const { validated } = this.state;
     return (
-      <div className="wrapper">
+      <div className={classes.wrapper}>
         <p>{this.state.transmission}</p>
         <Form
           noValidate
@@ -127,15 +130,30 @@ class AddCarPage extends Component {
               </Form.Row>
 
               <Form.Row>
-                <Form.Group as={Col} controlId=" transmission">
-                  <Form.Label> Transmission</Form.Label>
+                <Form.Group as={Col} controlId="transmission">
+                  <Form.Label>Transmission</Form.Label>
                   <Form.Control as="select" onChange={this.handleChange}>
-                    <option value="">Select</option>
-                    <option>Manual</option>
-                    <option>Auto</option>
+                    <option>Select</option>
+                    <option value="manual">Manual</option>
+                    <option value="auto">Auto</option>
                   </Form.Control>
                 </Form.Group>
               </Form.Row>
+
+              {/* <Form.Row>
+                <Form.Group as={Col} controlId="pickupPlace">
+                <Form.Label>Pick Up Place</Form.Label>
+                  <div key={`default-${"checkbox"}`} className="mb-3">
+                    <Form.Check type={"checkbox"} id="Suwanabumi" label="555" />
+                  </div>
+                  <div key={`default-${"checkbox"}`} className="mb-3">
+                    <Form.Check type={"checkbox"} id="Suwanabumi" label="555" />
+                  </div>
+                  <div key={`default-${"checkbox"}`} className="mb-3">
+                    <Form.Check type={"checkbox"} id="Suwanabumi" label="555" />
+                  </div>
+                </Form.Group>
+              </Form.Row> */}
 
               <Form.Row>
                 <Form.Group as={Col} controlId="equipment">
@@ -191,6 +209,26 @@ class AddCarPage extends Component {
                     placeholder="Description"
                     onChange={this.handleChange}
                   />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col} controlId="location">
+                  <Form.Label>Location</Form.Label>
+                  <Form.Control as="select" onChange={this.handleChange}>
+                    <option>Select</option>
+                    <option value="Suvarnabhumi Airport">
+                      Suvarnabhumi Airport
+                    </option>
+                    <option value="Don Mueang Airport">
+                      Don Mueang Airport
+                    </option>
+                    <option value="BTS Morchit">BTS Morchit</option>
+                    <option value="BTS Siam">BTS Siam</option>
+                    <option value="BTS Asok">BTS Asok</option>
+                    <option value="BTS Onnut">BTS Onnut</option>
+                    <option value="BTS Bang Wa">BTS Bang Wa</option>
+                  </Form.Control>
                 </Form.Group>
               </Form.Row>
 

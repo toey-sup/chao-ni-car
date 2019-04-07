@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/rent';
 import "./Payment.css";
 
 class Payments extends Component {

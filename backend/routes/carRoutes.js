@@ -50,6 +50,7 @@ module.exports = app => {
       photo,
       availFrom,
       availTo,
+      location,
       description,
       pricePerDay,
       deposit
@@ -65,6 +66,7 @@ module.exports = app => {
       photo,
       availFrom,
       availTo,
+      location,
       description,
       pricePerDay,
       deposit,

@@ -16,9 +16,10 @@ import SelectRole from "./containers/RegisterPage/SelectRolePage";
 import RegisterRenter from "./containers/RegisterPage/RegisterRenterPage";
 import RegisterCarOwner from "./containers/RegisterPage/RegisterCarOwnerPage";
 import ManageBooking from "./containers/ManageBookingPage/ManageBooking";
+import ReservedPage from "./containers/ReservedPage/ReservedPage";
 
 import { connect } from "react-redux";
-import * as actions from "./store/actions/login";
+import * as actions from "./store/actions/";
 import { withRouter } from "react-router-dom";
 
 class App extends Component {
@@ -45,6 +46,7 @@ class App extends Component {
             <Route path="/regisrenter" component={RegisterRenter} />
             <Route path="/regiscarowner" component={RegisterCarOwner} />
             <Route path="/managebooking" component={ManageBooking} />
+            <Route path="/reserved" component={ReservedPage} />
           </Switch>
         </div>
       </div>
