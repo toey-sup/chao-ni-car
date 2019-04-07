@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Container, Button, Collapse } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import classes from "./CarManagePage.module.css";
-import QueryFilter from "../../components/QueryFilter/QueryFilter";
-import CarCards from "../../components/CarCard/CarCards";
 import axios from "axios";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import SubQueryFilter from "../../components/QueryFilter/SubQueryFilter/SubQueryFilter";
-import Banner from "../../images/Banner.png";
-import carCards from "../../components/CarCard/CarCards"
+import Carlist from "../../components/Ownercar/Carlist";
+import addcaricon from "../../images/addcar.png";
 class CarManage extends Component {
   state = {
     user: null,
@@ -16,34 +13,56 @@ class CarManage extends Component {
     loading: false,
     error: null,
     CARS: [],
-    cars: [], //fetch from server
-  }
-
-  componentDidMount() {
-    this.setState({ loading: true })
-    console.log(this.state);
-    const urltest = '/api/current_user'
-    const url = '/api/cars'
-    axios.get(url)
+    cars: [] //fetch from server
+  };
+  componentDidUpdate() {
+    const url = "/api/ownercars";
+    axios
+      .get(url)
       .then(res => {
-        console.log("OK")
+        console.log({ res });
         const cars = [...res.data];
         console.log(cars);
-        this.setState({ cars: [...cars], CARS: [...cars], error: false, loading: false })
+        this.setState({
+          cars: [...cars],
+          CARS: [...cars],
+          error: false,
+          loading: false
+        });
       })
       .catch(err => {
-        console.log('error')
-        this.setState({ loading: false, error: err })
+        console.log("error");
+        this.setState({ loading: false, error: err });
       });
   }
-
-
+  componentDidMount() {
+    this.setState({ loading: true });
+    console.log(this.state);
+    const url = "/api/ownercars";
+    axios
+      .get(url)
+      .then(res => {
+        console.log({ res });
+        const cars = [...res.data];
+        console.log(cars);
+        this.setState({
+          cars: [...cars],
+          CARS: [...cars],
+          error: false,
+          loading: false
+        });
+      })
+      .catch(err => {
+        console.log("error");
+        this.setState({ loading: false, error: err });
+      });
+  }
   render() {
-    let cards = <Spinner />;
+    let carlist = <Spinner />;
     if (!this.state.loading && !this.state.error) {
-      cards = <CarCards cars={this.state.cars} />;
+      carlist = <Carlist cars={this.state.cars} />;
     } else if (this.state.error) {
-      cards = (
+      carlist = (
         <div style={{ textAlign: "center" }}>
           <strong>{this.state.error.message}</strong>
         </div>
@@ -51,14 +70,38 @@ class CarManage extends Component {
     }
 
     return (
-      <>
-      <div className={classes.carmanagebackground}>
-          <Container>{cards}</Container>
-          <div>
-            
+      <div
+        className={classes.carmanagebackground}
+        style={{ overflow: "hidden" }}
+      >
+        <Container>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className={classes.titleName}>
+              <h3 style={{ color: "white" }}>Car List</h3>
+            </div>
           </div>
+          {carlist}
+        </Container>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "40px"
+          }}
+        >
+          <img
+            src={addcaricon}
+            style={{
+              width: "80px",
+              height: "80px",
+              cursor: "pointer",
+              marginBottom: "20px"
+            }}
+            onClick={() => (window.location = "addcar")}
+          />
+        </div>
       </div>
-      </>
     );
   }
 }

@@ -1,0 +1,93 @@
+.car {
+  border-radius: 20px;
+  background-color: #e9e9e9;
+  width: 70%;
+  height: 250px;
+  margin: 0 0 0 0;
+  box-shadow: 10px 10px 5px #222222;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "i i i t t t t b"
+    "i i i d d d d d"
+    "i i i d d d d d"
+    "i i i p p p p p";
+}
+
+.carimage {
+  grid-area: i;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagecar {
+  width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.price {
+  grid-area: p;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.price p {
+  font-weight: 600;
+  font-size: 30px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  color: rgb(227, 85, 0);
+}
+
+.icon {
+  grid-area: b;
+  display: flex;
+
+  width: 60px;
+  height: fit-content;
+  margin: 3px 10px 0px auto;
+  z-index: 1;
+}
+
+.cartext {
+  grid-area: t;
+}
+
+.des {
+  grid-area: d;
+}
+
+.head {
+  background-color: #adacac;
+  border-radius: 10px;
+  padding: 2px 9px 2px 9px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.head p {
+  margin: 0;
+}
+
+.rent {
+  position: absolute;
+  z-index: 1;
+  width: 7px;
+  height: 227px;
+  background-color: rgb(180, 35, 35);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.notrent {
+  position: absolute;
+  z-index: 1;
+  width: 7px;
+  height: 227px;
+  background-color: rgb(40, 182, 40);
+  color: #fff;
+  border-radius: 10px;
+}
