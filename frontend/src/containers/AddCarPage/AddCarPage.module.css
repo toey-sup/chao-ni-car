@@ -1,5 +1,7 @@
 .wrapper {
   width: 70%;
+  margin-top: 60px;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   padding: 20px 40px;
@@ -15,7 +17,10 @@
   }
   .addcarbackground{
     background-color: rgb(36,39,46);
-    height: 100%
+    position: absolute;
+    width: 100%;
+    height: auto;
+    
   }
   .uploadimgwrapper{
     margin-bottom: 30px;

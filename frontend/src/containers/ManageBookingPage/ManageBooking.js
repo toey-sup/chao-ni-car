@@ -122,9 +122,10 @@ class ManageBooking extends Component {
               isPickingUpDisabled = true;
             }
 
-            let showedButton = null;
+            let showedCancleButton = null;
+            let showedPickButton = null;
             if (status !== "Completed") {
-              showedButton = (
+              showedCancleButton = (
                 <div>
                   <Button
                     variant="danger"
@@ -134,9 +135,13 @@ class ManageBooking extends Component {
                     {this.state.isDeleting ? (
                       <DotSpinner />
                     ) : (
-                      <span>Cancel Reservation</span>
+                      <span>Cancel</span>
                     )}
                   </Button>
+                </div>
+              );
+              showedPickButton = (
+                <div>
                   <Button
                     variant="warning"
                     onClick={() => this.updateRequestHandler(request["_id"])}
@@ -145,7 +150,7 @@ class ManageBooking extends Component {
                     {this.state.isPickingUp ? (
                       <DotSpinner />
                     ) : (
-                      <span>I pick up a car already!</span>
+                      <span>pick up already!</span>
                     )}
                   </Button>
                 </div>
@@ -153,31 +158,32 @@ class ManageBooking extends Component {
             }
 
             return (
-              <Card>
-                <Card.Header as="h5">Request ID: {request["_id"]}</Card.Header>
+              <div>
+                <Card.Header as="h5" className = "detail">Request ID: {request["_id"]}</Card.Header>
                 <Card.Body>
-                  <Card.Title>
-                    {_car["brand"]} {_car["type"]}
-                  </Card.Title>
 
                   <Row>
-                    <Col>
+                    <Col xs={6} md={4}>
                       <Card.Img src={_car["photo"]} />
                     </Col>
-                    <Col>
-                      <Card.Text>
-                        seat: {_car["seat"]} gear: {_car["gear"]}
-                      </Card.Text>
-                      <Card.Text>วันเริ่ม: {new Date(request["dateFrom"]).toDateString()} วันสิ้นสุด: {new Date(request["dateTo"]).toDateString()}</Card.Text>
-                      <Card.Text>สถานที่รับรถ: ??? สถานที่ส่งรถ: ???</Card.Text>
-                      <Card.Text>Owner: {request["_owner"]["name"]}</Card.Text>
-                      <Card.Text>status: {request["status"]}</Card.Text>
+                    <Col xs={6} md={4}>
+                    {_car["brand"]} {_car["type"]}
+                    <div className = "detail">
+                      <p>วันเริ่ม: {new Date(request["dateFrom"]).toDateString()} วันสิ้นสุด: {new Date(request["dateTo"]).toDateString()}<br></br>
+                         สถานที่รับรถ: ??? สถานที่ส่งรถ: ???<br></br>
+                         Owner: {request["_owner"]["name"]}<br></br>
+                         status: {request["status"]}
+                      </p>
+                      </div>
                     </Col>
+                  <Col>
+                     {showedPickButton}
+                     {showedCancleButton}
+                    
+                  </Col>
                   </Row>
-
-                  {showedButton}
                 </Card.Body>
-              </Card>
+              </div>
             );
           });
           break;
@@ -194,7 +200,6 @@ class ManageBooking extends Component {
           <div className="managetitle">ManageBooking</div>
           {/* <Booking /> */}
           {reservations}
-
           <div className="btnwrapper">
             <a href="/">
               <button className="backbtn">BACK</button>
