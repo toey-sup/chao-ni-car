@@ -74,40 +74,41 @@ class ManageBooking extends Component {
               isCompletedButtonDisabled = true;
             }
             return (
-              <Card>
-                <Card.Header as="h5">Request ID: {request["_id"]}</Card.Header>
-                <Card.Body>
-                  <Card.Title>
-                    {_car["brand"]} {_car["type"]}
-                  </Card.Title>
+              <div>
+              <Card.Header as="h5" className = "detail">Request ID: {request["_id"]}</Card.Header>
+              <Card.Body>
 
-                  <Row>
-                    <Col>
-                      <Card.Img src={_car["photo"]} />
-                    </Col>
-                    <Col>
-                      <Card.Text>
-                        seat: {_car["seat"]} gear: {_car["gear"]}
-                      </Card.Text>
-                      <Card.Text>วันเริ่ม: {new Date(request["dateFrom"]).toDateString()} วันสิ้นสุด: {new Date(request["dateTo"]).toDateString()}</Card.Text>
-                      <Card.Text>สถานที่รับรถ: ??? สถานที่ส่งรถ: ???</Card.Text>
-                      <Card.Text>Renter: {request["_renter"]["name"]}</Card.Text>
-                      <Card.Text>status: {request["status"]}</Card.Text>
-                    </Col>
-                  </Row>
-                  <Button
-                    variant="success"
-                    onClick={() => this.completeTaskHandler(request["_id"])}
-                    disabled={this.state.isDisabled | isCompletedButtonDisabled}
-                  >
-                    {this.state.isCompleting ? (
-                      <DotSpinner />
-                    ) : (
-                      <span>Complete Task</span>
-                    )}
-                  </Button>
-                </Card.Body>
-              </Card>
+                <Row>
+                  <Col xs={6} md={4}>
+                    <Card.Img src={_car["photo"]} />
+                  </Col>
+                  <Col xs={6} md={4}>
+                  {_car["brand"]} {_car["type"]}
+                  <div className = "detail">
+                    <p>วันเริ่ม: {new Date(request["dateFrom"]).toDateString()} วันสิ้นสุด: {new Date(request["dateTo"]).toDateString()}<br></br>
+                       สถานที่รับรถ: ??? สถานที่ส่งรถ: ???<br></br>
+                       Owner: {request["_owner"]["name"]}<br></br>
+                       status: {request["status"]}
+                    </p>
+                    </div>
+                  </Col>
+                <Col>
+                <button
+                  className = "pickup"
+                  onClick={() => this.completeTaskHandler(request["_id"])}
+                  disabled={this.state.isDisabled | isCompletedButtonDisabled}
+                >
+                  {this.state.isCompleting ? (
+                    <DotSpinner />
+                  ) : (
+                    <span>Complete Task</span>
+                  )}
+                </button>
+                  
+                </Col>
+                </Row>
+              </Card.Body>
+              </div>
             );
           });
           break;
