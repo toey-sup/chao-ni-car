@@ -69,8 +69,12 @@ const carDetailMiddle = props => {
         <Col>: {props.payload.pricePerDay}</Col>
       </Row>
       <Row>
-        <Col xs="3">DEPOSIT :</Col>
+        <Col xs="3">DEPOSIT </Col>
         <Col>: {props.payload.deposit}</Col>
+      </Row>
+      <Row>
+        <Col xs="3">Location </Col>
+        <Col>: {props.payload.location}</Col>
       </Row>
       <Row>
         <Col xs="3">AVAILABLE FROM </Col>
