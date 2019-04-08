@@ -200,11 +200,6 @@ class ManageBooking extends Component {
           <div className="managetitle">ManageBooking</div>
           {/* <Booking /> */}
           {reservations}
-          <div className="btnwrapper">
-            <a href="/">
-              <button className="backbtn">BACK</button>
-            </a>
-          </div>
         </div>
       </div>
     );
