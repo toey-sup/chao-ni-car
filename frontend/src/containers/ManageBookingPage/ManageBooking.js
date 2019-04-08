@@ -126,9 +126,9 @@ class ManageBooking extends Component {
             let showedPickButton = null;
             if (status !== "Completed") {
               showedCancleButton = (
-                <div>
-                  <Button
-                    variant="danger"
+                <div className = "managebtnwrapper">
+                  <button
+                    className = "cancle"
                     onClick={() => this.cancelRequestHandler(request["_id"])}
                     disabled={this.state.isDisabled | isCancelDisabled}
                   >
@@ -137,22 +137,22 @@ class ManageBooking extends Component {
                     ) : (
                       <span>Cancel</span>
                     )}
-                  </Button>
+                  </button>
                 </div>
               );
               showedPickButton = (
-                <div>
-                  <Button
-                    variant="warning"
+                <div className = "managebtnwrapper">
+                  <button
+                    className = "pickup"
                     onClick={() => this.updateRequestHandler(request["_id"])}
                     disabled={this.state.isDisabled | isPickingUpDisabled}
                   >
                     {this.state.isPickingUp ? (
                       <DotSpinner />
                     ) : (
-                      <span>pick up already!</span>
+                      <span>pick up</span>
                     )}
-                  </Button>
+                  </button>
                 </div>
               );
             }
