@@ -7,7 +7,7 @@ class HowToUsePage extends Component {
     <div className = "howtobackground">
       <div style={{ paddingTop: "20px" }}>
         <div>
-          <h1 align="center">How to use CAO-NI-CAR system?</h1>
+          <h1 align="center">HOW TO USE CAO-NI-CAR ?</h1>
         </div>
 
         <hr class="my-4" />

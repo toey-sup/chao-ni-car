@@ -96,7 +96,12 @@
 }
 
 .cancle:hover{
-  background-color: #db0000;
+  background-color: #ff8800;
+}
+
+.cancle:disabled{
+  background-color: #b10000;
+  color: #cccccc
 }
 
 .pickup{
@@ -122,4 +127,9 @@
 .pickup:hover{
   background-color: rgb(213, 247, 22);
   color:black
+}
+
+.pickup:disabled{
+  background-color: rgb(0, 153, 51);
+  color:  #cccccc
 }
