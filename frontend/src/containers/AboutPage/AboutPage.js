@@ -44,18 +44,19 @@ class AboutPage extends Component {
                         </Col>
                     </Row>
                     <Row>
+                    <Col>
+                            <Profile name = "Sahapol Tongsom" 
+                            role = "PROJECT COORDINATOR" 
+                            back_profile = {back_profile5}
+                            img_profile = {img_profile5}/>
+                        </Col>
                         <Col>
                             <Profile name = "Nuttapon Vittayaprechapon" 
                             role = "BACKEND DEVELOPER"
                              back_profile = {back_profile4}
                              img_profile = {img_profile4}/>
                         </Col>
-                        <Col>
-                            <Profile name = "Sahapol Tongsom" 
-                            role = "PROJECT COORDINATOR" 
-                            back_profile = {back_profile5}
-                            img_profile = {img_profile5}/>
-                        </Col>
+
                         <Col>
                             <Profile name = "Ravipas Plitnonkiat" 
                             role = "FRONTEND DEVELOPER" 
