@@ -8,6 +8,8 @@ module.exports = app => {
     const {
       name,
       surname,
+      username,
+      password,
       email,
       idCardNum,
       DLicenseNumber,
@@ -16,7 +18,7 @@ module.exports = app => {
     } = req.body;
     User.register(
       new User({
-        username: req.body.username,
+        username,
         name,
         surname,
         email,
@@ -25,7 +27,7 @@ module.exports = app => {
         tel,
         isProvider
       }),
-      req.body.password,
+      password,
       (err, user) => {
         if (err) {
           console.log(err);
@@ -66,27 +68,4 @@ module.exports = app => {
     // get current user
     res.send(req.user);
   });
-
-  // app.post("/api/authentication", requireLogin, async (req, res) => {
-  //   const { tel, idCardNum, DLicenseNumber, isAuthenticated } = req.body;
-  //   console.log(tel, idCardNum, DLicenseNumber, isAuthenticated);
-  //   const user = await User.findByIdAndUpdate(
-  //     req.user["_id"],
-  //     {
-  //       $set: {
-  //         tel,
-  //         idCardNum,
-  //         DLicenseNumber,
-  //         isAuthenticated
-  //       }
-  //     },
-  //     (err, result) => {
-  //       if (err) {
-  //         console.log(err);
-  //       }
-  //     }
-  //   );
-  //   console.log(user);
-  //   res.send(user);
-  // });
 };

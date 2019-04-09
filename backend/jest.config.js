@@ -1,5 +1,5 @@
 module.exports = {
-    roots: ['<rootDir>/routes'],
+    roots: ['<rootDir>/test'],
     moduleFileExtensions: ['js', 'jsx', 'json', 'node'],
   };
   
