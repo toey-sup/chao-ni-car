@@ -12,8 +12,7 @@ module.exports = app => {
       idCardNum,
       DLicenseNumber,
       tel,
-      isProvider,
-      isAuthenticated
+      isProvider
     } = req.body;
     User.register(
       new User({
@@ -24,8 +23,7 @@ module.exports = app => {
         idCardNum,
         DLicenseNumber,
         tel,
-        isProvider,
-        isAuthenticated
+        isProvider
       }),
       req.body.password,
       (err, user) => {
