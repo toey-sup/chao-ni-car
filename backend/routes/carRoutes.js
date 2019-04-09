@@ -50,6 +50,7 @@ module.exports = app => {
       photo,
       availFrom,
       availTo,
+      location,
       description,
       pricePerDay,
       deposit
@@ -65,6 +66,7 @@ module.exports = app => {
       photo,
       availFrom,
       availTo,
+      location,
       description,
       pricePerDay,
       deposit,
@@ -75,9 +77,15 @@ module.exports = app => {
   });
   app.get("/api/cars/:id", async (req, res) => {
     // ใช้สำหรับดูรถแต่ละคันได้ โดยใช้ key เป็น id
-    const car = await Car.findById(req.params.id);
+    const car = await Car.findById(req.params.id).populate('_owner');
+    console.log(car)
     res.send(car);
   });
+  app.get("/api/ownercars", async (req, res) => {
+    // ใช้สำหรับจัดการรถของเจ้าของรถ
+    const car = await Car.find({_owner: req.user["_id"]});
+    res.send(car);
+  })
   app.delete("/api/cars/:id", requireLogin, async (req, res) => {
     // ใช้สำหรับลบรถ
     Car.findByIdAndRemove(req.params.id, (err, blog) => {

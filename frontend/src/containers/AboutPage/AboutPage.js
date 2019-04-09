@@ -8,6 +8,12 @@ import back_profile3 from "../../images/back_profile3.jpeg"
 import back_profile4 from "../../images/back_profile4.jpeg"
 import back_profile5 from "../../images/back_profile5.jpg"
 import back_profile6 from "../../images/back_profile6.jpg"
+import img_profile1 from "../../images/Kitipat.jpg"
+import img_profile2 from "../../images/Satasuk.jpg"
+import img_profile3 from "../../images/Supanut.jpg"
+import img_profile4 from "../../images/Nuttapon.jpg"
+import img_profile5 from "../../images/Sahapol.jpg"
+import img_profile6 from "../../images/Ravispas.jpg"
 
 class AboutPage extends Component {
     render() {
@@ -19,24 +25,43 @@ class AboutPage extends Component {
                     </Row>
                     <Row style={{paddingBottom: 20}}>
                         <Col>
-                             <Profile name = "Kitipat Teachasupinun" role = "UI Developer / front-end developer" back_profile = {back_profile1}/>
+                             <Profile name = "Kitipat Teachasupinun" 
+                             role = "UI Developer / front-end developer" 
+                             back_profile = {back_profile1} 
+                             img_profile = {img_profile1}/>
                         </Col>
                         <Col>
-                             <Profile name = "Satasuk Viparksinlapin" role = "PROJECT MANAGER" back_profile = {back_profile2}/>
+                             <Profile name = "Satasuk Viparksinlapin" 
+                             role = "PROJECT MANAGER" 
+                             back_profile = {back_profile2}
+                             img_profile = {img_profile2}/>
                         </Col>
                         <Col>
-                             <Profile name = "Supanat Wongwiwatchai" role = "PROJECT COORDINATOR" back_profile = {back_profile3}/>
+                             <Profile name = "Supanat Wongwiwatchai"
+                              role = "PROJECT COORDINATOR" 
+                             back_profile = {back_profile3}
+                             img_profile = {img_profile3}/>
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
-                            <Profile name = "Nuttapon Vittayaprechapon" role = "BACKEND DEVELOPER" back_profile = {back_profile4}/>
+                    <Col>
+                            <Profile name = "Sahapol Tongsom" 
+                            role = "PROJECT COORDINATOR" 
+                            back_profile = {back_profile5}
+                            img_profile = {img_profile5}/>
                         </Col>
                         <Col>
-                            <Profile name = "Sahapol Tongsom" role = "PROJECT COORDINATOR" back_profile = {back_profile5}/>
+                            <Profile name = "Nuttapon Vittayaprechapon" 
+                            role = "BACKEND DEVELOPER"
+                             back_profile = {back_profile4}
+                             img_profile = {img_profile4}/>
                         </Col>
+
                         <Col>
-                            <Profile name = "Ravipas Plitnonkiat" role = "FRONTEND DEVELOPER" back_profile = {back_profile6}/>
+                            <Profile name = "Ravipas Plitnonkiat" 
+                            role = "FRONTEND DEVELOPER" 
+                            back_profile = {back_profile6}
+                            img_profile = {img_profile6}/>
                         </Col>
                     </Row>
                 </Container>

@@ -41,6 +41,7 @@ const carCards = (props) => {
     let cars = <strong>Nothing Found</strong>
     if (props.cars.length > 0) {
         cars = props.cars.map((item, index) => { //Delete index after 
+            if(item.isRented) return null;
             return <Col key={item.id + String(index)} xs={12} sm={5} md={4} lg={3}><CarCard id={item._id} brand={item.brand} type={item.type} description={item.description} picture={item.photo} /></Col>
         })
     }

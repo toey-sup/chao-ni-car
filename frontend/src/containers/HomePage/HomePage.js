@@ -8,19 +8,25 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import SubQueryFilter from "../../components/QueryFilter/SubQueryFilter/SubQueryFilter";
 import Banner from "../../images/Banner.png";
 class HomePage extends Component {
-  state = {
-    fromDate: null,
-    toDate: null,
-    loading: false,
-    error: null,
-    CARS: [],
-    cars: [], //fetch from server
-    //====SubQuery======
-    fromLoc: "",
-    toLoc: "",
-    gear: "",
-    seat: 0
-  };
+  constructor() {
+    super();
+    this.state = {
+      fromDate: null,
+      toDate: null,
+      loading: false,
+      error: null,
+      CARS: [],
+      cars: [], //fetch from server
+      //====SubQuery======
+      fromLoc: "",
+      toLoc: "",
+      gear: "",
+      seat: 0,
+      scroll: false
+    };
+    this.buttonHandler = this.buttonHandler.bind(this);
+    this.myDivToFocus = React.createRef();
+  }
 
   componentDidMount() {
     this.setState({ loading: true });
@@ -62,19 +68,20 @@ class HomePage extends Component {
 
   filterItem = () => {
     const updatedCars = this.state.CARS.filter(element => {
+      console.log(element);
       if (!this.state.gear == "") {
         return element.gear.includes(this.state.gear);
       }
       if (!this.state.seat == 0) {
         return element.seat >= this.state.seat;
       }
-      if (!this.state.fromLoc == "") {
+      if (element.location&&!this.state.fromLoc == "") {
         //return element.isRented
-        return element.fromLoc.includes(this.state.fromLoc);
+        return element.location.includes(this.state.fromLoc);
       }
-      if (!this.state.toLoc == "") {
-        return element.toLoc.includes(this.state.toLoc);
-      }
+      // if (!this.state.toLoc == "") {
+      //   return element.toLoc.includes(this.state.toLoc);
+      // }
 
       return true;
     });
@@ -91,8 +98,13 @@ class HomePage extends Component {
     this.setState(newState, () => this.searchHandler()); //make search after set the state
   };
 
-  buttonHandler(){
-    
+  buttonHandler() {
+    if (this.myDivToFocus.current) {
+      this.myDivToFocus.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
   }
 
   searchHandler() {
@@ -135,19 +147,21 @@ class HomePage extends Component {
         </div>
       );
     }
-    
+
     return (
       <>
         <div className={classes.Banner}>
-          <div className={centerClass.join(' ')}>
+          <div className={centerClass.join(" ")}>
             <h1 className={classes.texteffect}>RENTAL CAR SERVICE</h1>
             <img style={{ width: "60%", paddingTop: "0" }} src={Banner} />
             <div>
-              <button className={classes.button}>EXPLORE</button>
+              <button className={classes.button} onClick={this.buttonHandler}>
+                EXPLORE
+              </button>
             </div>
           </div>
         </div>
-        <div className={classes.sec2}>
+        <div className={classes.sec2} ref={this.myDivToFocus}>
           <div className={classes.center}>
             <h2>SEARCH</h2>
             <div className={classes.Filter} style={{ textAlign: "center" }}>

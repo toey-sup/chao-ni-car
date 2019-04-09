@@ -11,12 +11,14 @@ import thunk from 'redux-thunk';
 
 import loginReducer from './store/reducers/login';
 import rentReducer from './store/reducers/rent';
+import requestReducer from './store/reducers/request';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   login: loginReducer,
-  rent: rentReducer
+  rent: rentReducer,
+  request: requestReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

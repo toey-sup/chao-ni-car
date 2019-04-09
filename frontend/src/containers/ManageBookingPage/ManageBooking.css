@@ -1,17 +1,22 @@
 .bookingbackground{
     background-color: rgb(36,39,46);
-    height: 800px;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    position: absolute;
   }
   .manageContainer{
     margin-left: auto;
     margin-right: auto;
-    transform: translate(0, 15%) ;
+    margin-top: 60px;
+    margin-bottom: 60px;
     width: 750px;
-    height: 423px;
+    min-height: 100%;
+    height: auto;
     background: #FFFFFF;
     box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
     border-radius: 6px;
-    color: wheat;
+    color: black;
   }
   .managetitle {
     text-align: center;
@@ -52,3 +57,69 @@
   .btnwrapper{
     text-align: center;
   }
+
+  .detail {
+    background-color: white;
+    padding: 12px 12px;
+    font-size: 12px; 
+    line-height: normal;
+    color: #727272;
+    margin: 0;
+    
+}
+
+.line{
+  border-bottom:  1.5px solid #eee;
+  
+}
+
+
+
+.cancle{
+  background-color:rgb(255, 0, 55);
+  border: none;
+  color: white;
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 10px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.cancle:hover{
+  background-color: #db0000;
+}
+
+.pickup{
+  background-color:rgb(1, 199, 67);
+  border: none;
+  color: white;
+  padding: 10px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 10px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.pickup:hover{
+  background-color: rgb(213, 247, 22);
+  color:black
+}

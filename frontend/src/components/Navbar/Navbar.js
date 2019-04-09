@@ -79,12 +79,20 @@ class NavbarComponent extends Component {
             <p
               style={{
                 marginTop: 17,
-                color: "rgba(255, 255, 255, .5)",
+                color: "rgba(255,204,0,1)",
                 marginRight: 7
               }}
             >
               {this.props.user.name}
             </p>
+            {this.props.user.isProvider ? (
+              <Nav>
+                <NavLink className={classes.NavLink} to="/carmanage">
+                  Car management
+                </NavLink>
+              </Nav>
+            ) : null}
+
             <Nav>
               <NavLink className={classes.NavLink} to="/managebooking">
                 Manage Booking

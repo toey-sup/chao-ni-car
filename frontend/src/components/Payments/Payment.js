@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/login';
 import "./Payment.css";
 
 class Payments extends Component {
@@ -10,9 +9,10 @@ class Payments extends Component {
     return (
       <StripeCheckout
         name="Cao-Ni-Car"
+        currency="THB"
         description={this.props.price + " Baht"}
-        amount={this.props.price*100/34}
-        token={token => this.props.handleToken(token, this.props.requestID)}
+        amount={this.props.price * 100}
+        token={token => this.props.handleToken(token)}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
         <button className="paybtn">
@@ -23,11 +23,4 @@ class Payments extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.login.user,
-    rent: state.rent
-  }
-};
-
-export default connect(mapStateToProps)(connect(null, actions)(Payments));
+export default Payments;

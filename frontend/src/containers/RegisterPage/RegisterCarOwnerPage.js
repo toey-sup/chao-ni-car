@@ -108,19 +108,7 @@ class RegisterCarOwnerPage extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let data={}
-    if(this.state.chosen === true){
-    data = {
-      name: this.state.name,
-      surname: this.state.surname,
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password,
-      idCardNum: this.state.id,
-      tel: this.state.tel,
-      isAuthenticated: true
-    };
-  }
-  else{
+
      data = {
       name: this.state.name,
       surname: this.state.surname,
@@ -133,7 +121,7 @@ class RegisterCarOwnerPage extends Component {
       isAuthenticated: true,
       isProvider: true
     };
-  }
+  
     axios
       .post("/auth/local", data)
       .then(res => {
@@ -150,7 +138,7 @@ class RegisterCarOwnerPage extends Component {
     return(
         <div className= "wrapper">
         <div className="form-wrapper">
-          <h1>Create Account</h1>
+          <h1>Create Car Owner Account</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="name">
               <label htmlFor="name">First Name</label>
@@ -229,7 +217,7 @@ class RegisterCarOwnerPage extends Component {
                   formErrors.confirmpassword.length > 0 ? "error" : null
                 }
                 placeholder="Confirm Password"
-                type="text"
+                type="password"
                 name="confirmpassword"
                 noValidate
                 onChange={this.handleChange}
@@ -244,9 +232,23 @@ class RegisterCarOwnerPage extends Component {
               <label htmlFor="id">ID Number</label>
               <input
                 className={formErrors.id.length > 0 ? "error" : null}
-                placeholder="First Name"
+                placeholder="ID Number"
                 type="text"
                 name="id"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.id.length > 0 && (
+                <span className="errorMessage">{formErrors.id}</span>
+              )}
+            </div>
+            <div className="drivingnumber">
+              <label htmlFor="drivingnumber">Driving number</label>
+              <input
+                className={formErrors.id.length > 0 ? "error" : null}
+                placeholder="Driving number"
+                type="text"
+                name="drivingnumber"
                 noValidate
                 onChange={this.handleChange}
               />

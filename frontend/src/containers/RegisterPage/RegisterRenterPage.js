@@ -108,7 +108,6 @@ class RegisterRenterPage extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let data={}
-    if(this.state.chosen === true){
     data = {
       name: this.state.name,
       surname: this.state.surname,
@@ -119,21 +118,6 @@ class RegisterRenterPage extends Component {
       tel: this.state.tel,
       isAuthenticated: true
     };
-  }
-  else{
-     data = {
-      name: this.state.name,
-      surname: this.state.surname,
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password,
-      idCardNum: this.state.id,
-      DLicenseNumber: this.state.drivingnumber,
-      tel: this.state.tel,
-      isAuthenticated: true,
-      isProvider: true
-    };
-  }
     axios
       .post("/auth/local", data)
       .then(res => {
@@ -150,7 +134,7 @@ class RegisterRenterPage extends Component {
     return(
       <div className = "wrapper">
         <div className="form-wrapper">
-          <h1>Create Account</h1>
+          <h1>Create Renter Account</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="name">
               <label htmlFor="name">First Name</label>
@@ -229,7 +213,7 @@ class RegisterRenterPage extends Component {
                   formErrors.confirmpassword.length > 0 ? "error" : null
                 }
                 placeholder="Confirm Password"
-                type="text"
+                type="password"
                 name="confirmpassword"
                 noValidate
                 onChange={this.handleChange}
@@ -244,7 +228,7 @@ class RegisterRenterPage extends Component {
               <label htmlFor="id">ID Number</label>
               <input
                 className={formErrors.id.length > 0 ? "error" : null}
-                placeholder="First Name"
+                placeholder="ID Number"
                 type="text"
                 name="id"
                 noValidate

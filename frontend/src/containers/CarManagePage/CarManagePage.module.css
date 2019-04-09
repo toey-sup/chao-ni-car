@@ -1,49 +1,54 @@
-.red {
-    color: red;
-  }
-  .Banner{
-    text-align: center;
-    margin-top: 20px auto;
-  }
-  .Div {
-    width: 95%;
-    margin: 10px auto;
-    /*Center Items*/
-    margin-bottom: 50px;
-    padding: 10px;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    border-radius: 12px;
-  }
-  
-  .Filter {
-    width: 60%;
-    margin: 20px auto;
-    /*Center Items*/
-    padding: 15px;
-    border: 1px solid #eee;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 2px 3px #ccc;
-    border-radius: 12px;
-  }
-  
+.carmanagebackground {
+  background-color: rgb(36, 39, 46);
+  min-height: 91vh;
+}
+.titleName {
+  margin-top: 20px;
+
+  padding-left: 10px;
+  width: 70%;
+  height: 40px;
+  background-color: rgb(227, 85, 0);
+  border-radius: 8px;
+}
+
+.Div {
+  width: 95%;
+  margin: 10px auto;
+  /*Center Items*/
+  margin-bottom: 50px;
+  padding: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  border-radius: 12px;
+}
+s .Filter {
+  width: 60%;
+  margin: 20px auto;
+  /*Center Items*/
+  padding: 15px;
+  border: 1px solid #eee;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 2px 3px #ccc;
+  border-radius: 12px;
+}
+
+.Backgroundimg {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+@media (min-width: 200px) and (min-height: 400px) {
   .Backgroundimg {
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
+    padding: 10px 10%;
   }
-  
-  @media (min-width: 200px) and (min-height: 400px) {
-    .Backgroundimg {
-      padding: 10px 10%;
-    }
+}
+
+@media (min-width: 600px) and (min-height: 400px) {
+  .Backgroundimg {
+    padding: 120px 120px;
   }
-  
-  @media (min-width: 600px) and (min-height: 400px) {
-    .Backgroundimg {
-      padding: 120px 120px;
-    }
-  }
-  
+}

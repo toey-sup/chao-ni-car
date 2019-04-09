@@ -31,7 +31,7 @@ class SelectRolePage extends Component {
                   </p>
                   
                 </div>
-                <a href = "regiscarowner"> <div class="Select">SELECT</div></a>
+                <a href = "regisrenter"> <div class="Select">SELECT</div></a>
               </div>
               
             </div>
@@ -55,7 +55,7 @@ class SelectRolePage extends Component {
                   </p>
                   
                 </div>
-                <a href = "/regisrenter"> <div class="Select">SELECT</div></a>
+                <a href = "/regiscarowner"> <div class="Select">SELECT</div></a>
               </div>
               
             </div>
