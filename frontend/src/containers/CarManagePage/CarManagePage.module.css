@@ -2,16 +2,28 @@
   background-color: rgb(36, 39, 46);
   min-height: 91vh;
 }
-.titleName {
-  margin-top: 20px;
-
-  padding-left: 10px;
-  width: 70%;
-  height: 40px;
-  background-color: rgb(227, 85, 0);
-  border-radius: 8px;
+.carmanagecontainer{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  width: 750px;
+  min-height: 100%;
+  height: auto;
+  background: #FFFFFF;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 6px;
+  color: black;
 }
-
+.titleName {
+  text-align: center;
+  height: 60px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
+}
 .Div {
   width: 95%;
   margin: 10px auto;
