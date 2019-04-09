@@ -1,22 +1,21 @@
-
 import React, { Component } from "react";
-import {
-  Form,
-  FormGroup,
-  Button,
-  FormLabel,
-  Row,
-  Col
-} from "react-bootstrap";
-import DatePicker from "react-datepicker";
+import { Form, FormGroup, Button, FormLabel, Row, Col } from "react-bootstrap";
 import "react-datepicker/dist/react-datepicker.css";
 import "./QueryFilter.css";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+
+import { DateRangePicker } from "react-dates";
 
 class QueryFilter extends Component {
-  state = {
-    fromDate: null,
-    toDate: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      fromDate: null,
+      toDate: null,
+      focusedInput: null
+    };
+  }
 
   onChangeHandler(e, state) {
     const oldState = { ...this.state };
@@ -32,29 +31,23 @@ class QueryFilter extends Component {
 
   render() {
     return (
-      <Form className = "textcolor">
+      <Form className="textcolor">
         <FormGroup controlId={this.props.controlId}>
-          <FormLabel>
-            
-          </FormLabel>
-          <Row>
-            <Col sm={6}>
-              From Date:{" "}
-              <DatePicker
-                selected={this.state.fromDate}
-                onChange={date => this.dateChangeHandler(date, "fromDate")}
-                isClearable
-              />
-            </Col>
-            <Col sm={6}>
-              To Date:{" "}
-              <DatePicker
-                selected={this.state.toDate}
-                onChange={date => this.dateChangeHandler(date, "toDate")}
-                isClearable
-              />
-            </Col>
-          </Row>
+          <div>
+            <DateRangePicker
+              startDateId="startDate"
+              endDateId="endDate"
+              startDate={this.state.fromDate}
+              endDate={this.state.toDate}
+              onDatesChange={({ startDate, endDate }) => {
+                this.setState({ fromDate: startDate, toDate: endDate });
+              }}
+              focusedInput={this.state.focusedInput}
+              onFocusChange={focusedInput => {
+                this.setState({ focusedInput });
+              }}
+            />
+          </div>
         </FormGroup>
         <Button
           onClick={() => this.props.change(this.state)}

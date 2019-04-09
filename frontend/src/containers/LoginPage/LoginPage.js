@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Userimg from "../../images/user.png";
-import "../LoginPage/LoginPage.css"
+import "../LoginPage/LoginPage.css";
 class LoginPage extends Component {
   state = {
     username: "",
@@ -41,32 +41,48 @@ class LoginPage extends Component {
   render() {
     const { validated } = this.state;
     return (
-    <div className ="loginbackground">
-      <div class="wrapper fadeInDown">
-  <div id="formContent">
- 
-    <h4 class="active"> LOG IN </h4>
+      <div className="loginbackground">
+        <div class="wrapper fadeInDown">
+          <div id="formContent">
+            <h4 class="active"> LOG IN </h4>
 
+            <div class="fadeIn first">
+              <img src={Userimg} />
+            </div>
 
-    <div class="fadeIn first">
-      <img src={Userimg} />
-    </div>
+            <form>
+              <input
+                type="text"
+                id="username"
+                class="fadeIn second"
+                name="login"
+                placeholder="login"
+                onChange={this.handleChange}
+              />
+              <input
+                type="password"
+                id="password"
+                class="fadeIn third"
+                name="password"
+                placeholder="password"
+                onChange={this.handleChange}
+              />
+              <input
+                type="submit"
+                class="fadeIn fourth"
+                value="Log In"
+                onClick={this.loginHandler}
+              />
+            </form>
 
-
-    <form>
-      <input  type="text" id="username" class="fadeIn second" name="login" placeholder="login" onChange={this.handleChange}/>
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" onChange={this.handleChange}/>
-      <input type="submit" class="fadeIn fourth" value="Log In" onClick={this.loginHandler}/>
-    </form>
-
-
-    <div id="formFooter">
-    <a class="inactive underlineHover" href = "/regis">Sign Up </a>
-    </div>
-
-  </div>
-</div>
-</div>
+            <div id="formFooter">
+              <a class="inactive underlineHover" href="/regis">
+                Sign Up{" "}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

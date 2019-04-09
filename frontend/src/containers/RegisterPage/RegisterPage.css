@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(36,39,46);
+  background-color: rgb(36, 39, 46);
 }
 .buttonwrapper {
   margin: 10px auto;
@@ -50,7 +50,7 @@ label {
   font-weight: lighter;
 }
 
-input {
+.form-wrapper input {
   padding: 10px 10px;
   border-radius: 5px;
   outline: none;
@@ -102,12 +102,12 @@ input {
   flex-direction: column;
   align-items: center;
 }
-.center{
+.center {
   text-align: center;
 }
 
 .createAccount button {
-  background-color:orangered;
+  background-color: orangered;
   border: none;
   color: white;
   padding: 15px 80px;
