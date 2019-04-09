@@ -86,7 +86,7 @@ class LoginPage extends Component {
                 style={this.state.failed? {border: "2px solid red"}:{}}
                 onChange={this.handleChange}
               />
-                   <div className = "invalidtext">
+            <div className = "invalidtext">
               {loginFailed}
             </div>
               <input
