@@ -11,6 +11,7 @@ class SubQueryFilter extends Component {
     }
 
     onChangeHandler(e, state) {
+       
         const oldState = { ...this.state }
         oldState[state] = e.target.value;
         this.setState(oldState);
@@ -60,7 +61,7 @@ class SubQueryFilter extends Component {
                                                 placeholder="Enter location"
                                                 onChange={(e) => this.onChangeHandler(e, 'fromLoc')}
                                             /> */}
-                                            <Form.Control as="select" value={this.state.fromLoc} onChange={(e) => this.onChangeHandlerNumber(e, 'fromLoc')}>
+                                            <Form.Control as="select" value={this.state.fromLoc} onChange={(e) => this.onChangeHandler(e, 'fromLoc')}>
                                                 <option value="">All</option>
                                                 <option value='Suvarnabhumi Airport'>Suvarnabhumi Airport</option>
                                                 <option value='Don Mueang Airport'>Don Mueang Airport</option>
