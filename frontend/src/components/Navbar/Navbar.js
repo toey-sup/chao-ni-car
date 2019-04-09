@@ -88,14 +88,14 @@ class NavbarComponent extends Component {
             {this.props.user.isProvider ? (
               <Nav>
                 <NavLink className={classes.NavLink} to="/carmanage">
-                  Car management
+                  CARMANAGE
                 </NavLink>
               </Nav>
             ) : null}
 
             <Nav>
               <NavLink className={classes.NavLink} to="/managebooking">
-                Manage Booking
+               BOOKING
               </NavLink>
             </Nav>
             <p
@@ -105,7 +105,7 @@ class NavbarComponent extends Component {
               }}
               style={{ marginTop: 16, cursor: "pointer" }}
             >
-              Logout
+              LOGOUT
             </p>
           </Form>
         );

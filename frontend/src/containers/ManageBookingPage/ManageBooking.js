@@ -125,6 +125,15 @@ class ManageBooking extends Component {
 
             let showedCancleButton = null;
             let showedPickButton = null;
+            let showedComplete = null;
+            if(status == "Completed"){
+              showedComplete = (
+                <div className = "taskwrapper">
+                  <p>Complete Task!!</p>
+                </div>
+
+              );
+            }
             if (status !== "Completed") {
               showedCancleButton = (
                 <div className = "managebtnwrapper">
@@ -180,6 +189,7 @@ class ManageBooking extends Component {
                   <Col>
                      {showedPickButton}
                      {showedCancleButton}
+                     {showedComplete}
                     
                   </Col>
                   </Row>
