@@ -1,0 +1,49 @@
+.reservedbackground{
+    background-color: rgb(36, 39, 46);
+    height: 1600px;
+}
+
+.rentedHeader {
+    background-color: rgb(67, 224, 19);
+    width: 100%;
+    height: 7%;
+}
+
+.tick{
+    padding: 7px;
+    width: 30px;
+    height: 30px;
+}
+
+.carIMG{
+    align-items: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.ackBTN{
+    background-color:rgb(67, 224, 19);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.ackBTN:hover{
+    background-color: rgb(63, 209, 18);
+  }
+
+.greenline{
+    border-bottom: 4px solid rgb(63, 209, 18);
+}

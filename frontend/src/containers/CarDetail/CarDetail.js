@@ -63,7 +63,8 @@ class CarDetail extends Component {
                     availTo: res.data.availTo,
                     description: res.data.description,
                     pricePerDay: res.data.pricePerDay,
-                    deposit: res.data.deposit
+                    deposit: res.data.deposit,
+                    location: res.data.location
                 }
                 this.setState(newState);
             })
