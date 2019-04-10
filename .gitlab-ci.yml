@@ -1,4 +1,4 @@
-image: docker:latest
+image: node:10
 services:
   - docker:dind
 
@@ -7,7 +7,10 @@ stages:
   - test
 
 build_backend:
+  image: docker:stable
   stage: build
+  services:
+    - docker:dind
   script:
     - echo "Building backend"
     - echo $CI_JOB_TOKEN
@@ -18,7 +21,10 @@ build_backend:
     - docker push registry.gitlab.com/phpunch/chow-ni-car/backend:$CI_COMMIT_SHA
 
 build_frontend:
+  image: docker:stable
   stage: build
+  services:
+    - docker:dind
   script:
     - echo "Building frontend"
     - echo $CI_JOB_TOKEN
