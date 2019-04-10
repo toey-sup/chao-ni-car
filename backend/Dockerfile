@@ -13,4 +13,4 @@ RUN npm install
 EXPOSE 5000
 # --> Run our app.
 # CMD ["npm", "run", "dev"]
-CMD ["npm", "start"]
+CMD ["npm", "run", "prod"]
