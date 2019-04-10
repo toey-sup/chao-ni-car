@@ -15,8 +15,6 @@ build_dev:
     - docker login -u gitlab+deploy-token-59142 -p $CI_JOB_TOKEN registry.gitlab.com
     - docker build --pull -t $CONTAINER_DEV_IMAGE .
     - docker push $CONTAINER_DEV_IMAGE
-  only:
-    - develop
 
 # deploy_dev:
 #   stage: deploy
