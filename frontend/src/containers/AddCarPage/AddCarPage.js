@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Form, Col, Row} from "react-bootstrap";
+import {Form,Col, Row} from "react-bootstrap";
 import axios from "axios";
 import FieldUploadFile from "../../components/FieldFileInput/FieldUploadFile";
 import classes from "./AddCarPage.module.css";
+
 
 class AddCarPage extends Component {
   constructor(props) {
