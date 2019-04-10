@@ -32,6 +32,7 @@ module.exports = app => {
       carId, dateFrom, dateTo, amount,
       renter: req.user["_id"]
     }
+    console.log("amount", amount)
     try {
       const createdRequest = await fetchPOST("/api/request", requestInput);
       console.log("createRequest", createdRequest);

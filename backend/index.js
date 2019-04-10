@@ -1,73 +1,4 @@
-const express = require('express');
-const cookieSession = require('cookie-session');
-const passport = require('passport')
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
-const keys = require('./config/keys')
-
-require('./models/Car');
-require('./models/User');
-require('./models/Request');
-require('./services/passport');
-// Add payment gateway
-//require('./services/payment')
-
-//Set up default mongoose connection
-let mongoDB = keys.mongoURI;
-
-
-mongoDB = 'mongodb://db:27017/data';
-
-
-console.log(mongoDB)
-mongoose.connect(mongoDB, {useNewUrlParser: true});
-
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('connected!!')
-});
-
-//////////////////////////////////////
-
-const app = express();
-const swaggerUI = require('swagger-ui-express')
-const swaggerDoc = require('./swagger/swagger.json')
-
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc))
-
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-app.use(
-    cookieSession({
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey]
-    })
-)
-
-app.use(require("express-session")({
-  secret: 'dlsfkjsdklfjdklsfjdksl',
-  resave: false,
-  saveUninitialized: false
-}))
-
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-  });
-
-///////////////////////////////////////
-
-require('./routes/authRoutes')(app);
-require('./routes/carRoutes')(app);
-require('./routes/requestRoutes')(app);
-require('./routes/fileRoutes')(app);
-require('./routes/billingRoutes')(app);
+const app = require('./app')
 
 
 // if (process.env.NODE_ENV === 'production') {
@@ -81,4 +12,6 @@ require('./routes/billingRoutes')(app);
 // }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT);
+app.listen(PORT, () => {
+    console.log('App listening port 5000!');
+})

@@ -29,6 +29,7 @@ class AddCarPage extends Component {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
+      console.log("kuy")
       event.stopPropagation();
     }
     this.setState({ validated: true });
@@ -74,7 +75,6 @@ class AddCarPage extends Component {
     return (
       <div className={classes.addcarbackground}>
       <div className={classes.wrapper}>
-        <p>{this.state.transmission}</p>
         <Form
           noValidate
           validated={validated}
@@ -245,17 +245,6 @@ class AddCarPage extends Component {
                     required
                     type="Date"
                     placeholder="Enter available date to"
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-              </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col} controlId="description">
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    required
-                    type="String"
-                    placeholder="Description"
                     onChange={this.handleChange}
                   />
                 </Form.Group>
