@@ -3,11 +3,11 @@ const request = require("supertest");
 const agent = request.agent(app);
 
 let owner_data = {
-  name: "Punch",
+  name: "CarTest",
   surname: "Vit",
-  username: "testUser",
+  username: "testOwner",
   password: "123456",
-  email: "nutacp_ryho@hotmail.com",
+  email: "car.spec.js@hotmail.com",
   idCardNum: "123123",
   DLicenseNumber: "123123123",
   tel: "0810000000",
@@ -15,11 +15,19 @@ let owner_data = {
 };
 let owner_id;
 let car_id;
-beforeEach(async () => {
-  const res = await agent.post("/auth/login").send(owner_data);
-  console.log(res.body._id);
-  owner_id = res.body._id;
-  console.log(owner_id);
+beforeAll(async () => {
+  // sign up
+  await agent
+      .post("/auth/local")
+      .send(owner_data)
+      .set("Accept", "application/json")
+      .expect(200, { message: "Sign Up Success" });
+  const res = await agent
+      .post("/auth/login")
+      .send(owner_data)
+      .set("Accept", "application/json")
+      .expect(200);
+  owner_id = res.body._id
 });
 
 describe("Car", function() {
@@ -53,5 +61,14 @@ describe("Car", function() {
       .get("/api/cars/" + car_id)
       .set("Accept", "application/json")
       .expect(200);
+  })
+  test("deleteCar", () => {
+    return request(app)
+      .delete("/api/cars/" + car_id)
+      .set("Accept", "application/json")
+      .expect(200, {
+        message: "Successfully deleted",
+        id: car_id
+      });
   })
 });

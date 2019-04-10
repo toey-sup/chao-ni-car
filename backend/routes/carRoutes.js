@@ -89,11 +89,11 @@ module.exports = app => {
   })
   app.delete("/api/cars/:id", async (req, res) => {
     // ใช้สำหรับลบรถ
-    Car.findByIdAndRemove(req.params.id, (err, blog) => {
+    Car.findByIdAndRemove(req.params.id, (err, car) => {
       if (err) return res.status(500).send(err);
       const response = {
         message: "Successfully deleted",
-        id: Car.id
+        id: car.id
       };
       return res.status(200).send(response);
     });
