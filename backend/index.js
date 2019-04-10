@@ -13,9 +13,13 @@ require('./services/passport');
 //require('./services/payment')
 
 //Set up default mongoose connection
-var mongoDB = keys.mongoURI;
+let mongoDB = keys.mongoURI;
+
+
+mongoDB = 'mongodb://db:27017/data';
+
+
 console.log(mongoDB)
-// var mongoDB = 'mongodb://db:27017/data';
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 
 
@@ -64,6 +68,17 @@ require('./routes/carRoutes')(app);
 require('./routes/requestRoutes')(app);
 require('./routes/fileRoutes')(app);
 require('./routes/billingRoutes')(app);
+
+
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+
+//   const path = require('path');
+//   app.get('*', (req, res) => {
+//       const filePath = path.resolve(__dirname, 'client', 'build', 'index.html')
+//       res.sendFile(filePath)
+//   })
+// }
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
