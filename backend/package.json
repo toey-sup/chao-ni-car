@@ -11,7 +11,7 @@
     "server": "nodemon index.js",
     "client": "npm run start --prefix ../frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "jest --watch --verbose false --runInBand"
+    "test": "set NODE_ENV=test&& jest --watch --verbose false --runInBand"
   },
   "author": "",
   "license": "ISC",
