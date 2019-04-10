@@ -14,6 +14,9 @@ build_backend:
   script:
     - echo "Building backend"
     - echo $CI_JOB_TOKEN
+    - cd backend
+    - docker info
+    - docker login -u gitlab+deploy-token-59142 -p $CI_JOB_TOKEN registry.gitlab.com
     - docker login -u gitlab+deploy-token-59142 -p $CI_JOB_TOKEN registry.gitlab.com
     - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/backend:$CI_COMMIT_SHA .
     - docker push registry.gitlab.com/phpunch/chow-ni-car/backend:$CI_COMMIT_SHA
@@ -23,6 +26,8 @@ build_frontend:
   script:
     - echo "Building frontend"
     - echo $CI_JOB_TOKEN
+    - cd frontend
+    - docker info
     - docker login -u gitlab+deploy-token-59142 -p $CI_JOB_TOKEN registry.gitlab.com
     - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/frontend:$CI_COMMIT_SHA .
     - docker push registry.gitlab.com/phpunch/chow-ni-car/frontend:$CI_COMMIT_SHA
