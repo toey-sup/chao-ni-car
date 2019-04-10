@@ -6,7 +6,7 @@ class ReservedPage extends Component {
     render() {
         return(
             <div>
-                <div className="paymentpagebackground">
+                <div className="reservedbackground">
                 <div className="paymentcontainer">
                   <div className="rentedHeader">
                     <p className="headertext">

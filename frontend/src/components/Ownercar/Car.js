@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import binicon from "../../images/binicon.png";
 import editicon from "../../images/editicon.png";
-import { Button, Modal, ModalBody } from "react-bootstrap";
+import { Button, Modal, ModalBody, Card, Col, Row } from "react-bootstrap";
 import "./Car.css";
 import TextTruncate from "react-text-truncate";
 class Car extends React.Component {
@@ -23,6 +23,7 @@ class Car extends React.Component {
 
   render() {
     return (
+      /*
       <div className="car">
         <div
           style={{
@@ -35,13 +36,14 @@ class Car extends React.Component {
         >
           <div className={this.props.isRented ? "rent" : "notrent"} />
         </div>
+        <Card.Header as="h5" className = "cardheader + detail">Car Id : {this.props.id}</Card.Header>
         <div className="carimage">
           <img src={this.props.picture} className="imagecar" />
         </div>
         <div className="cartext">
-          <h4 style={{ padding: "5px 0 5px 0", marginTop: "3px" }}>
+          <h6 style={{ padding: "5px 0 5px 0", marginTop: "3px" ,color: "black"}}>
             {this.props.brand} {this.props.type}
-          </h4>
+          </h6>
           <div
             style={{
               display: "flex",
@@ -50,13 +52,18 @@ class Car extends React.Component {
             }}
           >
             <div className="head">
-              <p>license</p>
+              <p >license</p>
             </div>
             <p>{this.props.LNumber}</p>
             <div className="head">
               <p>Year</p>
             </div>
             <p> {this.props.regYear}</p>
+            <div className="head">
+              <p>Price Per Day</p>
+            </div>
+            <p>{this.props.pricePerDay}฿/Day</p>
+            
           </div>
         </div>
         <div className="des">
@@ -91,9 +98,80 @@ class Car extends React.Component {
             />
           </div>
         </div>
-        <div className="price">
-          <p>{this.props.pricePerDay}฿/Day</p>
-        </div>
+
+        <Modal show={this.state.show && this.props.isRented}>
+          <Modal.Header>
+            <Modal.Title>Alert</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <p style={{ marginRight: "auto" }}>
+              {this.props.brand} {this.props.LNumber} is being rented
+            </p>
+            <Button
+              variant="secondary"
+              onClick={() => this.setState({ show: false })}
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <Modal show={this.state.show && !this.props.isRented}>
+          <Modal.Header>
+            <Modal.Title>Alert</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <p style={{ marginRight: "auto" }}>
+              Are you sure to remove {this.props.brand} {this.props.LNumber} ?
+            </p>
+            <Button variant="outline-danger" onClick={this.handleDelete}>
+              Remove
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => this.setState({ show: false })}
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+        */
+      <div>
+        <Card.Header as="h5" className="detail">
+          Car Id : {this.props.id}
+        </Card.Header>
+        <Card.Body>
+          <Row>
+            <Col xs={6} md={4}>
+              <Card.Img src={this.props.picture} className="imagecar" />
+            </Col>
+            <Col xs={6} md={4}>
+              {this.props.brand} {this.props.type}
+              <div className="detail">
+                <p>
+                  license : {this.props.LNumber}<br />
+                  Register Year : {this.props.regYear}<br />
+                  Price : {this.props.pricePerDay} ฿/Day<br />
+                  
+                  
+
+                </p>
+              </div>
+            </Col>
+            <Col>
+              <button
+                className="delete"
+                onClick={() => this.setState({ show: true })}
+              >
+                Delete
+              </button>
+            </Col>
+          </Row>
+        </Card.Body>
+
+
+
+
         <Modal show={this.state.show && this.props.isRented}>
           <Modal.Header>
             <Modal.Title>Alert</Modal.Title>
