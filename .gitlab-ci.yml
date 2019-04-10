@@ -4,7 +4,7 @@ services:
 
 stages:
   - build
-  # - deploy
+  - test
 
 variables:
   CONTAINER_DEV_IMAGE: registry.gitlab.com/phpunch/chow-ni-car:$CI_COMMIT_SHA
@@ -13,6 +13,7 @@ build_backend:
   stage: build
   script:
     - echo "Building backend"
+    - echo $CI_JOB_TOKEN
     - docker login -u gitlab+deploy-token-59142 -p $CI_JOB_TOKEN registry.gitlab.com
     - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/backend:$CI_COMMIT_SHA .
     - docker push registry.gitlab.com/phpunch/chow-ni-car/backend:$CI_COMMIT_SHA
@@ -21,9 +22,19 @@ build_frontend:
   stage: build
   script:
     - echo "Building frontend"
+    - echo $CI_JOB_TOKEN
     - docker login -u gitlab+deploy-token-59142 -p $CI_JOB_TOKEN registry.gitlab.com
     - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/frontend:$CI_COMMIT_SHA .
     - docker push registry.gitlab.com/phpunch/chow-ni-car/frontend:$CI_COMMIT_SHA
+
+test:
+  stage: test
+  script:
+    - echo "Running tests"
+    - cd backend
+    - npm install --production
+    - npm run test
+
 
 # deploy_dev:
 #   stage: deploy
