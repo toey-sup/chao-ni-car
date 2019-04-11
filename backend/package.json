@@ -12,7 +12,7 @@
     "client": "npm run start --prefix ../frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "prod": "set NODE_ENV=production& node index.js",
-    "test": "set NODE_ENV=test&& jest --runInBand"
+    "test": "set NODE_ENV=test&& jest --runInBand --forceExit --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",

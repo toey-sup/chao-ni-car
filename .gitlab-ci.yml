@@ -4,7 +4,7 @@ services:
 
 stages:
   - build
-  - test
+  # - test
   - deploy
 
 build_backend:
