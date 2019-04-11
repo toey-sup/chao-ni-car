@@ -15,11 +15,11 @@ build_backend:
   stage: build
   variables:
     DOCKER_HOST: tcp://docker:2375
+    NODE_ENV: production
   services:
     - docker:dind
   script:
     - echo "Building backend"
-    - echo ${CI_COMMIT_REF_NAME}
     - cd backend
     - docker info
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
