@@ -32,6 +32,9 @@ class AddCarPage extends Component {
       console.log("kuy")
       event.stopPropagation();
     }
+    if(this.state.fileUrl == null){
+      event.stopPropagation();
+    }
     this.setState({ validated: true });
     const data = {
       brand: this.state.brand,
