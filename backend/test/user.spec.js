@@ -39,49 +39,49 @@ beforeAll(async () => {
   owner_id = res.body._id
 });
 
-// describe("User", function() {
-//   it("sign up", async () => {
-//     const res = await agent
-//       .post("/auth/local")
-//       .send(owner_data2)
-//       .set("Accept", "application/json")
-//       .expect(200);
-//     deleteAfterRun = true;
-//     return res
-//   });
-//   it("loginSuccessful", async () => {
-//     const res = await agent
-//       .post("/auth/login")
-//       .send(owner_data)
-//       .set("Accept", "application/json")
-//       .expect(200);
-//     return res
-//   });
-//   it("loginFailure", async() => {
-//     data = {
-//       username: "??",
-//       password: "??"
-//     };
-//     const res = await agent
-//       .post("/auth/login")
-//       .send(data)
-//       .set("Accept", "application/json")
-//       .expect(401);
-//       return res
-//   });
-//   it("getUserProfile", async () => {
-//     const res = await agent.get(`/api/current_user`).expect(200);
-//     return res;
-//   });
-// });
+describe("User", function() {
+  it("sign up", async () => {
+    const res = await agent
+      .post("/auth/local")
+      .send(owner_data2)
+      .set("Accept", "application/json")
+      .expect(200);
+    deleteAfterRun = true;
+    return res
+  });
+  it("loginSuccessful", async () => {
+    const res = await agent
+      .post("/auth/login")
+      .send(owner_data)
+      .set("Accept", "application/json")
+      .expect(200);
+    return res
+  });
+  it("loginFailure", async() => {
+    data = {
+      username: "??",
+      password: "??"
+    };
+    const res = await agent
+      .post("/auth/login")
+      .send(data)
+      .set("Accept", "application/json")
+      .expect(401);
+      return res
+  });
+  it("getUserProfile", async () => {
+    const res = await agent.get(`/api/current_user`).expect(200);
+    return res;
+  });
+});
 
-// //run once after all tests
-// afterAll(function (done) {
-//     if (deleteAfterRun) {
-//         console.log('Deleting test database');
-//         mongoose.connection.db.dropDatabase(done);
-//     } else {
-//         console.log('Not deleting test database because it already existed before run');
-//         done();
-//     }
-// });
+//run once after all tests
+afterAll(function (done) {
+    if (deleteAfterRun) {
+        console.log('Deleting test database');
+        mongoose.connection.db.dropDatabase(done);
+    } else {
+        console.log('Not deleting test database because it already existed before run');
+        done();
+    }
+});
