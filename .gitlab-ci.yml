@@ -72,19 +72,19 @@ deploy_dev:
     - kubectl apply -f backend-service.yaml
     - kubectl apply -f db-deployment.yaml
     - kubectl apply -f db-service.yaml
-    - sed -i "s/again-rolling/rolling-again/" backend-deployment.yaml backend-service.yaml db-deployment.yaml db-service.yaml
-    - kubectl apply -f backend-deployment.yaml
-    - kubectl apply -f backend-service.yaml
-    - kubectl apply -f db-deployment.yaml
-    - kubectl apply -f db-service.yaml
+    # - sed -i "s/again-rolling/rolling-again/" backend-deployment.yaml backend-service.yaml db-deployment.yaml db-service.yaml
+    # - kubectl apply -f backend-deployment.yaml
+    # - kubectl apply -f backend-service.yaml
+    # - kubectl apply -f db-deployment.yaml
+    # - kubectl apply -f db-service.yaml
     - cd ../frontend
     - sed -i "s/__VERSION__/$CI_COMMIT_SHA/" frontend-deployment.yaml frontend-service.yaml
     - sed -i "s/rollingworkaround/workaroundrolling/" frontend-deployment.yaml frontend-service.yaml
     - kubectl apply -f frontend-deployment.yaml
     - kubectl apply -f frontend-service.yaml
-    - sed -i "s/workaroundrolling/rollingworkaround/" frontend-deployment.yaml frontend-service.yaml
-    - kubectl apply -f frontend-deployment.yaml
-    - kubectl apply -f frontend-service.yaml
+    # - sed -i "s/workaroundrolling/rollingworkaround/" frontend-deployment.yaml frontend-service.yaml
+    # - kubectl apply -f frontend-deployment.yaml
+    # - kubectl apply -f frontend-service.yaml
 
   # only:
   #   - develop
