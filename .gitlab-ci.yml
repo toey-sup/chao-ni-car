@@ -13,6 +13,8 @@ stages:
 build_backend:
   image: docker:stable
   stage: build
+  variables:
+    DOCKER_HOST: tcp://docker:2375
   services:
     - docker:dind
   script:
@@ -27,6 +29,9 @@ build_backend:
 build_frontend:
   image: docker:stable
   stage: build
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+
   services:
     - docker:dind
   script:
