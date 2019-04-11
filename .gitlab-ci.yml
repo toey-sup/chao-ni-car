@@ -21,8 +21,8 @@ build_backend:
     - cd backend
     - docker info
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/backend:$CI_COMMIT_SHA .
-    - docker push registry.gitlab.com/phpunch/chow-ni-car/backend:$CI_COMMIT_SHA
+    - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/backend:${CI_COMMIT_REF_NAME} .
+    - docker push registry.gitlab.com/phpunch/chow-ni-car/backend:${CI_COMMIT_REF_NAME}
 
 build_frontend:
   image: docker:stable
@@ -35,8 +35,8 @@ build_frontend:
     - cd frontend
     - docker info
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
-    - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/frontend:$CI_COMMIT_SHA .
-    - docker push registry.gitlab.com/phpunch/chow-ni-car/frontend:$CI_COMMIT_SHA
+    - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/frontend:${CI_COMMIT_REF_NAME}.
+    - docker push registry.gitlab.com/phpunch/chow-ni-car/frontend:${CI_COMMIT_REF_NAME}
 
 # test:
 #   stage: test
