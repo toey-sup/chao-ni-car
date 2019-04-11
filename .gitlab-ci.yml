@@ -7,7 +7,7 @@ before_script:
 
 stages:
   - build
-  # - test
+  - test
   - deploy
 
 build_backend:
@@ -15,7 +15,6 @@ build_backend:
   stage: build
   variables:
     DOCKER_HOST: tcp://docker:2375
-    NODE_ENV: production
   services:
     - docker:dind
   script:
@@ -43,13 +42,13 @@ build_frontend:
     - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/frontend:${CI_COMMIT_REF_NAME} .
     - docker push registry.gitlab.com/phpunch/chow-ni-car/frontend:${CI_COMMIT_REF_NAME}
 
-# test:
-#   stage: test
-#   script:
-#     - echo "Running tests"
-#     - cd backend
-#     - npm install
-#     - npm run test
+test:
+  stage: test
+  script:
+    - echo "Running tests"
+    - cd backend
+    - npm install
+    - npm run test
 
 
 deploy_dev:
