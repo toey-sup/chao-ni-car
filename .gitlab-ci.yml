@@ -54,6 +54,7 @@ deploy_dev:
     name: develop
   script:
     - echo "Deploy to staging server"
+    - echo ${CI_COMMIT_REF_NAME}
     - kubectl config set-cluster node-kube --server="$KUBE_URL" --insecure-skip-tls-verify=true
     - cd backend
     - kubectl config current-context
@@ -66,7 +67,7 @@ deploy_dev:
       --docker-username=$DOCKER_USERNAME
       --docker-password=$DOCKER_PASSWORD
       --docker-email=$DOCKER_EMAIL
-    - sed -i "s/__VERSION__/$${CI_COMMIT_REF_NAME}/" backend-deployment.yaml backend-service.yaml db-deployment.yaml db-service.yaml
+    - sed -i "s/__VERSION__/${CI_COMMIT_REF_NAME}/" backend-deployment.yaml backend-service.yaml db-deployment.yaml db-service.yaml
     - sed -i "s/rolling-again/again-rolling/" backend-deployment.yaml backend-service.yaml db-deployment.yaml db-service.yaml
     - kubectl apply -f backend-deployment.yaml
     - kubectl apply -f backend-service.yaml
