@@ -14,8 +14,10 @@ require('./services/passport');
 
 //Set up default mongoose connection
 var mongoDB = keys.mongoURI;
-if (process.env.NODE_ENV == 'test') {
+if (process.env.NODE_ENV === 'test') {
   mongoDB = keys.mongoURITEST
+} else if (process.env.NODE_ENV === 'production') {
+  mongoDB = 'mongodb://db:27017/data';
 }
 console.log(mongoDB)
 // var mongoDB = 'mongodb://db:27017/data';
