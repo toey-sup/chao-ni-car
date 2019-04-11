@@ -39,7 +39,7 @@ test:
   script:
     - echo "Running tests"
     - cd backend
-    - npm install --production
+    - npm install
     - npm run test
 
 
