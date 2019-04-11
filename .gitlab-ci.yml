@@ -2,6 +2,9 @@ image: node:10
 services:
   - docker:dind
 
+before_script:
+  - ls
+
 stages:
   - build
   # - test
@@ -46,7 +49,7 @@ build_frontend:
 
 deploy_dev:
   stage: deploy
-  image: alpine
+  image: lwolf/helm-kubectl-docker:v152_213
   environment:
     name: develop
   script:
