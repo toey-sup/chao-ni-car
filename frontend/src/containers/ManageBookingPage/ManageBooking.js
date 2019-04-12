@@ -98,13 +98,9 @@ class ManageBooking extends Component {
                   onClick={() => this.completeTaskHandler(request["_id"])}
                   disabled={this.state.isDisabled | isCompletedButtonDisabled}
                 >
-                  {this.state.isCompleting ? (
-                    <DotSpinner />
-                  ) : (
-                    <span>Complete Task</span>
-                  )}
+                  <span>Complete Task</span>
                 </button>
-                  
+                
                 </Col>
                 </Row>
               </Card.Body>
@@ -125,6 +121,15 @@ class ManageBooking extends Component {
 
             let showedCancleButton = null;
             let showedPickButton = null;
+            let showedComplete = null;
+            if(status == "Completed"){
+              showedComplete = (
+                <div className = "taskwrapper">
+                  <p>Complete Task!!</p>
+                </div>
+
+              );
+            }
             if (status !== "Completed") {
               showedCancleButton = (
                 <div className = "managebtnwrapper">
@@ -133,11 +138,7 @@ class ManageBooking extends Component {
                     onClick={() => this.cancelRequestHandler(request["_id"])}
                     disabled={this.state.isDisabled | isCancelDisabled}
                   >
-                    {this.state.isDeleting ? (
-                      <DotSpinner />
-                    ) : (
-                      <span>Cancel</span>
-                    )}
+                    <span>Cancel</span>
                   </button>
                 </div>
               );
@@ -148,11 +149,7 @@ class ManageBooking extends Component {
                     onClick={() => this.updateRequestHandler(request["_id"])}
                     disabled={this.state.isDisabled | isPickingUpDisabled}
                   >
-                    {this.state.isPickingUp ? (
-                      <DotSpinner />
-                    ) : (
-                      <span>pick up</span>
-                    )}
+                    <span>pick up</span>
                   </button>
                 </div>
               );
@@ -180,6 +177,7 @@ class ManageBooking extends Component {
                   <Col>
                      {showedPickButton}
                      {showedCancleButton}
+                     {showedComplete}
                     
                   </Col>
                   </Row>

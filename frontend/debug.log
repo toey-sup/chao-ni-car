@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-[0328/121424.784:ERROR:crash_report_database_win.cc(428)] unexpected header
-||||||| merged common ancestors
-=======
 [0328/115532.568:ERROR:crash_report_database_win.cc(428)] unexpected header
->>>>>>> fed97cd46b58574e861e8263514bdf84ba405216
 [0402/224934.257:ERROR:crash_report_database_win.cc(428)] unexpected header
 [0405/233312.488:ERROR:crash_report_database_win.cc(428)] unexpected header
 [0406/122707.558:ERROR:crash_report_database_win.cc(428)] unexpected header

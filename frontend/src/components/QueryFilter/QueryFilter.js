@@ -22,12 +22,6 @@ class QueryFilter extends Component {
     oldState[state] = e.target.value;
     this.setState(oldState);
   }
-  dateChangeHandler(date, target) {
-    const oldState = { ...this.state };
-    oldState[target] = date;
-    this.setState(oldState);
-    console.log(this.state);
-  }
 
   render() {
     return (
@@ -39,8 +33,18 @@ class QueryFilter extends Component {
               endDateId="endDate"
               startDate={this.state.fromDate}
               endDate={this.state.toDate}
+              form
               onDatesChange={({ startDate, endDate }) => {
-                this.setState({ fromDate: startDate, toDate: endDate });
+                if (startDate) {
+                  var startDateUTC = startDate.utcOffset(0);
+                  startDateUTC.set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+                }
+                if (endDate) {
+                  var endDateUTC = endDate.utcOffset(0);
+                  endDateUTC.set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+                }
+
+                this.setState({ fromDate: startDateUTC, toDate: endDateUTC });
               }}
               focusedInput={this.state.focusedInput}
               onFocusChange={focusedInput => {

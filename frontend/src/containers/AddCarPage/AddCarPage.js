@@ -29,6 +29,10 @@ class AddCarPage extends Component {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
+      console.log("kuy")
+      event.stopPropagation();
+    }
+    if(this.state.fileUrl == null){
       event.stopPropagation();
     }
     this.setState({ validated: true });
@@ -74,7 +78,6 @@ class AddCarPage extends Component {
     return (
       <div className={classes.addcarbackground}>
       <div className={classes.wrapper}>
-        <p>{this.state.transmission}</p>
         <Form
           noValidate
           validated={validated}

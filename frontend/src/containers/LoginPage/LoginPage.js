@@ -6,6 +6,7 @@ import "../LoginPage/LoginPage.css";
 class LoginPage extends Component {
   state = {
     username: "",
+    failed: false,
     password: "",
     validated: false,
     faillogin: false,
@@ -27,12 +28,21 @@ class LoginPage extends Component {
           window.location = "/";
         })
         .catch(e => {
+          console.log(e);
           this.setState({
-            faillogin: true
+            faillogin: true,
+            failed: true
           });
         }); // Handle Login failed
     }
   };
+
+  // handleValidate = () => {
+  //   this.setState({
+  //     failed: true
+  //   });
+  // };
+
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -40,6 +50,10 @@ class LoginPage extends Component {
   };
   render() {
     const { validated } = this.state;
+    let loginFailed = null;
+    if(this.state.failed){
+      loginFailed = "*Invalid Input."
+    }
     return (
       <div className="loginbackground">
         <div class="wrapper fadeInDown">
@@ -57,24 +71,32 @@ class LoginPage extends Component {
                 class="fadeIn second"
                 name="login"
                 placeholder="login"
+                style={this.state.failed? {border: "2px solid red"}:{}}
                 onChange={this.handleChange}
               />
+            <div className = "invalidtext">
+              {loginFailed}
+            </div>
               <input
                 type="password"
                 id="password"
                 class="fadeIn third"
                 name="password"
                 placeholder="password"
+                style={this.state.failed? {border: "2px solid red"}:{}}
                 onChange={this.handleChange}
               />
+            <div className = "invalidtext">
+              {loginFailed}
+            </div>
               <input
                 type="submit"
                 class="fadeIn fourth"
+                
                 value="Log In"
                 onClick={this.loginHandler}
               />
             </form>
-
             <div id="formFooter">
               <a class="inactive underlineHover" href="/regis">
                 Sign Up{" "}

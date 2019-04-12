@@ -70,6 +70,11 @@ a {
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
 }
+.invalidtext{
+  color:red;
+  font-size: 12px; 
+}
+
 
 /* TABS */
 
@@ -147,6 +152,9 @@ input[type="email"]:focus {
 
 #formContent input[type="text"]:placeholder {
   color: #cccccc;
+}
+input :invalid {
+  border: 2px solid red;
 }
 
 /* ANIMATIONS */

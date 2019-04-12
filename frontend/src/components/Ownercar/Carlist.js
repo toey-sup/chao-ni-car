@@ -28,11 +28,6 @@ class Carlist extends React.Component {
         {this.props.cars.map(car => {
           return (
             <div
-              style={{
-                marginTop: "20px",
-                display: "flex",
-                justifyContent: "center"
-              }}
             >
               <Car
                 id={car._id}

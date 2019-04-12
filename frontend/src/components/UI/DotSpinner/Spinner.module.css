@@ -1,14 +1,15 @@
 .spinner {
-    margin: 5px auto 0;
+    margin-top:auto;
+    margin-bottom: auto;
     width: 50px;
     text-align: center;
   }
-  
+.spinnerbackground{
+  background-color: rgb(255, 187, 0) ;
+}
   .spinner > div {
     width: 10px;
     height: 10px;
-    background-color: #333;
-  
     border-radius: 100%;
     display: inline-block;
     -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
