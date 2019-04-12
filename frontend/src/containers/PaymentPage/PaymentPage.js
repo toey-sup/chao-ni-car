@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import Payment from "../../components/Payments/Payment";
 import "./PaymentPage.css";
 import axios from "axios";
@@ -31,7 +31,8 @@ class PaymentPage extends Component {
     error: null,
     totalprice: 0,
     //==========
-    rentClicked: false
+    rentClicked: false,
+    showError: false
   };
   componentDidMount() {
     // Bug
@@ -92,14 +93,23 @@ class PaymentPage extends Component {
       token: token
     };
     console.log(request);
-    const res = await axios.post("/api/stripe", request);
-    console.log(res)
-    console.log(this.state.providerName);
+    try {
+      const res = await axios.post("/api/stripe", request);
+      console.log(res)
+      console.log(this.state.providerName);
+    } catch (err) {
+      this.setState({
+        showError: true
+      })
+    }
+    
+    
     // ***********************************
     // TODO: redirect to congratulation page by using (res)
     // may be create new page (up to you what you think it's best)
     // the page will show congratulation message and request id
     // ***********************************
+
   };
 
   render() {
@@ -108,8 +118,28 @@ class PaymentPage extends Component {
     let readableDateFrom = fromDate.toDateString();
     let toDate = new Date(this.state.toDate);
     let readableDateTo = toDate.toDateString();
+    let message = null
+    if (this.state.showError) {
+      message = <Modal show={this.state.show && this.props.isRented}>
+      <Modal.Header>
+        <Modal.Title>Alert</Modal.Title>
+      </Modal.Header>
+      <Modal.Footer>
+        <p style={{ marginRight: "auto" }}>
+          {this.props.brand} {this.props.LNumber} is being rented
+        </p>
+        <Button
+          variant="secondary"
+          onClick={() => this.setState({ show: false })}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+    }
     let renderItem = (
       <div className="paymentpagebackground">
+        {message}
         <div className="paymentcontainer">
           <div className="header">
             <p className="headertext">
