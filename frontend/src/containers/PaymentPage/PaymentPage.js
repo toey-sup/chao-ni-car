@@ -6,6 +6,7 @@ import axios from "axios";
 import moment from "moment";
 import { connect } from "react-redux";
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { withRouter, Link } from "react-router-dom";
 
 class PaymentPage extends Component {
   state = {
@@ -34,9 +35,14 @@ class PaymentPage extends Component {
     rentClicked: false,
     showError: false
   };
+  componentWillMount() {
+    if (this.props.user === null) {
+      window.location = '/'
+    }
+  }
   componentDidMount() {
     // Bug
-
+    
     console.log(this.props.location.pathname);
     console.log(this.props.match.params.id);
     //console.log(this.props.match.params.id);
@@ -98,12 +104,13 @@ class PaymentPage extends Component {
       console.log(res)
       console.log(this.state.providerName);
     } catch (err) {
+      console.log(err)
       this.setState({
         showError: true
       })
     }
-    
-    
+
+
     // ***********************************
     // TODO: redirect to congratulation page by using (res)
     // may be create new page (up to you what you think it's best)
@@ -112,34 +119,38 @@ class PaymentPage extends Component {
 
   };
 
+  handleRedirectToHome = () => {
+    this.props.history.push('/')
+    
+  }
+
   render() {
     let previousPage = "/car/" + this.props.match.params.id;
     let fromDate = new Date(this.state.fromDate);
     let readableDateFrom = fromDate.toDateString();
     let toDate = new Date(this.state.toDate);
     let readableDateTo = toDate.toDateString();
-    let message = null
-    if (this.state.showError) {
-      message = <Modal show={this.state.show && this.props.isRented}>
-      <Modal.Header>
-        <Modal.Title>Alert</Modal.Title>
-      </Modal.Header>
-      <Modal.Footer>
-        <p style={{ marginRight: "auto" }}>
-          {this.props.brand} {this.props.LNumber} is being rented
-        </p>
-        <Button
-          variant="secondary"
-          onClick={() => this.setState({ show: false })}
-        >
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal>
-    }
+
+
+
     let renderItem = (
       <div className="paymentpagebackground">
-        {message}
+        <Modal show={this.state.showError}>
+          <Modal.Header>
+            <Modal.Title>Alert</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <p style={{ marginRight: "auto" }}>
+              Sorry, This car has been rented.
+        </p>
+            <Button
+              variant="secondary"
+              onClick={() => this.handleRedirectToHome()}
+            >
+              Close
+        </Button>
+          </Modal.Footer>
+        </Modal>
         <div className="paymentcontainer">
           <div className="header">
             <p className="headertext">
@@ -248,7 +259,7 @@ class PaymentPage extends Component {
       </div>
     );
 
-    return this.state.loading? <Spinner/>:renderItem;
+    return this.state.loading ? <Spinner /> : renderItem;
   }
 }
 const mapStateToProps = state => {
@@ -258,4 +269,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PaymentPage);
+export default withRouter(connect(mapStateToProps)(PaymentPage));
