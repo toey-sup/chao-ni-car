@@ -1,33 +1,36 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
+@import url(
+  https://fonts.googleapis.com/css?family=Open+Sans:400,
+  800,
+  700,
+  300
+);
 .DivHeader {
-    padding: 5px 0;
-    
+  padding: 5px 0;
 }
-.buttomline{
-    border-bottom:  1.5px solid #eee;
-    
+.buttomline {
+  border-bottom: 1.5px solid #eee;
 }
 .DivHeader .Header {
-    color: #515151;
-    font-weight: 300;
-    padding-top: 15px;
-    margin: 0;
-    font-size: 30px;
-    font-weight: 300;
+  color: #515151;
+  font-weight: 300;
+  padding-top: 15px;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 300;
 }
 
 .Detail {
-    background-color: white;
-    padding: 12px 12px;
-    font-size: 12px; 
-    line-height: 20px;
-    color: #727272;
-    padding: 20px 0;
-    margin: 0;
-    
+  background-color: white;
+  padding: 12px 12px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #727272;
+  padding: 20px 0;
+  margin: 0;
+  height: fit-content;
 }
 
-.imgSize{
-    height: 300px;
-    width: 300px;
+.imgSize {
+  height: 300px;
+  width: 300px;
 }
