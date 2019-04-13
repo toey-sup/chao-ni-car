@@ -13,7 +13,9 @@ class Rent extends Component {
         fromLoc: '',
         toLoc: '',
         diffDate: null,
-        validated: false
+        validated: false,
+        invalidDate: false
+
     }
 
     onChangeHandler(e, state) {
@@ -28,6 +30,12 @@ class Rent extends Component {
             if (this.state.toDate && this.state.fromDate && this.state.toDate > this.state.fromDate) {
                 var diffDays = parseInt((this.state.toDate - this.state.fromDate) / (1000 * 60 * 60 * 24));
                 this.setState({ diffDate: diffDays }, console.log(diffDays));
+                if(diffDays<=0){
+                    this.setState.invalidDate = true;
+                }
+                else{
+                    this.setState.invalidDate = false;
+                }
             }
         });
         console.log(this.state);
@@ -35,7 +43,7 @@ class Rent extends Component {
 
     rentHandler = (event) => {
         event.preventDefault();
-        if (this.state.fromDate === null || this.state.toDate === null) return;
+        if (this.state.fromDate === null || this.state.toDate === null || this.state.invalidDate === true) return;
         alert("Rent");
     }
 
@@ -43,7 +51,14 @@ class Rent extends Component {
         let providerDisplay = null
         let pickdate = null
         let returndate = null
+        let dateAlert = null;
         if (this.props.user) {
+            if(this.state.invalidDate){
+                 dateAlert =
+                 <div>
+                    <p>fuck</p>
+                </div>
+              }
             if (!this.props.user.isProvider) {
                 providerDisplay = <button className ={classes.rent} type='submit' style={{marginTop:'8px'}}
                 onClick={() => { this.setState({ validated: true })
@@ -76,19 +91,28 @@ class Rent extends Component {
                 <p><strong>Please Login First!</strong></p>
             </div>
         );
+        
         if (this.props.user) {
+            
             item = (
                 <div className={classes.Div}>
                     {/* เลือกวันเวลาสถานที่ + ชำระเงิน */}
                     <Form validated={this.state.validated} onSubmit={this.rentHandler}>
                         <FormGroup>
-                            <Row><Col>{this.state.diffDate ? <div style={{ textAlign: 'center' }}><strong>{this.state.diffDate} days Total Price: {this.state.diffDate*this.props.pricePerDay+this.props.deposit}บาท</strong></div> : null}</Col></Row>
+                            <Row>
+                                <Col>
+                                {this.state.diffDate ? <div style={{ textAlign: 'center' }}><strong>{this.state.diffDate} days Total Price: {this.state.diffDate*this.props.pricePerDay+this.props.deposit}บาท</strong></div> : null}
+                                {dateAlert}
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col sm={6}>
                                 {pickdate}
+                      
                                 </Col>
                                 <Col sm={6}>
                                {returndate}
+            
                                 </Col>
                             </Row>
                             {/* <hr />
