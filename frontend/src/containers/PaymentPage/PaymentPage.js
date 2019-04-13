@@ -33,7 +33,8 @@ class PaymentPage extends Component {
     totalprice: 0,
     //==========
     rentClicked: false,
-    showMessage: false
+    showMessage: false,
+    errorReservation: null,
   };
   componentWillMount() {
     if (this.props.user === null) {
@@ -99,6 +100,9 @@ class PaymentPage extends Component {
       token: token
     };
     console.log(request);
+    this.setState({
+      showMessage: true,
+    })
     try {
       const res = await axios.post("/api/stripe", request);
       console.log(res)
@@ -109,20 +113,14 @@ class PaymentPage extends Component {
       // the page will show success message and request id
       // ***********************************
       this.setState({
-        showMessage: true,
         errorReservation: false
       })
     } catch (err) {
       console.log(err)
       this.setState({
-        showMessage: true,
         errorReservation: true
       })
     }
-
-
-
-
   };
 
   handleRedirectToHome = () => {
@@ -140,31 +138,37 @@ class PaymentPage extends Component {
     let toDate = new Date(this.state.toDate);
     let readableDateTo = toDate.toDateString();
 
+    let modalMessage = <div>
+      <Modal.Header>
+        <Modal.Title>Alert</Modal.Title>
+      </Modal.Header>
+      <Modal.Footer>
+        <p style={{ marginRight: "auto" }}>
+          {this.state.errorReservation ? <span>Sorry, This car has been rented.</span> : <span>Your reservation has been successful.</span>}
+        </p>
+        {this.state.errorReservation ? <Button
+          variant="secondary"
+          onClick={() => this.handleRedirectToHome()}
+        >
+          Close
+            </Button> : <Button
+            variant="success"
+            onClick={() => this.handleRedirectToCarManage()}
+          >
+            Close
+            </Button>}
 
+      </Modal.Footer>
+    </div>
+
+    if (this.state.errorReservation === null) {
+      modalMessage = <Spinner />
+    }
 
     let renderItem = (
       <div className="paymentpagebackground">
         <Modal show={this.state.showMessage}>
-          <Modal.Header>
-            <Modal.Title>Alert</Modal.Title>
-          </Modal.Header>
-          <Modal.Footer>
-            <p style={{ marginRight: "auto" }}>
-              {this.state.errorReservation ? <span>Sorry, This car has been rented.</span> : <span>Your reservation has been successful.</span>}
-            </p>
-            {this.state.errorReservation ? <Button
-              variant="secondary"
-              onClick={() => this.handleRedirectToHome()}
-            >
-              Close
-            </Button> : <Button
-              variant="success"
-              onClick={() => this.handleRedirectToCarManage()}
-            >
-              Close
-            </Button>}
-            
-          </Modal.Footer>
+          {modalMessage}
         </Modal>
         <div className="paymentcontainer">
           <div className="header">
