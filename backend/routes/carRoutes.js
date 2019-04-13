@@ -4,9 +4,9 @@ const requireLogin = require("../middlewares/requireLogin");
 
 
 function isEmpty(obj) {
-  for(var key in obj) {
-      if(obj.hasOwnProperty(key))
-          return false;
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key))
+      return false;
   }
   return true;
 }
@@ -17,25 +17,24 @@ module.exports = app => {
     console.log("query", req.query);
     if (req.query.fromDate !== 'null' && req.query.toDate !== 'null' && !isEmpty(req.query)) {
       console.log('date query')
-        const car = await Car.find({
-             
-                "availFrom": {
-                  $lte: req.query.fromDate
-                },
-                "availTo": {
-                    $gte: req.query.toDate
-                  },
-              
-        })
-        res.send(car)
+      const car = await Car.find({
+        "availFrom": {
+          $lte: req.query.fromDate
+        },
+        "availTo": {
+          $gte: req.query.toDate
+        },
+        isDeleted: false
+      })
+      res.send(car)
     }
-      else {
-        console.log('normal query')
-        const car = await Car.find({});
-        res.send(car);
-      }
-      
+    else {
+      console.log('normal query')
+      const car = await Car.find({ isDeleted: false });
+      res.send(car);
     }
+
+  }
   );
   app.post("/api/cars", async (req, res) => {
     // ใช้สำหรับสร้างรถคันใหม่ โดยเจ้าของรถต้องยืนยันตัวตนแล้ว
@@ -78,24 +77,40 @@ module.exports = app => {
   });
   app.get("/api/cars/:id", async (req, res) => {
     // ใช้สำหรับดูรถแต่ละคันได้ โดยใช้ key เป็น id
-    const car = await Car.findById(req.params.id).populate('_owner');
+    const car = await Car.findOne({ _id: req.params.id, isDeleted: false }).populate('_owner');
     console.log(car);
     res.send(car);
   });
   app.get("/api/ownercars", async (req, res) => {
     // ใช้สำหรับจัดการรถของเจ้าของรถ
-    const car = await Car.find({_owner: req.user["_id"]});
+    const car = await Car.find({ _owner: req.user["_id"], isDeleted: false });
     res.send(car);
   })
   app.delete("/api/cars/:id", async (req, res) => {
     // ใช้สำหรับลบรถ
-    Car.findByIdAndRemove(req.params.id, (err, car) => {
-      if (err) return res.status(500).send(err);
+    try {
+      const car = await Car.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+          isDeleted: true
+        }
+      })
       const response = {
         message: "Successfully deleted",
         id: car.id
       };
-      return res.status(200).send(response);
-    });
+      res.status(200).send(response);
+    } catch (err) {
+      res.status(400).send(err)
+    }
+
+
+    // Car.findByIdAndRemove(req.params.id, (err, car) => {
+    //   if (err) return res.status(500).send(err);
+    //   const response = {
+    //     message: "Successfully deleted",
+    //     id: car.id
+    //   };
+    //   return res.status(200).send(response);
+    // });
   });
 };

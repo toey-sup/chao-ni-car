@@ -18,7 +18,8 @@ const carSchema = new Schema({
   deposit: {type: Number, required: true},
 
   isRented: { type: Boolean, default: false},
-  _owner: {type: Schema.Types.ObjectId, ref: 'users', required: true}
+  _owner: {type: Schema.Types.ObjectId, ref: 'users', required: true},
+  isDeleted:  { type: Boolean, default: false},
 });
 
 mongoose.model("cars", carSchema);

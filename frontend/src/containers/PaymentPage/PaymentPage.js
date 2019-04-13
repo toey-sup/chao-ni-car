@@ -33,7 +33,7 @@ class PaymentPage extends Component {
     totalprice: 0,
     //==========
     rentClicked: false,
-    showError: false
+    showMessage: false
   };
   componentWillMount() {
     if (this.props.user === null) {
@@ -42,7 +42,7 @@ class PaymentPage extends Component {
   }
   componentDidMount() {
     // Bug
-    
+
     console.log(this.props.location.pathname);
     console.log(this.props.match.params.id);
     //console.log(this.props.match.params.id);
@@ -103,25 +103,34 @@ class PaymentPage extends Component {
       const res = await axios.post("/api/stripe", request);
       console.log(res)
       console.log(this.state.providerName);
+      // ***********************************
+      // TODO: redirect to success page by using (res)
+      // may be create new page (up to you what you think it's best)
+      // the page will show success message and request id
+      // ***********************************
+      this.setState({
+        showMessage: true,
+        errorReservation: false
+      })
     } catch (err) {
       console.log(err)
       this.setState({
-        showError: true
+        showMessage: true,
+        errorReservation: true
       })
     }
 
 
-    // ***********************************
-    // TODO: redirect to congratulation page by using (res)
-    // may be create new page (up to you what you think it's best)
-    // the page will show congratulation message and request id
-    // ***********************************
+
 
   };
 
   handleRedirectToHome = () => {
     this.props.history.push('/')
-    
+
+  }
+  handleRedirectToCarManage = () => {
+    this.props.history.push('/managebooking')
   }
 
   render() {
@@ -135,20 +144,26 @@ class PaymentPage extends Component {
 
     let renderItem = (
       <div className="paymentpagebackground">
-        <Modal show={this.state.showError}>
+        <Modal show={this.state.showMessage}>
           <Modal.Header>
             <Modal.Title>Alert</Modal.Title>
           </Modal.Header>
           <Modal.Footer>
             <p style={{ marginRight: "auto" }}>
-              Sorry, This car has been rented.
-        </p>
-            <Button
+              {this.state.errorReservation ? <span>Sorry, This car has been rented.</span> : <span>Your reservation has been successful.</span>}
+            </p>
+            {this.state.errorReservation ? <Button
               variant="secondary"
               onClick={() => this.handleRedirectToHome()}
             >
               Close
-        </Button>
+            </Button> : <Button
+              variant="success"
+              onClick={() => this.handleRedirectToCarManage()}
+            >
+              Close
+            </Button>}
+            
           </Modal.Footer>
         </Modal>
         <div className="paymentcontainer">
