@@ -52,7 +52,7 @@ class LoginPage extends Component {
     const { validated } = this.state;
     let loginFailed = null;
     if(this.state.failed){
-      loginFailed = "*Invalid Input."
+      loginFailed = "Incorrect username or password."
     }
     return (
       <div className="loginbackground">
@@ -75,7 +75,7 @@ class LoginPage extends Component {
                 onChange={this.handleChange}
               />
             <div className = "invalidtext">
-              {loginFailed}
+              {/* {loginFailed} */}
             </div>
               <input
                 type="password"
