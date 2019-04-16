@@ -14,7 +14,6 @@ const userSchema = new Schema({
     idCardNum: String,
     DLicenseNumber: String,
     isProvider: { type: Boolean, default: false },
-    isAuthenticated: { type: Boolean, default: false },
     credits: { type: Number, default: 0 },
 })
 

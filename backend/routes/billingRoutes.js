@@ -32,8 +32,14 @@ module.exports = app => {
       carId, dateFrom, dateTo, amount,
       renter: req.user["_id"]
     }
+    console.log("amount", amount)
     try {
       const createdRequest = await fetchPOST("/api/request", requestInput);
+      if (createdRequest.name === 'CarError') {
+        throw {
+          message: createdRequest.message
+        }
+      }
       console.log("createRequest", createdRequest);
       if (createdRequest) {
         const request = await Request.findOneAndUpdate(

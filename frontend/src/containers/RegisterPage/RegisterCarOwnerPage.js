@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./RegisterPage.css";
 import axios from "axios";
-import { Button,Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
   Object.values(formErrors).forEach(val => {
@@ -27,24 +27,39 @@ class RegisterCarOwnerPage extends Component {
       id: "",
       drivingnumber: "",
       tel: "",
-      
+
       formvalid: null,
       stage: false,
       chosen: false,
       show: false,
       formErrors: {
-        name: "",
-        surname: "",
-        username: "",
-        email: "",
-        password: "",
-        confirmpassword: "",
-        id: "",
-        drivingnumber: "",
-        tel: ""
+        name: " ",
+        surname: " ",
+        username: " ",
+        email: " ",
+        password: " ",
+        confirmpassword: " ",
+        id: " ",
+        drivingnumber: " ",
+        tel: " "
       }
     };
   }
+
+  submitCheck = () => {
+    const err = { ...this.state.formErrors }
+    //console.log(err)
+    const keys = Object.keys(err);
+    //console.log(keys);
+    for (const key of keys) {
+      console.log(this.state.formErrors[key])
+      if (this.state.formErrors[key] != "") {
+        return false;
+      }
+    }
+    return true;
+  }
+
   handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -106,10 +121,15 @@ class RegisterCarOwnerPage extends Component {
   }
 
   handleSubmit = e => {
+    // console.log(this.submitCheck())
+    if (!this.submitCheck()) {
+      alert("กรุณากรอกข้อมูลให้ครบ");
+      return;
+    }
     e.preventDefault();
-    let data={}
+    let data = {}
 
-     data = {
+    data = {
       name: this.state.name,
       surname: this.state.surname,
       username: this.state.username,
@@ -121,22 +141,23 @@ class RegisterCarOwnerPage extends Component {
       isAuthenticated: true,
       isProvider: true
     };
-  
+
     axios
       .post("/auth/local", data)
       .then(res => {
         console.log(res);
-        this.props.history.push("/");
+        //this.props.history.push("/");
       })
       .catch(err => {
         console.log(err);
       });
 
   };
+
   render() {
     const { formErrors } = this.state;
-    return(
-        <div className= "wrapper">
+    return (
+      <div className="wrapper">
         <div className="form-wrapper">
           <h1>Create Car Owner Account</h1>
           <form onSubmit={this.handleSubmit} noValidate>
@@ -245,15 +266,15 @@ class RegisterCarOwnerPage extends Component {
             <div className="drivingnumber">
               <label htmlFor="drivingnumber">Driving number</label>
               <input
-                className={formErrors.id.length > 0 ? "error" : null}
+                className={formErrors.drivingnumber.length > 0 ? "error" : null}
                 placeholder="Driving number"
                 type="text"
                 name="drivingnumber"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.id.length > 0 && (
-                <span className="errorMessage">{formErrors.id}</span>
+              {formErrors.drivingnumber.length > 0 && (
+                <span className="errorMessage">{formErrors.drivingnumber}</span>
               )}
             </div>
             <div className="tel">
@@ -271,9 +292,9 @@ class RegisterCarOwnerPage extends Component {
               )}
             </div>
             <div className="term">
-            <label > I agree to the Terms and Agreements</label>
+              <label > I agree to the Terms and Agreements</label>
               <input
-                onClick={()=> this.setState({show:true})}
+                onClick={() => this.setState({ show: true })}
                 type="checkbox"
                 name="checkbox"
                 required
@@ -283,16 +304,16 @@ class RegisterCarOwnerPage extends Component {
             <div className="createAccount">
               <button type="submit">Create Account</button>
             </div>
-
-            
           </form>
+
+
           <Modal show={this.state.show}>
-          <Modal.Header>
-            <Modal.Title>Agreement</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>This End User License Agreement ("Agreement") is a legal agreement between you and CAO NI CAR </p>
-            <ul >
+            <Modal.Header>
+              <Modal.Title>Agreement</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>This End User License Agreement ("Agreement") is a legal agreement between you and CAO NI CAR </p>
+              <ul >
                 <li>Limited License</li>
                 <ul>
                   <li>Use, copy, modify, transmit, adapt, vary or create derivative works based on the Software in whole or part. </li>
@@ -300,32 +321,32 @@ class RegisterCarOwnerPage extends Component {
                   <li>Translate, reverse engineer, decompile, or disassemble the Software; or use any access software system to search the data in the Software other than the Software provided under this agreement.</li>
                 </ul>
                 <li>Prohibited Uses</li>
-                  <ul>
-                    <li>
+                <ul>
+                  <li>
                     You agree to comply with all applicable laws, rules and regulations. Should you use the Software to break any applicable law, rule, regulation or this Agreement, your right to use the Software shall terminate immediately and without notice. And TouchPal is not liable for any damage or loss resulting from such termination.
                     </li>
-                  </ul>
+                </ul>
                 <li>Your Responsibilities</li>
-                  <ul>
-                    <li>In order to offer you more tailored service, TouchPal and/or its partners may provide you with a variety of value-added services or products, free and paid. TouchPal may change the charges payable for the purchase of such Products or Services at any time without any notice to you. You can choose whether or not to accept the new charges prior to completing your next purchase of the applicable Product. The new charges will apply to your next purchase after the new charges have been published. 
+                <ul>
+                  <li>In order to offer you more tailored service, TouchPal and/or its partners may provide you with a variety of value-added services or products, free and paid. TouchPal may change the charges payable for the purchase of such Products or Services at any time without any notice to you. You can choose whether or not to accept the new charges prior to completing your next purchase of the applicable Product. The new charges will apply to your next purchase after the new charges have been published.
                     </li>
-                    <li>You can use your Google Play account or create a TouchPal Keyboard user account to purchase and use the services or products provided. TouchPal owns the TouchPal Keyboard account and enjoys the right of ownership. You shall obtain the right to use the account after completing the registration process. The right to use the account only belongs to the initial legal registrant. Paid or unpaid transfer, succession and sell are prohibited. You are solely responsible and liable for all activities conducted through your User Account.</li>
-                  </ul>
+                  <li>You can use your Google Play account or create a TouchPal Keyboard user account to purchase and use the services or products provided. TouchPal owns the TouchPal Keyboard account and enjoys the right of ownership. You shall obtain the right to use the account after completing the registration process. The right to use the account only belongs to the initial legal registrant. Paid or unpaid transfer, succession and sell are prohibited. You are solely responsible and liable for all activities conducted through your User Account.</li>
+                </ul>
                 <li>Value-added Services and Products</li>
                 <li>No Warranty</li>
               </ul>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary"  onClick={()=> this.setState({show:false})}>
-              Close
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => this.setState({ show: false })}>
+                Close
             </Button>
-          </Modal.Footer>
-        </Modal>
+            </Modal.Footer>
+          </Modal>
 
         </div>
-        </div>
-              
-      )    
+      </div>
+
+    )
   }
 }
 

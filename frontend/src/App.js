@@ -9,7 +9,6 @@ import HowToUsePage from "./containers/HowToPage/HowToUsePage";
 import CarDetail from "./containers/CarDetail/CarDetail";
 import Navbar from "./components/Navbar/Navbar";
 import AddCarPage from "./containers/AddCarPage/AddCarPage";
-import testPage from "./containers/test/testPage";
 import CarManagePage from "./containers/CarManagePage/CarManagePage";
 import PaymentPage from "./containers/PaymentPage/PaymentPage";
 import SelectRole from "./containers/RegisterPage/SelectRolePage";
@@ -36,7 +35,6 @@ class App extends Component {
             <Route path="/car/:id" component={CarDetail} />
             <Route path="/about" component={AboutPage} />
             <Route path="/result" component={ResultPage} />
-            <Route path="/test" component={testPage} />
             <Route path="/howtouse" component={HowToUsePage} />
             <Route path="/regis" component={SelectRole} />
             <Route path="/addcar" component={AddCarPage} />

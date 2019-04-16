@@ -6,12 +6,12 @@ class SubQueryFilter extends Component {
     state = {
         open: false,
         fromLoc: '',
-        toLoc: '',
         gear: '',
         seat: 0
     }
 
     onChangeHandler(e, state) {
+       
         const oldState = { ...this.state }
         oldState[state] = e.target.value;
         this.setState(oldState);
@@ -28,7 +28,7 @@ class SubQueryFilter extends Component {
 
         const payload = {
             fromLoc: this.state.fromLoc,
-            toLoc: this.state.toLoc,
+            toLoc: null,
             gear: this.state.gear,
             seat: this.state.seat,
         }
@@ -53,24 +53,26 @@ class SubQueryFilter extends Component {
                             <Form>
                                 <FormGroup controlId={this.props.controlId}>
                                     <Row>
-                                        <Col sm={6}><FormLabel className={classes.textcolor} >สถานที่ที่ต้องการรับรถ</FormLabel>
-                                            <FormControl
+                                        <Col sm={12}><FormLabel className={classes.textcolor} >สถานที่ที่ต้องการรับ/ส่งรถ</FormLabel>
+                                            {/* <FormControl
                                                 size='sm'
                                                 type="text"
                                                 value={this.state.fromLoc}
                                                 placeholder="Enter location"
                                                 onChange={(e) => this.onChangeHandler(e, 'fromLoc')}
-                                            /></Col>
-                                        <Col sm={6}>
-                                            <FormLabel className={classes.textcolor}>สถานที่ที่ต้องการส่งรถ</FormLabel>
-                                            <FormControl
-                                                size='sm'
-                                                type="text"
-                                                value={this.state.toLoc}
-                                                placeholder="Enter location"
-                                                onChange={(e) => this.onChangeHandler(e, 'toLoc')}
-                                            />
+                                            /> */}
+                                            <Form.Control as="select" value={this.state.fromLoc} onChange={(e) => this.onChangeHandler(e, 'fromLoc')}>
+                                                <option value="">All</option>
+                                                <option value='Suvarnabhumi Airport'>Suvarnabhumi Airport</option>
+                                                <option value='Don Mueang Airport'>Don Mueang Airport</option>
+                                                <option value='BTS Morchit'>BTS Morchit</option>
+                                                <option value='BTS Siam'>BTS Siam</option>
+                                                <option value='BTS Asok'>BTS Asok</option>
+                                                <option value='BTS Onnut'>BTS Onnut</option>
+                                                <option value='BTS Bang Wa'>BTS Bang Wa</option>
+                                            </Form.Control>
                                         </Col>
+                                        
                                     </Row>
                                     <Row>
                                         <Col>

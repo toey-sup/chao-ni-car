@@ -37,7 +37,7 @@ module.exports = app => {
       
     }
   );
-  app.post("/api/cars", requireLogin, async (req, res) => {
+  app.post("/api/cars", async (req, res) => {
     // ใช้สำหรับสร้างรถคันใหม่ โดยเจ้าของรถต้องยืนยันตัวตนแล้ว
     const {
       brand,
@@ -55,6 +55,7 @@ module.exports = app => {
       pricePerDay,
       deposit
     } = req.body;
+    console.log("OWNERTEST", req.body.ownerTestId)
     const car = await new Car({
       brand,
       type,
@@ -70,15 +71,15 @@ module.exports = app => {
       description,
       pricePerDay,
       deposit,
-      _owner: req.user
+      _owner: req.user || req.body.ownerTestId
     }).save();
     console.log(car);
-    res.send(car);
+    res.status(200).send(car);
   });
   app.get("/api/cars/:id", async (req, res) => {
     // ใช้สำหรับดูรถแต่ละคันได้ โดยใช้ key เป็น id
     const car = await Car.findById(req.params.id).populate('_owner');
-    console.log(car)
+    console.log(car);
     res.send(car);
   });
   app.get("/api/ownercars", async (req, res) => {
@@ -86,13 +87,13 @@ module.exports = app => {
     const car = await Car.find({_owner: req.user["_id"]});
     res.send(car);
   })
-  app.delete("/api/cars/:id", requireLogin, async (req, res) => {
+  app.delete("/api/cars/:id", async (req, res) => {
     // ใช้สำหรับลบรถ
-    Car.findByIdAndRemove(req.params.id, (err, blog) => {
+    Car.findByIdAndRemove(req.params.id, (err, car) => {
       if (err) return res.status(500).send(err);
       const response = {
         message: "Successfully deleted",
-        id: Car.id
+        id: car.id
       };
       return res.status(200).send(response);
     });

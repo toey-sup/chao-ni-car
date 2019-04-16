@@ -252,17 +252,6 @@ class AddCarPage extends Component {
                   />
                 </Form.Group>
               </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col} controlId="description">
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    required
-                    type="String"
-                    placeholder="Description"
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-              </Form.Row>
 
           <Form.Row className = {classes.buttonwrapper}>
                 <button className ={classes.submit} type="submit">Submit</button>

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import Payment from "../../components/Payments/Payment";
 import "./PaymentPage.css";
 import axios from "axios";
 import moment from "moment";
 import { connect } from "react-redux";
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { withRouter, Link } from "react-router-dom";
 
 class PaymentPage extends Component {
   state = {
@@ -31,11 +32,17 @@ class PaymentPage extends Component {
     error: null,
     totalprice: 0,
     //==========
-    rentClicked: false
+    rentClicked: false,
+    showError: false
   };
+  componentWillMount() {
+    if (this.props.user === null) {
+      window.location = '/'
+    }
+  }
   componentDidMount() {
     // Bug
-
+    
     console.log(this.props.location.pathname);
     console.log(this.props.match.params.id);
     //console.log(this.props.match.params.id);
@@ -44,19 +51,13 @@ class PaymentPage extends Component {
       .get("/api/cars/" + this.props.match.params.id)
       .then(res => {
         console.log(res.data);
-        console.log("HELLO")
         var deposit = Number(res.data.deposit);
-        console.log("HELLO")
         var pricePerDay = Number(res.data.pricePerDay);
-        console.log("HELLO")
         var dateT = moment(this.props.rent.toDate);
-        console.log("HELLO")
         var dateF = moment(this.props.rent.fromDate);
-        console.log("HELLO")
         var diffdate = dateT.diff(dateF, "days");
         const totalprice = deposit + pricePerDay * diffdate;
         console.log("TOTAL", dateF, dateT, diffdate)
-        console.log("TOTAL PRICE", totalprice)
         const newState = {
           ...this.state,
           loading: false,
@@ -98,15 +99,30 @@ class PaymentPage extends Component {
       token: token
     };
     console.log(request);
-    const res = await axios.post("/api/stripe", request);
-    console.log(res)
-    console.log(this.state.providerName);
+    try {
+      const res = await axios.post("/api/stripe", request);
+      console.log(res)
+      console.log(this.state.providerName);
+    } catch (err) {
+      console.log(err)
+      this.setState({
+        showError: true
+      })
+    }
+
+
     // ***********************************
     // TODO: redirect to congratulation page by using (res)
     // may be create new page (up to you what you think it's best)
     // the page will show congratulation message and request id
     // ***********************************
+
   };
+
+  handleRedirectToHome = () => {
+    this.props.history.push('/')
+    
+  }
 
   render() {
     let previousPage = "/car/" + this.props.match.params.id;
@@ -114,8 +130,27 @@ class PaymentPage extends Component {
     let readableDateFrom = fromDate.toDateString();
     let toDate = new Date(this.state.toDate);
     let readableDateTo = toDate.toDateString();
+
+
+
     let renderItem = (
       <div className="paymentpagebackground">
+        <Modal show={this.state.showError}>
+          <Modal.Header>
+            <Modal.Title>Alert</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <p style={{ marginRight: "auto" }}>
+              Sorry, This car has been rented.
+        </p>
+            <Button
+              variant="secondary"
+              onClick={() => this.handleRedirectToHome()}
+            >
+              Close
+        </Button>
+          </Modal.Footer>
+        </Modal>
         <div className="paymentcontainer">
           <div className="header">
             <p className="headertext">
@@ -224,7 +259,7 @@ class PaymentPage extends Component {
       </div>
     );
 
-    return this.state.loading? <Spinner/>:renderItem;
+    return this.state.loading ? <Spinner /> : renderItem;
   }
 }
 const mapStateToProps = state => {
@@ -234,4 +269,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PaymentPage);
+export default withRouter(connect(mapStateToProps)(PaymentPage));

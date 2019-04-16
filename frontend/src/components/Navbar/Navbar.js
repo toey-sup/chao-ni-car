@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Form } from "react-bootstrap";
+import { Navbar, Nav, Form,Dropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import logo from "./logo2.png";
+import hamburger_icon from "./Hamburger_icon.png";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 class NavbarComponent extends Component {
   constructor(props) {
@@ -55,6 +57,7 @@ class NavbarComponent extends Component {
     };
 
     let display = <p />;
+    let menu = null;
     switch (this.props.user) {
       case null:
         console.log("null");
@@ -71,6 +74,16 @@ class NavbarComponent extends Component {
             </NavLink>
           </Form>
         );
+        menu = (
+          <DropdownMenu>
+           <Dropdown.Item href="/">HOME</Dropdown.Item>
+           <Dropdown.Item href="/about">ABOUT</Dropdown.Item>
+           <Dropdown.Item href="/howto">HOWTO</Dropdown.Item>
+           <Dropdown.Item href="/regis">REGISTER</Dropdown.Item>
+           <Dropdown.Item href="/login">LOGIN</Dropdown.Item>
+          </DropdownMenu>
+        );
+        
         break;
       default:
         console.log("Logout");
@@ -95,7 +108,7 @@ class NavbarComponent extends Component {
 
             <Nav>
               <NavLink className={classes.NavLink} to="/managebooking">
-               BOOKING
+                BOOKING
               </NavLink>
             </Nav>
             <p
@@ -108,6 +121,16 @@ class NavbarComponent extends Component {
               LOGOUT
             </p>
           </Form>
+        );
+        menu = (
+          <DropdownMenu>
+              <Dropdown.Item href="/">HOME</Dropdown.Item>
+           <Dropdown.Item href="/about">ABOUT</Dropdown.Item>
+           <Dropdown.Item href="/howto">HOWTO</Dropdown.Item>
+          <Dropdown.Item href="/carmanage">CARMANAGE</Dropdown.Item>
+          <Dropdown.Item href="/managebooking">BOOKING</Dropdown.Item>
+          <Dropdown.Item href="/logout">LOGOUT</Dropdown.Item>
+         </DropdownMenu>
         );
         break;
     }
@@ -130,7 +153,18 @@ class NavbarComponent extends Component {
               justifyContent: "start"
             }}
           >
-            <Nav>
+           <div className={classes.display}>
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                </Dropdown.Toggle>
+
+        
+                  {menu}
+          
+              </Dropdown>
+            </div>
+            <Nav className = {classes.hide}>
+
               <NavLink className={classes.NavLink} to="/">
                 HOME
               </NavLink>
@@ -162,7 +196,7 @@ class NavbarComponent extends Component {
               justifyContent: "flex-end"
             }}
           >
-            {display}
+            <div className={classes.hide}>{display}</div>
           </div>
         </div>
       </Navbar>
