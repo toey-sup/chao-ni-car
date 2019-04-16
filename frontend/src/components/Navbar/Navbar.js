@@ -154,8 +154,9 @@ class NavbarComponent extends Component {
             }}
           >
            <div className={classes.display}>
-              <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown className ={classes.nav_dropdown}>
+                 MENU
+                <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
                 </Dropdown.Toggle>
 
         

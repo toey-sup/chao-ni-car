@@ -54,6 +54,9 @@
     background-color: rgb(27, 29, 34);
     height: 9vh;
   }
+  .nav_dropdown{
+    color: white;
+  }
   .hide{
     visibility: hidden;
     display: none;
