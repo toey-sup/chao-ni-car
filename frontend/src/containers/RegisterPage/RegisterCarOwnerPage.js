@@ -146,7 +146,7 @@ class RegisterCarOwnerPage extends Component {
       .post("/auth/local", data)
       .then(res => {
         console.log(res);
-        //this.props.history.push("/");
+        this.props.history.push("/");
       })
       .catch(err => {
         console.log(err);
