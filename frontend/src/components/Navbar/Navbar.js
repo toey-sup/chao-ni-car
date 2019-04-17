@@ -78,7 +78,7 @@ class NavbarComponent extends Component {
           <DropdownMenu>
            <Dropdown.Item href="/">HOME</Dropdown.Item>
            <Dropdown.Item href="/about">ABOUT</Dropdown.Item>
-           <Dropdown.Item href="/howto">HOWTO</Dropdown.Item>
+           <Dropdown.Item href="/howtouse">HOWTO</Dropdown.Item>
            <Dropdown.Item href="/regis">REGISTER</Dropdown.Item>
            <Dropdown.Item href="/login">LOGIN</Dropdown.Item>
           </DropdownMenu>
@@ -126,8 +126,10 @@ class NavbarComponent extends Component {
           <DropdownMenu>
               <Dropdown.Item href="/">HOME</Dropdown.Item>
            <Dropdown.Item href="/about">ABOUT</Dropdown.Item>
-           <Dropdown.Item href="/howto">HOWTO</Dropdown.Item>
+           <Dropdown.Item href="/howtouse">HOWTO</Dropdown.Item>
+           {this.props.user.isProvider ? (
           <Dropdown.Item href="/carmanage">CARMANAGE</Dropdown.Item>
+          ) : null}
           <Dropdown.Item href="/managebooking">BOOKING</Dropdown.Item>
           <Dropdown.Item href="/logout">LOGOUT</Dropdown.Item>
          </DropdownMenu>

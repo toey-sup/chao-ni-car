@@ -29,7 +29,6 @@ class AddCarPage extends Component {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      console.log("kuy")
       event.stopPropagation();
     }
     if(this.state.fileUrl == null){
