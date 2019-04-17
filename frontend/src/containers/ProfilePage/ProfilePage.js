@@ -110,19 +110,19 @@ class ProfilePage extends Component {
                         <Col>
                             <h1 class="center">Profile </h1>                    
                             <br></br>
-                            <b>Name : {this.props.username}</b>
+                            <b>Name : {this.props.user? this.props.user.name:"Loading"}</b>
                             <br></br>
                             <br></br>
-                            <b>Surname : </b>
+                            <b>Surname : {this.props.user? this.props.user.surname:"Loading"}</b>
                             <br></br>
                             <br></br>
-                            <b>E-mail : </b>
+                            <b>E-mail : {this.props.user? this.props.user.email:"Loading"}</b>
                             <br></br>
                             <br></br>
-                            <b>ID Number : </b>
+                            <b>Tel : {this.props.user? this.props.user.tel:"Loading"}</b>
                             <br></br>
                             <br></br>
-                            <b>Tel : </b>
+                            <b>ID number :{this.props.user? this.props.user.idCardNum:"Loading"}</b>
                         </Col>
                     </Row>
                     </div>
