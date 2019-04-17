@@ -89,6 +89,8 @@ const carDetailMiddle = props => {
         <Rent
           pricePerDay={props.payload.pricePerDay}
           deposit={props.payload.deposit}
+          DateFrom={props.payload.availFrom}
+          DateTo={props.payload.availTo}
         />
       </Row>
     </div>
