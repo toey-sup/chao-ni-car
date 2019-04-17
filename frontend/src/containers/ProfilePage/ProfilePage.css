@@ -1,0 +1,21 @@
+.profilebackground{
+    background-color: rgb(36, 39, 46);
+    height: 500px;
+}
+
+.profilecontent{
+    margin-left: 25px;
+    margin-right: 25px;
+    transform: translate(0, 4%);   
+}
+
+.profilecontainer{
+    font-size: 15px;
+    width: 40%;
+    height: 80%;
+    border-radius: 10px;
+    background: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translate(0, 10%);
+}
