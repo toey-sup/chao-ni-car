@@ -1,14 +1,10 @@
-@media screen and (min-width : 480px){
 .Nav {
   background-color: rgb(27, 29, 34);
-  height: 9vh;
-}
-.display{
-  display: none;
+  color: white;
+  
 }
 .NavLink {
-  color: rgba(255, 255, 255, 0.904);
-  text-shadow: 1px 0px #5a5959;
+  color: rgb(255, 255, 255);
   padding: 0.5rem 0.5rem;
   display: block;
   text-decoration: none;
@@ -46,65 +42,5 @@
 }
 
 .Header > img {
-  padding: 0px 12px;
-}
-}
-@media screen and (max-width : 1400px){
-  .Nav {
-    background-color: rgb(27, 29, 34);
-    height: 9vh;
-  }
-  .nav_dropdown{
-    color: white;
-  }
-  .hide{
-    visibility: hidden;
-    display: none;
-  }
-  .display{
-     display: inline;
-  }
-  .NavLink {
-    color: rgba(255, 255, 255, 0.904);
-    text-shadow: 1px 0px #5a5959;
-    padding: 0.5rem 0.5rem;
-    display: block;
-    text-decoration: none;
-    box-sizing: border-box;
-  }
-  
-  .NavLink:hover,
-  .NavLink:active {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: underline orangered;
-  }
-  
-  .Header {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-right: 1rem;
-    font-size: 1.25rem;
-    line-height: inherit;
-    white-space: nowrap;
-    text-decoration: none;
-    background-color: transparent;
-  }
-  
-  .Header:hover {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-  }
-  
-  .Header > img {
-    padding: 0px 12px;
-  }
-
+  padding: 0px 0px;
 }
