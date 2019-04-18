@@ -16,6 +16,7 @@ import RegisterRenter from "./containers/RegisterPage/RegisterRenterPage";
 import RegisterCarOwner from "./containers/RegisterPage/RegisterCarOwnerPage";
 import ManageBooking from "./containers/ManageBookingPage/ManageBooking";
 import ReservedPage from "./containers/ReservedPage/ReservedPage";
+import ProfilePage from "./containers/ProfilePage/ProfilePage"
 
 import { connect } from "react-redux";
 import * as actions from "./store/actions/";
@@ -45,6 +46,7 @@ class App extends Component {
             <Route path="/regiscarowner" component={RegisterCarOwner} />
             <Route path="/managebooking" component={ManageBooking} />
             <Route path="/reserved" component={ReservedPage} />
+            <Route path="/profile" component={ProfilePage} />
           </Switch>
         </div>
       </div>
