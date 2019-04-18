@@ -122,7 +122,10 @@ class ProfilePage extends Component {
                             <b>Tel : {this.props.user? this.props.user.tel:"Loading"}</b>
                             <br></br>
                             <br></br>
-                            <b>ID number :{this.props.user? this.props.user.idCardNum:"Loading"}</b>
+                            <b>ID number : {this.props.user? this.props.user.idCardNum:"Loading"}</b>
+                            <br></br>
+                            <br></br>
+                            <b>Credits : {this.props.user? this.props.user.credits/100:"Loading"}</b>
                         </Col>
                     </Row>
                     </div>
