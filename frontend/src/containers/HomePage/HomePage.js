@@ -69,13 +69,13 @@ class HomePage extends Component {
   filterItem = () => {
     const updatedCars = this.state.CARS.filter(element => {
       console.log(element);
-      if (!this.state.gear == "") {
+      if (!this.state.gear === "") {
         return element.gear.includes(this.state.gear);
       }
-      if (!this.state.seat == 0) {
+      if (!this.state.seat === 0) {
         return element.seat >= this.state.seat;
       }
-      if (element.location&&!this.state.fromLoc == "") {
+      if (element.location&&!this.state.fromLoc === "") {
         //return element.isRented
         return element.location.includes(this.state.fromLoc);
       }
