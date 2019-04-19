@@ -22,34 +22,6 @@ class NavbarComponent extends Component {
       response: null
     };
   }
-  renderContent() {
-    // axios
-    //   .get("/api/current_user")
-    //   .then(response => {
-    //     console.log(response);
-    //     if (response.data) {
-    //       this.setState(
-    //         {
-    //           response: response,
-    //           name: response.data.name,
-    //           email: response.data.email,
-    //           googleId: response.data.googleId,
-    //           photo: response.data.photo,
-    //           isAuthenticated: response.data.isAuthenticated,
-    //           login: true
-    //         },
-    //         () => this.props.login(response.data)
-    //       );
-    //     } else {
-    //       this.setState({
-    //         login: false
-    //       });
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-  }
 
   render() {
     const handleClickLogout = () => {
