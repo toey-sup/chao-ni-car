@@ -17,7 +17,6 @@ class AddCarPage extends Component {
     props = this.props,
     setSubmitting
   }) => {
-    console.log(values);
     if (this.state.fileUrl != null) {
       const data = {
         brand: values.brand,
@@ -45,10 +44,9 @@ class AddCarPage extends Component {
       .catch(err => {
         console.log(err);
       });
-      alert('Form Submitted');
     }
     else{
-      alert('No photo');
+      alert('No photo.');
     }
     setSubmitting(false);
     return;
