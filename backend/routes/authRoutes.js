@@ -8,56 +8,47 @@ module.exports = app => {
     const {
       name,
       surname,
+      username,
+      password,
       email,
       idCardNum,
       DLicenseNumber,
       tel,
-      isProvider,
-      isAuthenticated
+      isProvider
     } = req.body;
     User.register(
       new User({
-        username: req.body.username,
+        username,
         name,
         surname,
         email,
         idCardNum,
         DLicenseNumber,
         tel,
-        isProvider,
-        isAuthenticated
+        isProvider
       }),
-      req.body.password,
+      password,
       (err, user) => {
         if (err) {
           console.log(err);
-          return res.redirect("/");
+          return res.status(400).json({ message: "Sign Up Error"})
         }
         passport.authenticate("local")(req, res, function() {
-          res.redirect("/");
+          //console.log(res)
+          res.status(200).json({message: "Sign Up Success"});
         });
       }
     );
-  });
-  app.get("/auth/successjson", function(req, res) {
-    res.status(200).json({ message: "Login Success" });
-  });
-
-  app.get("/auth/failurejson", function(req, res) {
-    res.status(401).json({ message: "Login Error" });
   });
   app.post(
     "/auth/login",
     passport.authenticate("local", {
     }),
     (req, res) => {
-      if (req.user) { res.send(req.user); }
-      else { res.send(401); }
+      if (req.user) { res.status(200).send(req.user); }
+      else { res.status(401).json({message: "Login Error"}); }
     }
   );
-  
-
-
   app.get("/api/logout", (req, res) => {
     // logout
     req.logout();
@@ -66,29 +57,7 @@ module.exports = app => {
 
   app.get("/api/current_user", (req, res) => {
     // get current user
+    console.log(req.user || req.session.user)
     res.send(req.user);
   });
-
-  // app.post("/api/authentication", requireLogin, async (req, res) => {
-  //   const { tel, idCardNum, DLicenseNumber, isAuthenticated } = req.body;
-  //   console.log(tel, idCardNum, DLicenseNumber, isAuthenticated);
-  //   const user = await User.findByIdAndUpdate(
-  //     req.user["_id"],
-  //     {
-  //       $set: {
-  //         tel,
-  //         idCardNum,
-  //         DLicenseNumber,
-  //         isAuthenticated
-  //       }
-  //     },
-  //     (err, result) => {
-  //       if (err) {
-  //         console.log(err);
-  //       }
-  //     }
-  //   );
-  //   console.log(user);
-  //   res.send(user);
-  // });
 };

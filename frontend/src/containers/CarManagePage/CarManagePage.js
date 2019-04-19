@@ -74,14 +74,11 @@ class CarManage extends Component {
         className={classes.carmanagebackground}
         style={{ overflow: "hidden" }}
       >
-        <Container>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className={classes.carmanagecontainer}>
             <div className={classes.titleName}>
-              <h3 style={{ color: "white" }}>Car List</h3>
-            </div>
+              <p>Car List</p>
           </div>
           {carlist}
-        </Container>
 
         <div
           style={{
@@ -101,6 +98,7 @@ class CarManage extends Component {
             onClick={() => (window.location = "addcar")}
           />
         </div>
+      </div>
       </div>
     );
   }
