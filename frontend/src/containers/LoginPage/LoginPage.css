@@ -6,8 +6,8 @@
   padding: 12px;
   background-color: white;
   position: relative;
-  top: 40%;   
-  transform: translate(0, -45%) ;
+  top: 40%;
+  transform: translate(0, -45%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -17,7 +17,7 @@
 .circle {
   height: 200;
   width: 200;
-  border: 5px solid rgb(36,39,46);
+  border: 5px solid rgb(36, 39, 46);
   border-radius: 50%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   display: block;
@@ -25,29 +25,24 @@
   margin-right: auto;
   margin-bottom: 15px;
 }
-.loginbackground{
-  background-color: rgb(36,39,46);
+.loginbackground {
+  background-color: rgb(36, 39, 46);
   height: 700px;
-  
-
 }
-
 
 a {
   color: #92badd;
-  display:inline-block;
+  display: inline-block;
   text-decoration: none;
   font-weight: 400;
 }
-
-
 
 /* STRUCTURE */
 
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -62,8 +57,8 @@ a {
   width: 90%;
   max-width: 450px;
   position: relative;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
@@ -83,14 +78,12 @@ a {
 
 /* TABS */
 
-
-
-
-
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
-  background-color:orangered;
+#formContent input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  background-color: orangered;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -111,11 +104,15 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+#formContent input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
   background-color: rgb(255, 136, 0);
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+#formContent input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -123,7 +120,9 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text],input[type=password],input[type=email] {
+#formContent input[type="text"],
+input[type="password"],
+input[type="email"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -144,19 +143,19 @@ input[type=text],input[type=password],input[type=email] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus,input[type=password]:focus,input[type=email]:focus {
+#formContent input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
   background-color: #fff;
   border-bottom: 2px solid orangered;
 }
 
-input[type=text]:placeholder {
+#formContent input[type="text"]:placeholder {
   color: #cccccc;
 }
 input :invalid {
   border: 2px solid red;
 }
-
-
 
 /* ANIMATIONS */
 
@@ -170,32 +169,50 @@ input :invalid {
   animation-fill-mode: both;
 }
 
-
-
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .fadeIn {
-  opacity:0;
-  -webkit-animation:fadeIn ease-in 1;
-  -moz-animation:fadeIn ease-in 1;
-  animation:fadeIn ease-in 1;
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
 
-  -webkit-animation-fill-mode:forwards;
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-  -webkit-animation-duration:1s;
-  -moz-animation-duration:1s;
-  animation-duration:1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
 }
 
 .fadeIn.first {
   -webkit-animation-delay: 0.4s;
   -moz-animation-delay: 0.4s;
   animation-delay: 0.4s;
-  
 }
 
 .fadeIn.second {
@@ -232,23 +249,20 @@ input :invalid {
   color: #0d0d0d;
 }
 
-.underlineHover:hover:after{
+.underlineHover:hover:after {
   width: 100%;
 }
-
-
 
 /* OTHERS */
 
 *:focus {
-    outline: none;
-} 
+  outline: none;
+}
 
 #icon {
-  width:60%;
+  width: 60%;
 }
 
 * {
   box-sizing: border-box;
 }
-

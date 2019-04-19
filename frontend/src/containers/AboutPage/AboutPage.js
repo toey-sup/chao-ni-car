@@ -44,7 +44,7 @@ class AboutPage extends Component {
                         </Col>
                     </Row>
                     <Row>
-                    <Col>
+                        <Col>
                             <Profile name = "Sahapol Tongsom" 
                             role = "PROJECT COORDINATOR" 
                             back_profile = {back_profile5}

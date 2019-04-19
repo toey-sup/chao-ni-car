@@ -1,0 +1,94 @@
+image: node:10
+services:
+  - docker:dind
+
+before_script:
+  - ls
+
+stages:
+  - build
+  - test
+  - deploy
+
+build_backend:
+  image: docker:stable
+  stage: build
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+  services:
+    - docker:dind
+  script:
+    - echo "Building backend"
+    - cd backend
+    - docker info
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/backend:${CI_COMMIT_SHA} .
+    - docker push registry.gitlab.com/phpunch/chow-ni-car/backend:${CI_COMMIT_SHA}
+
+build_frontend:
+  image: docker:stable
+  stage: build
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+
+  services:
+    - docker:dind
+  script:
+    - echo "Building frontend"
+    - echo $CI_JOB_TOKEN
+    - cd frontend
+    - docker info
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker build --pull -t registry.gitlab.com/phpunch/chow-ni-car/frontend:${CI_COMMIT_SHA} .
+    - docker push registry.gitlab.com/phpunch/chow-ni-car/frontend:${CI_COMMIT_SHA}
+
+test:
+  stage: test
+  script:
+    - echo "Running tests"
+    - cd backend
+    - npm install
+    - npm run test
+
+
+deploy_dev:
+  stage: deploy
+  image: lwolf/helm-kubectl-docker:v152_213
+  environment:
+    name: develop
+  script:
+    - echo "Deploy to staging server"
+    - echo ${CI_COMMIT_SHA}
+    - kubectl config set-cluster node-kube --server="$KUBE_URL" --insecure-skip-tls-verify=true
+    - cd backend
+    - kubectl config current-context
+    - kubectl config get-contexts
+    - if kubectl get secret gitlab-auth; then
+      kubectl delete secret gitlab-auth;
+      fi
+    - kubectl create secret docker-registry gitlab-auth
+      --docker-server=https://registry.gitlab.com
+      --docker-username=$DOCKER_USERNAME
+      --docker-password=$DOCKER_PASSWORD
+      --docker-email=$DOCKER_EMAIL
+    - sed -i "s/__VERSION__/${CI_COMMIT_SHA}/" backend-deployment.yaml backend-service.yaml db-deployment.yaml db-service.yaml
+    - sed -i "s/rolling-again/again-rolling/" backend-deployment.yaml backend-service.yaml db-deployment.yaml db-service.yaml
+    - kubectl apply -f backend-deployment.yaml
+    - kubectl apply -f backend-service.yaml
+    - kubectl apply -f db-deployment.yaml
+    - kubectl apply -f db-service.yaml
+    # - sed -i "s/again-rolling/rolling-again/" backend-deployment.yaml backend-service.yaml db-deployment.yaml db-service.yaml
+    # - kubectl apply -f backend-deployment.yaml
+    # - kubectl apply -f backend-service.yaml
+    # - kubectl apply -f db-deployment.yaml
+    # - kubectl apply -f db-service.yaml
+    - cd ../frontend
+    - sed -i "s/__VERSION__/${CI_COMMIT_SHA}/" frontend-deployment.yaml frontend-service.yaml
+    - sed -i "s/rollingworkaround/workaroundrolling/" frontend-deployment.yaml frontend-service.yaml
+    - kubectl apply -f frontend-deployment.yaml
+    - kubectl apply -f frontend-service.yaml
+    # - sed -i "s/workaroundrolling/rollingworkaround/" frontend-deployment.yaml frontend-service.yaml
+    # - kubectl apply -f frontend-deployment.yaml
+    # - kubectl apply -f frontend-service.yaml
+  only:
+    - master

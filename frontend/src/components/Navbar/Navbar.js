@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Form } from "react-bootstrap";
+import { Navbar, Nav, Form, Dropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import classes from "./Navbar.module.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import logo from "./logo2.png";
+import hamburger_icon from "./Hamburger_icon.png";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 class NavbarComponent extends Component {
   constructor(props) {
@@ -55,6 +57,7 @@ class NavbarComponent extends Component {
     };
 
     let display = <p />;
+    let menu = null;
     switch (this.props.user) {
       case null:
         console.log("null");
@@ -71,20 +74,33 @@ class NavbarComponent extends Component {
             </NavLink>
           </Form>
         );
+        /*
+        menu = (
+          <DropdownMenu>
+            <Dropdown.Item href="/">HOME</Dropdown.Item>
+            <Dropdown.Item href="/about">ABOUT</Dropdown.Item>
+            <Dropdown.Item href="/howtouse">HOWTO</Dropdown.Item>
+            <Dropdown.Item href="/regis">REGISTER</Dropdown.Item>
+            <Dropdown.Item href="/login">LOGIN</Dropdown.Item>
+          </DropdownMenu>
+        );
+          */
         break;
       default:
         console.log("Logout");
         display = (
           <Form inline>
-            <p
-              style={{
-                marginTop: 17,
-                color: "rgba(255,204,0,1)",
-                marginRight: 7
-              }}
-            >
-              {this.props.user.name}
-            </p>
+            <Nav>
+              <NavLink
+                className={classes.NavLink}
+                style={{
+                  color: "yellow"
+                }}
+                to="/profile"
+              >
+                {this.props.user.name}
+              </NavLink>
+            </Nav>
             {this.props.user.isProvider ? (
               <Nav>
                 <NavLink className={classes.NavLink} to="/carmanage">
@@ -95,23 +111,40 @@ class NavbarComponent extends Component {
 
             <Nav>
               <NavLink className={classes.NavLink} to="/managebooking">
-               BOOKING
+                BOOKING
               </NavLink>
             </Nav>
-            <p
-              className={classes.NavLink}
-              onClick={() => {
-                handleClickLogout();
-              }}
-              style={{ marginTop: 16, cursor: "pointer" }}
-            >
-              LOGOUT
-            </p>
+            <Nav>
+              <NavLink
+                className={classes.NavLink}
+                to="/"
+                onClick={() => {
+                  handleClickLogout();
+                }}
+              >
+                LOGOUT
+              </NavLink>
+            </Nav>
           </Form>
         );
+        /*
+        menu = (
+          <DropdownMenu>
+            <Dropdown.Item href="/">HOME</Dropdown.Item>
+            <Dropdown.Item href="/about">ABOUT</Dropdown.Item>
+            <Dropdown.Item href="/howtouse">HOWTO</Dropdown.Item>
+            {this.props.user.isProvider ? (
+              <Dropdown.Item href="/carmanage">CARMANAGE</Dropdown.Item>
+            ) : null}
+            <Dropdown.Item href="/managebooking">BOOKING</Dropdown.Item>
+            <Dropdown.Item href="/logout">LOGOUT</Dropdown.Item>
+          </DropdownMenu>
+        );
+        */
         break;
     }
     return (
+      /*
       <Navbar className={classes.Nav}>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <div
@@ -131,6 +164,7 @@ class NavbarComponent extends Component {
             }}
           >
             <Nav>
+
               <NavLink className={classes.NavLink} to="/">
                 HOME
               </NavLink>
@@ -162,9 +196,42 @@ class NavbarComponent extends Component {
               justifyContent: "flex-end"
             }}
           >
-            {display}
+            <div className={classes.hide}>{display}</div>
           </div>
         </div>
+      </Navbar>
+      */
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        variant="dark"
+        className={classes.Nav}
+      >
+        <Navbar.Brand href="/">
+          <img src={logo} />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link
+              style={{
+                color: "white"
+              }}
+              href="/about"
+            >
+              ABOUT
+            </Nav.Link>
+            <Nav.Link
+              style={{
+                color: "white"
+              }}
+              href="/howtouse"
+            >
+              HOWTO
+            </Nav.Link>
+          </Nav>
+          <Nav>{display}</Nav>
+        </Navbar.Collapse>
       </Navbar>
     );
   }

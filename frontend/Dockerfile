@@ -17,5 +17,4 @@ RUN npm run build
 
 RUN npm install -g serve
 
-# CMD ["serve", "-s", "build", "-p", "80"]
 CMD ["npm", "start"]
