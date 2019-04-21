@@ -25,7 +25,6 @@ class RegisterRenterPage extends Component {
       password: "",
       confirmpassword: "",
       id: "",
-      drivingnumber: "",
       tel: "",
 
       formvalid: null,
@@ -40,7 +39,6 @@ class RegisterRenterPage extends Component {
         password: " ",
         confirmpassword: " ",
         id: " ",
-        drivingnumber: "",
         tel: " "
       }
     };
@@ -102,14 +100,10 @@ class RegisterRenterPage extends Component {
             : "confirm password and password are not matching";
         break;
       case "id":
-        formErrors.id = value.length === 13 ? "" : "invalid id number";
-        break;
-      case "drivingnumber":
-        formErrors.drivingnumber =
-          value.length === 10 ? "" : "invalid driving number";
+        formErrors.id = value.length === 13 && Number.isInteger(+value) ? "" : "invalid id number";
         break;
       case "tel":
-        formErrors.tel = value.length === 10 ? "" : "invalid telephone number";
+        formErrors.tel = value.length === 10 && Number.isInteger(+value) ? "" : "invalid telephone number";
         break;
       default:
         break;
@@ -141,7 +135,7 @@ class RegisterRenterPage extends Component {
       .post("/auth/local", data)
       .then(res => {
         console.log(res);
-        this.props.history.push("/");
+        window.location = '/'
       })
       .catch(err => {
         console.log(err);

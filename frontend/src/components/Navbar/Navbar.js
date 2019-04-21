@@ -5,7 +5,6 @@ import classes from "./Navbar.module.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import logo from "./logo2.png";
-import hamburger_icon from "./Hamburger_icon.png";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 class NavbarComponent extends Component {
@@ -16,9 +15,6 @@ class NavbarComponent extends Component {
       login: null,
       name: undefined,
       email: undefined,
-      googleId: undefined,
-      photo: undefined,
-      isAuthenticated: undefined,
       response: null
     };
   }
@@ -29,7 +25,6 @@ class NavbarComponent extends Component {
     };
 
     let display = <p />;
-    let menu = null;
     switch (this.props.user) {
       case null:
         console.log("null");
@@ -46,17 +41,6 @@ class NavbarComponent extends Component {
             </NavLink>
           </Form>
         );
-        /*
-        menu = (
-          <DropdownMenu>
-            <Dropdown.Item href="/">HOME</Dropdown.Item>
-            <Dropdown.Item href="/about">ABOUT</Dropdown.Item>
-            <Dropdown.Item href="/howtouse">HOWTO</Dropdown.Item>
-            <Dropdown.Item href="/regis">REGISTER</Dropdown.Item>
-            <Dropdown.Item href="/login">LOGIN</Dropdown.Item>
-          </DropdownMenu>
-        );
-          */
         break;
       default:
         console.log("Logout");
@@ -116,63 +100,6 @@ class NavbarComponent extends Component {
         break;
     }
     return (
-      /*
-      <Navbar className={classes.Nav}>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            width: "100%"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flex: "1",
-              alignItems: "center",
-              justifyContent: "start"
-            }}
-          >
-            <Nav>
-
-              <NavLink className={classes.NavLink} to="/">
-                HOME
-              </NavLink>
-              <NavLink className={classes.NavLink} to="/about">
-                ABOUT
-              </NavLink>
-              <NavLink className={classes.NavLink} to="/howtouse">
-                HOWTO
-              </NavLink>
-            </Nav>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flex: "1",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            <NavLink to="/">
-              <img className={classes.center} src={logo} />
-            </NavLink>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flex: "1",
-              alignItems: "center",
-              justifyContent: "flex-end"
-            }}
-          >
-            <div className={classes.hide}>{display}</div>
-          </div>
-        </div>
-      </Navbar>
-      */
       <Navbar
         collapseOnSelect
         expand="lg"
