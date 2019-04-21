@@ -2,26 +2,25 @@ const mongoose = require("mongoose")
 const app = require("../app");
 const request = require("supertest");
 const agent = request.agent(app);
-
 let owner_data = {
-  name: "Punch",
-  surname: "Vit",
-  username: "testUser",
+  name: "owner",
+  surname: "owner",
+  username: "ownerUser",
   password: "123456",
-  email: "nutacp_ryho@hotmail.com",
-  idCardNum: "123123",
-  DLicenseNumber: "123123123",
+  email: "owner@mail.com",
+  idCardNum: "1234567890123",
+  DLicenseNumber: "1231231230",
   tel: "0810000000",
   isProvider: true
 };
 let owner_data2 = {
-  name: "AAAA",
-  surname: "BBBBB",
-  username: "testUser2",
+  name: "owner2",
+  surname: "owner2",
+  username: "owner2",
   password: "123456",
-  email: "eva@mail.com",
-  idCardNum: "123123",
-  DLicenseNumber: "123123123",
+  email: "owner2@mail.com",
+  idCardNum: "1234567890123",
+  DLicenseNumber: "1231231230",
   tel: "0810000000",
   isProvider: true
 };
@@ -40,6 +39,91 @@ beforeAll(async () => {
 });
 
 describe("User", function() {
+  it("passwordInvalid", async() => {
+    data = {
+      ...owner_data2,
+      password: 'df'
+    };
+    const res = await agent
+      .post("/auth/local")
+      .send(data)
+      .set("Accept", "application/json")
+      .expect(404, { message: "Password Invalid" });
+      return res
+  });
+  it("nameInvalid", async() => {
+    data = {
+      ...owner_data2,
+      name: 'df'
+    };
+    const res = await agent
+      .post("/auth/local")
+      .send(data)
+      .set("Accept", "application/json")
+      .expect(404, { message: "Name Invalid" });
+      return res
+  });
+  it("surnameInvalid", async() => {
+    data = {
+      ...owner_data2,
+      surname: 'df'
+    };
+    const res = await agent
+      .post("/auth/local")
+      .send(data)
+      .set("Accept", "application/json")
+      .expect(404, { message: "Surname Invalid" });
+      return res
+  });
+  it("usernameInvalid", async() => {
+    data = {
+      ...owner_data2,
+      username: 'df'
+    };
+    const res = await agent
+      .post("/auth/local")
+      .send(data)
+      .set("Accept", "application/json")
+      .expect(404, { message: "Username Invalid" });
+      return res
+  });
+  it("emailInvalid", async() => {
+    data = {
+      ...owner_data2,
+      email: 'dfdf-mail.com'
+    };
+    const res = await agent
+      .post("/auth/local")
+      .send(data)
+      .set("Accept", "application/json")
+      .expect(404, { message: "Email Invalid" });
+      return res
+  });
+  it("idCardNumInvalid", async() => {
+    data = {
+      ...owner_data2,
+      idCardNum: '3215451'
+    };
+    const res = await agent
+      .post("/auth/local")
+      .send(data)
+      .set("Accept", "application/json")
+      .expect(404, { message: "IdCardNum Invalid" });
+      return res
+  });
+  it("telephoneInvalid", async() => {
+    data = {
+      ...owner_data2,
+      tel: '095614989119'
+    };
+    const res = await agent
+      .post("/auth/local")
+      .send(data)
+      .set("Accept", "application/json")
+      .expect(404, { message: "Telephone Invalid" });
+      return res
+  });
+
   it("sign up", async () => {
     const res = await agent
       .post("/auth/local")
