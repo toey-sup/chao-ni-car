@@ -5,13 +5,13 @@ const agent = request.agent(app);
 let deleteAfterRun = false;
 
 let owner_data = {
-  name: "owner",
-  surname: "owner",
-  username: "ownerUser",
+  name: "CarTest",
+  surname: "Vit",
+  username: "testOwner",
   password: "123456",
-  email: "owner@mail.com",
-  idCardNum: "1234567890123",
-  DLicenseNumber: "1231231230",
+  email: "car.spec.js@hotmail.com",
+  idCardNum: "123123",
+  DLicenseNumber: "123123123",
   tel: "0810000000",
   isProvider: true
 };
@@ -21,8 +21,8 @@ let renter_data = {
   username: "testRenter",
   password: "123456",
   email: "renter@mail.com",
-  idCardNum: "1231231230123",
-  DLicenseNumber: "1231231230",
+  idCardNum: "123123",
+  DLicenseNumber: "123123123",
   tel: "0810000000",
   isProvider: false
 };

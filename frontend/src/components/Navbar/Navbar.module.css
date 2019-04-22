@@ -1,10 +1,11 @@
 .Nav {
   background-color: rgb(27, 29, 34);
-  color: white;
-  
+  height: 9vh;
 }
+
 .NavLink {
-  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.904);
+  text-shadow: 1px 0px #5a5959;
   padding: 0.5rem 0.5rem;
   display: block;
   text-decoration: none;
@@ -42,5 +43,6 @@
 }
 
 .Header > img {
-  padding: 0px 0px;
+  padding: 0px 12px;
 }
+

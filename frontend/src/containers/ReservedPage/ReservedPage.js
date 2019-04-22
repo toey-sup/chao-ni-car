@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from "react-bootstrap";
 import "./ReservedPage.css";
-import axios from "axios";
-import moment from "moment";
+
 class ReservedPage extends Component {
   render() {
     return (

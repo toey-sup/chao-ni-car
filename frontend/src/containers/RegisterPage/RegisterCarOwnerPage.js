@@ -71,8 +71,10 @@ class RegisterCarOwnerPage extends Component {
 
   validateField(fieldName, value) {
     let formErrors = this.state.formErrors;
+
     switch (fieldName) {
       case "name":
+        console.log(formErrors.name, value);
         formErrors.name =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
@@ -100,14 +102,14 @@ class RegisterCarOwnerPage extends Component {
             : "confirm password and password are not matching";
         break;
       case "id":
-        formErrors.id = (value.length === 13  && Number.isInteger(+value)) ? "" : "invalid id number";
+        formErrors.id = value.length === 13 ? "" : "invalid id number";
         break;
       case "drivingnumber":
         formErrors.drivingnumber =
-          (value.length === 10 && Number.isInteger(+value)) ? "" : "invalid driving number";
+          value.length === 10 ? "" : "invalid driving number";
         break;
       case "tel":
-        formErrors.tel = value.length === 10 && Number.isInteger(+value) ? "" : "invalid telephone number";
+        formErrors.tel = value.length === 10 ? "" : "invalid telephone number";
         break;
       default:
         break;
@@ -119,12 +121,12 @@ class RegisterCarOwnerPage extends Component {
   }
 
   handleSubmit = e => {
-    e.preventDefault();
+    // console.log(this.submitCheck())
     if (!this.submitCheck()) {
       alert("กรุณากรอกข้อมูลให้ครบ");
       return;
     }
-    
+    e.preventDefault();
     let data = {}
 
     data = {
@@ -144,7 +146,7 @@ class RegisterCarOwnerPage extends Component {
       .post("/auth/local", data)
       .then(res => {
         console.log(res);
-        window.location = '/';
+        //this.props.history.push("/");
       })
       .catch(err => {
         console.log(err);

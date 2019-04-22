@@ -16,32 +16,6 @@ module.exports = app => {
       tel,
       isProvider
     } = req.body;
-
-    // check validation
-    if (name.length < 3) {
-      return res.status(404).json({message: "Name Invalid"})
-    }
-    if (surname.length < 3) {
-      return res.status(404).json({message: "Surname Invalid"})
-    }
-    if (username.length < 6) {
-      return res.status(404).json({message: "Username Invalid"})
-    }
-    if (password.length < 6) {
-      return res.status(404).json({message: "Password Invalid"})
-    }
-    if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-      return res.status(404).json({message: "Email Invalid"})
-    }
-    if (idCardNum.length < 13 || idCardNum.length > 13) {
-      return res.status(404).json({message: "IdCardNum Invalid"})
-    }
-    if (tel.length < 10 || tel.length > 10) {
-      return res.status(404).json({message: "Telephone Invalid"})
-    }
-    
-    
-
     User.register(
       new User({
         username,
