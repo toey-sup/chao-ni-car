@@ -77,8 +77,8 @@ beforeAll(async (done) => {
     availTo: "2019-04-26T00:00:00.000Z",
     location: "BTS Siam",
     description: "TEST CAR",
-    pricePerDay: "300",
-    deposit: "1000",
+    pricePerDay: 300,
+    deposit: 1000,
     ownerTestId: owner_id
   };
   const res3 = await request(app)
@@ -92,7 +92,7 @@ beforeAll(async (done) => {
 });
 
 describe("Request", function() {
-  test("addRequest", async (done) => {
+  test("addRequest", async () => {
     console.log(car_id, renter_id, owner_id);
     request_data = {
       carId: car_id,
@@ -107,25 +107,30 @@ describe("Request", function() {
       .set("Accept", "application/json")
       .expect(200);
     request_id = res.body._id;
-    done();
   });
-  test("getRequest", (done) => {
-    request(app)
-      .get("/api/request/" + request_id)
+  test("updatePickupRequest", async () => {
+    await request(app)
+      .put("/api/request/pickup/" + request_id)
+      .send(request_data)
       .set("Accept", "application/json")
-      .expect(200);
-    done()
+      .expect(200, "Update Request Complete!!!");
   });
-  test("deleteRequest", (done) => {
+  test("updateCompleteRequest", async () => {
+    await request(app)
+      .put("/api/request/complete/" + request_id)
+      .send(request_data)
+      .set("Accept", "application/json")
+      .expect(200, "Check Request Complete!!!");
+  });
+  test("deleteRequest", async () => {
     deleteAfterRun = true;
-    request(app)
+    await request(app)
       .delete("/api/request/" + request_id)
       .set("Accept", "application/json")
       .expect(200, {
         message: "Successfully deleted",
         id: request_id
       });
-    done();
   });
 });
 

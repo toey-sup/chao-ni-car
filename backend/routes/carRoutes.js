@@ -54,7 +54,33 @@ module.exports = app => {
       pricePerDay,
       deposit
     } = req.body;
-    console.log("OWNERTEST", req.body.ownerTestId)
+    // console.log("OWNERTEST", req.body.ownerTestId)
+
+    // check validation
+    if (brand.length === 0) {
+      return res.status(404).json({ message: "Brand Invalid" })
+    } else if (type.length === 0) {
+      return res.status(404).json({ message: "Type Invalid" })
+    } else if (regYear < 1900 || regYear > new Date().getFullYear()) {
+      return res.status(404).json({ message: "RegYear Invalid" })
+    } else if (LNumber.length === 0) {
+      return res.status(404).json({ message: "LNumber Invalid" })
+    } else if (availFrom.length === 0) {
+      return res.status(404).json({ message: "Date Invalid" })
+    } else if (location.length === 0) {
+      return res.status(404).json({ message: "Location Invalid" })
+    } else if (pricePerDay < 100) {
+      return res.status(404).json({ message: "PricePerDay Invalid" })
+    } else if (deposit < 100) {
+      return res.status(404).json({ message: "Deposit Invalid" })
+    } else if (seat < 0 || seat > 20) {
+      return res.status(404).json({ message: "Seat Invalid" })
+    } else if (gear !== "auto" && gear !== "manual") {
+      return res.status(404).json({ message: "Gear Invalid" })
+    }
+
+
+
     const car = await new Car({
       brand,
       type,

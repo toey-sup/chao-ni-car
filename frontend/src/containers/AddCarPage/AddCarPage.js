@@ -85,10 +85,10 @@ class AddCarPage extends Component {
         .max(new Date().getFullYear(), "Year in A.C. format ex.19xx.")
         .required("Required!!"),
       deposit: yup.number("Must be number.")
-        .min(0, "Minimum is 0.")
+        .min(100, "Minimum is 100.")
         .required("Required!!"),
       pricePerDay: yup.number("Must be number.")
-        .min(0, "Minimum is 0.")
+        .min(100, "Minimum is 100.")
         .required("Required!!"),
       seat: yup.number("Must be number.")
         .min(0, "Minimum is 0.")
