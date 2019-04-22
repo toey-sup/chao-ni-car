@@ -35,38 +35,37 @@ class Car extends React.Component {
         >
           <div className={this.props.isRented ? "rent" : "notrent"} />
         </div>
-        <Card.Header as="h5" className="cardheader + detail">
-          Car Id : {this.props.id}
-        </Card.Header>
+
         <div className="carimage">
           <img src={this.props.picture} className="imagecar" />
         </div>
-        <div className="cartext">
+        <div className="cartitle">
           <h6
             style={{ padding: "5px 0 5px 0", marginTop: "3px", color: "black" }}
           >
             {this.props.brand} {this.props.type}
           </h6>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between"
-            }}
-          >
-            <div className="head">
-              <p>license</p>
-            </div>
-            <p>{this.props.LNumber}</p>
-            <div className="head">
-              <p>Year</p>
-            </div>
-            <p> {this.props.regYear}</p>
-            <div className="head">
-              <p>Price Per Day</p>
-            </div>
-            <p>{this.props.pricePerDay}฿/Day</p>
+        </div>
+        <div
+          className="cartext"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between"
+          }}
+        >
+          <div className="head">
+            <p>license</p>
           </div>
+          <p>{this.props.LNumber}</p>
+          <div className="head">
+            <p>Year</p>
+          </div>
+          <p> {this.props.regYear}</p>
+        </div>
+
+        <div className="price">
+          <p>{this.props.pricePerDay}฿/Day</p>
         </div>
         <div className="des">
           <div className="head">
