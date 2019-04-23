@@ -27,8 +27,7 @@ class Carlist extends React.Component {
       <div className="carlist">
         {this.props.cars.map(car => {
           return (
-            <div
-            >
+            <div>
               <Car
                 id={car._id}
                 LNumber={car.LNumber}
