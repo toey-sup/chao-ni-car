@@ -14,13 +14,14 @@ class SubQueryFilter extends Component {
        
         const oldState = { ...this.state }
         oldState[state] = e.target.value;
-        this.setState(oldState);
+        this.setState(oldState,()=> this.onQuery());
     }
 
     onChangeHandlerNumber(e, state) {
         const oldState = { ...this.state }
         oldState[state] = +e.target.value;
-        this.setState(oldState);
+        this.setState(oldState,()=> this.onQuery());
+       
         //console.log(+e.target.value);
     }
 
@@ -79,8 +80,8 @@ class SubQueryFilter extends Component {
                                             <Form.Label className={classes.textcolor}>ประเภทเกียร์</Form.Label>
                                             <Form.Control as="select" value={this.state.gear} onChange={(e) => this.onChangeHandler(e, 'gear')}>
                                                 <option value=''>All</option>
-                                                <option value='Auto'>Auto</option>
-                                                <option value='Manual'>Manual</option>
+                                                <option value='auto'>Auto</option>
+                                                <option value='manual'>Manual</option>
                                             </Form.Control>
                                         </Col>
                                         <Col>
@@ -96,7 +97,7 @@ class SubQueryFilter extends Component {
                                         </Col>
                                     </Row>
                                 </FormGroup>
-                                <div style={{ textAlign: 'right' }}><Button onClick={this.onQuery} variant="danger" style={{ width: '200px' }}>Filter Results</Button></div>
+                                {/* <div style={{ textAlign: 'right' }}><Button onClick={this.onQuery} variant="danger" style={{ width: '200px' }}>Filter Results</Button></div> */}
                             </Form >
                         </Container>
                     </div>

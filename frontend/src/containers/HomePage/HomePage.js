@@ -61,8 +61,8 @@ class HomePage extends Component {
       ...this.state,
       ...payload
     };
-    this.setState(newState, () => this.filterItem());
-
+    this.setState(newState, ()=>{this.filterItem()});
+    console.log(this.state)
     //Query ต่อ
   };
 
@@ -128,7 +128,7 @@ class HomePage extends Component {
           CARS: [...cars],
           error: false,
           loading: false
-        });
+        },()=>this.filterItem());
       })
       .catch(err => {
         console.log("error");
