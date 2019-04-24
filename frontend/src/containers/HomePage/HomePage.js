@@ -70,20 +70,27 @@ class HomePage extends Component {
     console.log(this.state)
     const updatedCars = this.state.CARS.filter(element => {
       console.log(element);
+      const answer = []
       if (!this.state.gear == "") {
-        return element.gear.includes(this.state.gear);
+        //return element.gear.includes(this.state.gear);
+        answer.push(element.gear.includes(this.state.gear))
       }
       if (!this.state.seat == 0) {
-        return element.seat >= this.state.seat;
+        //return element.seat >= this.state.seat;
+        answer.push(element.seat >= this.state.seat)
       }
       if (element.location&&!this.state.fromLoc == "") {
         //return element.isRented
-        return element.location.includes(this.state.fromLoc);
+        //return element.location.includes(this.state.fromLoc);
+        answer.push(element.location.includes(this.state.fromLoc))
       }
       // if (!this.state.toLoc == "") {
       //   return element.toLoc.includes(this.state.toLoc);
       // }
 
+      if (answer !== [] && answer.includes(false)) {
+        return false
+      }
       return true;
     });
     this.setState({ cars: updatedCars });
