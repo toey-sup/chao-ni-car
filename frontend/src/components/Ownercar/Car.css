@@ -1,23 +1,21 @@
 .car {
   width: 100%;
-  height: 250px;
+  height: fit-content;
   margin: 0 0 0 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 200px 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    "c c c c c c c c c"
-    "i i i t t t t b b"
-    "i i i d d d d p p"
-    "i i i d d d d p p"
-    "i i i d d d d p p";
+    "i i i i i i i i i"
+    "i i i i i i i i i"
+    "ti ti ti ti ti ti b b b"
+    "t t t t t t t t t"
+    "p p p p p p p p p";
+  border-bottom: 1px solid #b6b6b6;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
-.cardheader{
-  grid-area: c;
-}
-.line{
-  border-bottom: 1px solid #727272;
-}
+
 .carimage {
   grid-area: i;
   display: flex;
@@ -26,7 +24,7 @@
 }
 
 .imagecar {
-  width: 90%;
+  max-width: 90%;
   max-height: 90%;
   border-radius: 10px;
 }
@@ -41,11 +39,10 @@
   grid-area: d;
   background-color: white;
   padding: 12px 12px;
-  font-size: 25px; 
+  font-size: 25px;
   line-height: normal;
   color: #727272;
   margin: 0;
-  
 }
 
 .icon {
@@ -57,12 +54,15 @@
   margin: 3px 10px 0px auto;
   z-index: 1;
 }
-
+.cartitle {
+  grid-area: ti;
+  margin-left: 10px;
+}
 .cartext {
   grid-area: t;
   background-color: white;
   padding: 12px 12px;
-  font-size: 12px; 
+  font-size: 12px;
   line-height: normal;
   color: #727272;
   margin: 0;
@@ -72,10 +72,11 @@
   grid-area: d;
   background-color: white;
   padding: 12px 12px;
-  font-size: 12px; 
+  font-size: 12px;
   line-height: normal;
   color: #727272;
   margin: 0;
+  display: none;
 }
 
 .head {
@@ -85,7 +86,7 @@
   padding: 2px 9px 2px 9px;
   width: fit-content;
   height: fit-content;
-  margin:0 ;
+  margin: 0;
 }
 
 .head p {
@@ -112,8 +113,8 @@
   border-radius: 10px;
 }
 
-.delete{
-  background-color:rgb(255, 0, 55);
+.delete {
+  background-color: rgb(255, 0, 55);
   border: none;
   color: white;
   padding: 10px 50px;
@@ -132,6 +133,26 @@
   transition: all 0.3s ease-in-out;
 }
 
-.delete:hover{
+.delete:hover {
   background-color: #ff8800;
+}
+
+@media only screen and (min-width: 768px) {
+  .car {
+    width: 100%;
+    height: 250px;
+    margin: 0 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "i i i ti ti ti ti b b"
+      "i i i t t t t b b"
+      "i i i d d d d b b"
+      "i i i d d d d b b"
+      "i i i p p p p p p";
+  }
+  .des {
+    display: inline;
+  }
 }
