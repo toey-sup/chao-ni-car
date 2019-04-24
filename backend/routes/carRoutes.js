@@ -30,7 +30,10 @@ module.exports = app => {
     }
     else {
       console.log('normal query')
-      const car = await Car.find({ isDeleted: false });
+      const car = await Car.find({ isDeleted: false ,
+        "availTo": {
+        $gte: new Date()
+      }});
       res.send(car);
     }
 
