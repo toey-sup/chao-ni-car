@@ -86,4 +86,10 @@ module.exports = app => {
     console.log(req.user || req.session.user)
     res.send(req.user);
   });
+
+  app.get("/api/user/:userID", async (req, res) => {
+    // get specific user
+    const user = await User.findOne({_id: req.params.userID})
+    res.send(user);
+  });
 };
