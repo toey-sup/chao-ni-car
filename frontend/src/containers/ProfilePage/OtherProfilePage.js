@@ -37,7 +37,7 @@ class Profile extends Component {
       display = (
         <Row>
           <Col>
-            <h1 class="center">Owner Information </h1>
+            <h1 class="center">User Information </h1>
             <br />
             <b>
               Name :{" "}

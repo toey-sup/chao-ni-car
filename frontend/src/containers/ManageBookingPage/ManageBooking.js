@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Badge, Card, Row, Col } from "react-bootstrap";
+import { Link } from 'react-router-dom'
 import "./ManageBooking.css";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
@@ -102,14 +103,14 @@ class ManageBooking extends Component {
                           สถานที่รับรถ: {_car["location"]}
                           <br />
                           ชื่อเจ้าของรถ:{" "}
-                          <a href={"/user/" + request["_owner"]["_id"]}>
+                          <Link to={"/user/" + request["_owner"]["_id"]}>
                             {request["_owner"]["name"]}
-                          </a>
+                          </Link>
                           <br />
                           ชื่อผู้เช่า:{" "}
-                          <a href={"/user/" + request["_renter"]["_id"]}>
+                          <Link to={"/user/" + request["_renter"]["_id"]}>
                             {request["_renter"]["name"]}
-                          </a>
+                          </Link>
                           <br />
                           Status: {statusText}
                         </p>
@@ -119,18 +120,18 @@ class ManageBooking extends Component {
                       {showedComplete ? (
                         null
                       ) : (
-                        <button
-                          className="pickup"
-                          onClick={() =>
-                            this.completeTaskHandler(request["_id"])
-                          }
-                          disabled={
-                            this.state.isDisabled | isCompletedButtonDisabled
-                          }
-                        >
-                          <span>Complete Task</span>
-                        </button>
-                      )}
+                          <button
+                            className="pickup"
+                            onClick={() =>
+                              this.completeTaskHandler(request["_id"])
+                            }
+                            disabled={
+                              this.state.isDisabled | isCompletedButtonDisabled
+                            }
+                          >
+                            <span>Complete Task</span>
+                          </button>
+                        )}
                     </Col>
                   </Row>
                 </Card.Body>
@@ -205,14 +206,14 @@ class ManageBooking extends Component {
                           สถานที่รับรถ: {_car["location"]}
                           <br />
                           ชื่อเจ้าของรถ:{" "}
-                          <a href={"/user/" + request["_owner"]["_id"]}>
+                          <Link to={"/user/" + request["_owner"]["_id"]}>
                             {request["_owner"]["name"]}
-                          </a>
+                          </Link>
                           <br />
                           ชื่อผู้เช่า:{" "}
-                          <a href={"/user/" + request["_renter"]["_id"]}>
+                          <Link to={"/user/" + request["_renter"]["_id"]}>
                             {request["_renter"]["name"]}
-                          </a>
+                          </Link>
                           <br />
                           Status: {statusText}
                         </p>
