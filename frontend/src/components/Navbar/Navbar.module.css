@@ -4,7 +4,7 @@
   
 }
 .NavLink {
-  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.904);
   padding: 0.5rem 0.5rem;
   display: block;
   text-decoration: none;
