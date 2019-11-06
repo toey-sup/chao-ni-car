@@ -25,7 +25,7 @@
     "express-session": "^1.15.6",
     "jest": "^24.7.1",
     "mongodb": "^3.1.8",
-    "mongoose": "^5.4.8",
+    "mongoose": "^5.7.5",
     "multer": "^1.4.1",
     "node-fetch": "^2.3.0",
     "nodemon": "^1.18.9",
